@@ -1,0 +1,19 @@
+<View sceneColor="0x0" layers="1,1,0,0,第 1 层" width="230" height="200">
+  <Image skin="png.comp.img_bg" layer="1" left="0" right="0" top="0" bottom="0"/>
+  <Image skin="png.comp.bg" layer="1" left="0" right="0" top="19" bottom="0" sizeGrid="2,2,2,2"/>
+  <Panel layers="1,1,0,0,第 1 层" layer="1" left="0" right="0" top="22" bottom="26" vScrollBarSkin="png.comp.vscroll" hScrollBarSkin="png.comp.hscroll" x="20" y="20">
+    <List layers="1,1,0,0,第 1 层" layer="1" spaceY="1" top="26" left="5" var="list_config" vScrollBarSkin="png.comp.vscroll" bottom="0" x="5" y="26" right="3">
+      <Box layers="1,1,0,0,第 1 层" layer="1" name="render" height="24" left="2" right="2">
+        <Clip skin="png.comp.clip_select" layer="1" name="selectBox" clipX="1" clipY="2" left="0" right="0" top="0" bottom="0"/>
+        <Label styleSkin="png.comp.label" layer="1" centerY="0" name="txt_name" width="163" height="20" isHtml="true" x="0" y="2" color="0xe0e0e0"/>
+      </Box>
+    </List>
+    <ComboBox skin="png.comp.combobox" layer="1" sizeGrid="40,0,40,0" left="2" right="2" top="1" var="com_config"/>
+  </Panel>
+  <Box layers="1,1,0,0,第 1 层" layer="1" bottom="3" left="3" right="3">
+    <TextInput skin="png.comp.textinput" layer="1" width="191" height="22" margin="25,2" left="0" right="1" var="txt_search"/>
+    <Label text="查  找" styleSkin="png.comp.label" layer="1" centerX="0" bottom="2" color="0x666666" mouseEnabled="false" var="txt_placeholder"/>
+  </Box>
+  <Tab labels="配置,脚本" skin="png.comp.tab" layer="1" var="tab_group" labelColors="0xe0e0e0,0xe0e0e0,0xe0e0e0" left="0" top="0"/>
+  <Image skin="png.comp.btn_search" x="2" y="174" layer="1" scale="0.8" smoothing="true" bottom="2"/>
+</View>

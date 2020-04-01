@@ -1,0 +1,16 @@
+<View width="842" height="583" sceneColor="0x0" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.blank" layer="1" var="img_mask" left="0" right="0" top="0" bottom="0"/>
+  <RadioGroup labels="白底,黑底" skin="png.comp.radiogroup" layer="1" right="1" top="1"/>
+  <List layers="1,1,0,0,第 1 层" layer="1" top="22" bottom="45" var="list_preview" spaceX="2" spaceY="2" right="0" left="0" mouseEnabled="false" vScrollBarSkin="png.comp.vscroll">
+    <UIView source="common/CommResPreview.xml" layer="1" runtime="view.common.ResPreview" mouseEnabled="false" x="0" y="0" name="render"/>
+  </List>
+  <Tab skin="png.comp.tab" x="1" y="1" layer="1" direction="horizontal" var="tab_action"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" x="171" y="330" centerX="0" bottom="5">
+    <Button skin="png.comp.btn_left" layer="1" stateNum="1" var="btn_turn_left"/>
+    <Button skin="png.comp.btn_right" x="183" layer="1" var="btn_turn_right"/>
+    <Button skin="png.comp.btn_playCircleFill" x="61" layer="1" var="btn_playOnce"/>
+    <Button skin="png.comp.btn_playCircle" x="122" layer="1" var="btn_playRepeat"/>
+  </Box>
+  <ComboBox labels="外观,武器,翅膀,坐骑" skin="png.comp.combobox" x="0" layer="1" bottom="1" left="1" selectedIndex="0" var="cb_model"/>
+  <Button label="取消选中" skin="png.comp.button" layer="1" var="btn_unselected" bottom="23" left="1"/>
+</View>

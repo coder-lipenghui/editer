@@ -1,0 +1,8 @@
+<View sceneColor="0xffffff" layers="1,1,0,0,第 1 层" width="200">
+  <Panel layers="1,1,0,0,第 1 层" layer="1" x="0" y="0" left="0" right="0" top="21" bottom="0" vScrollBarSkin="png.comp.vscroll" hScrollBarSkin="png.comp.hscroll"/>
+  <Image skin="png.comp.img_splite" x="0" y="0" layer="1" left="0" top="0" bottom="0"/>
+  <Image skin="png.comp.img_splite_h" x="0" layer="1" right="0" left="0" bottom="0"/>
+  <Image skin="png.comp.img_splite" layer="1" right="0" top="0" bottom="0"/>
+  <Image skin="png.comp.img_splite_h" layer="1" right="0" left="0" top="0"/>
+  <Tab labels="页签" skin="png.comp.tab" x="0" y="0" layer="1" labelColors="0xFFFFFF,0xFFFFFF,0xFFFFFF" space="0"/>
+</View>

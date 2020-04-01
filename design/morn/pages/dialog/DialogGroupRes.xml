@@ -1,0 +1,9 @@
+<Dialog width="400" height="200" sceneColor="0x0" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" layer="1" left="0" right="0" top="0" bottom="0"/>
+  <Button label="确定" skin="png.comp.btn_small_primary" x="275" y="197" layer="1" right="10" bottom="10"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="265" y="224" layer="1" right="80" bottom="10" name="close"/>
+  <Label text="资源归类" styleSkin="png.comp.label" layer="1" color="0x212121" centerX="0" top="1"/>
+  <TextInput skin="png.comp.textinput" x="71" y="36" layer="1" margin="2" var="txt_path" width="241" height="22"/>
+  <Label text="资源" styleSkin="png.comp.label" x="37" y="37" layer="1" color="0xbdbdbd"/>
+  <Button label="浏览" skin="png.comp.btn_small_secondary" x="323" y="32" layer="1" var="btn_browse" sizeGrid="19,0,19,0" width="50" height="30"/>
+</Dialog>

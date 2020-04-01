@@ -1,0 +1,59 @@
+<Dialog width="600" height="400" sceneColor="0x0" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" layer="1" left="0" right="0" top="0" bottom="0" sizeGrid="22,22,22,22"/>
+  <LinkButton label="说明" styleSkin="png.comp.linkbutton" x="19" y="360" layer="1" bottom="15"/>
+  <Image skin="png.comp.img_container" x="390" y="46" layer="1" sizeGrid="40,5,5,5" width="204" height="294"/>
+  <Label text="模板预览" styleSkin="png.comp.label" x="407" y="36" layer="1" color="0xe0e0e0"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" x="394" y="59">
+    <Label text="名称" styleSkin="png.comp.label" x="47" layer="1" color="0xbdbdbd" y="0"/>
+    <Label text="帧数" styleSkin="png.comp.label" x="84" y="1" layer="1" color="0xbdbdbd"/>
+    <Label text="矫正" styleSkin="png.comp.label" x="132" y="2" layer="1" color="0xbdbdbd"/>
+    <List layers="1,1,0,0,第 1 层" layer="1" x="3" y="25" vScrollBarSkin="png.comp.vscroll" spaceY="1" repeatY="10" width="192" height="252" var="list_action">
+      <Box layers="1,1,0,0,第 1 层" layer="1" name="render">
+        <TextInput skin="png.comp.textinput" layer="1" margin="2" width="35" height="22" name="txt_id" color="0xbdbdbd"/>
+        <TextInput skin="png.comp.textinput" x="114" layer="1" margin="2" y="0" width="59" height="22" name="txt_amendment" color="0xbdbdbd"/>
+        <TextInput skin="png.comp.textinput" x="36" layer="1" margin="2" width="40" height="22" name="txt_name" y="0" color="0xbdbdbd"/>
+        <TextInput skin="png.comp.textinput" x="79" layer="1" margin="2" y="0" width="32" height="22" name="txt_frame" color="0xbdbdbd"/>
+      </Box>
+    </List>
+    <Image skin="png.comp.img_splite_h" layer="1" height="1" left="0" right="0" y="23"/>
+    <Label text="编号" styleSkin="png.comp.label" x="7" y="1" layer="1" color="0xbdbdbd"/>
+  </Box>
+  <Button label="添加" skin="png.comp.btn_small_primary" x="522" y="357" layer="1" var="btn_add" labelBold="false" right="10" bottom="15"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="452" y="357" layer="1" sizeGrid="19,0,19,0" name="close" right="80" bottom="15"/>
+  <Label text="添加资源" styleSkin="png.comp.label" x="270" y="0" layer="1" color="0x212121" centerX="0"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" x="11" y="107" var="box_catalog">
+    <Image skin="png.comp.img_container" y="10" layer="1" sizeGrid="40,5,5,5" width="370" height="53" x="0"/>
+    <Label text="存储路径" styleSkin="png.comp.label" x="12" layer="1" color="0xe0e0e0"/>
+    <Label text="路径" styleSkin="png.comp.label" x="27" y="27" layer="1" color="0xbdbdbd" var="txt_position"/>
+  </Box>
+  <Box layers="1,1,0,0,第 1 层" layer="1" x="11" y="183">
+    <Image skin="png.comp.img_container" y="10" layer="1" sizeGrid="40,5,5,5" width="370" height="146" x="0"/>
+    <TextInput skin="png.comp.textinput" x="61" y="56" layer="1" margin="2" var="txt_id" width="80" height="22"/>
+    <Label text="编号" styleSkin="png.comp.label" x="27" y="57" layer="1" color="0xbdbdbd"/>
+    <TextInput skin="png.comp.textinput" x="202" y="56" layer="1" margin="2" var="txt_name" width="80" height="22"/>
+    <Label text="名称" styleSkin="png.comp.label" x="168" y="57" layer="1" color="0xbdbdbd"/>
+    <TextInput skin="png.comp.textinput" x="61" y="92" layer="1" margin="2" width="80" height="22" var="txt_x" text="285"/>
+    <Label text="中心X" styleSkin="png.comp.label" x="20" y="93.5" layer="1" color="0xbdbdbd"/>
+    <TextInput skin="png.comp.textinput" x="202" y="92" layer="1" margin="2" width="80" height="22" var="txt_y" text="269"/>
+    <Label text="中心Y" styleSkin="png.comp.label" x="161" y="93.5" layer="1" color="0xbdbdbd"/>
+    <ComboBox labels="1,3,5,8" skin="png.comp.combobox" x="61" y="125" layer="1" selectedIndex="2" labelMargin="10" width="80" sizeGrid="10,0,20,0" var="cb_dirCount"/>
+    <Label text="方向" styleSkin="png.comp.label" x="27" y="126.5" layer="1" width="28" height="19" color="0xbdbdbd"/>
+    <Label text="属性" styleSkin="png.comp.label" x="12" layer="1" color="0xe0e0e0"/>
+    <ComboBox labels="label1,label2" skin="png.comp.combobox" x="59" layer="1" var="com_moudle" y="22" sizeGrid="20,0,20,0" width="82" height="22"/>
+    <Label text="模板" styleSkin="png.comp.label" x="27" y="23.5" layer="1" color="0xbdbdbd"/>
+    <Button skin="png.comp.btn_12" x="145" y="57" layer="1" stateNum="1" toolTip="对换" var="btn_change"/>
+    <Box layers="1,1,0,0,第 1 层" layer="1" x="166" y="19" var="box_effect_model">
+      <Label text="动作" styleSkin="png.comp.label" y="1" layer="1" color="0xbdbdbd"/>
+      <ComboBox skin="png.comp.combobox" x="36" y="0" layer="1" selectedIndex="0" width="80" height="22" sizeGrid="10,0,20,0" var="cb_effect_action" visible="true"/>
+    </Box>
+    <CheckBox label="素材允许旋转" skin="png.comp.check_dark" x="180" y="127" layer="1" selected="true" var="check_rotaion"/>
+  </Box>
+  <Box layers="1,1,0,0,第 1 层" layer="1" x="11" y="36">
+    <Image skin="png.comp.img_container" y="10" layer="1" sizeGrid="40,5,5,5" width="370" height="53" x="0"/>
+    <TextInput skin="png.comp.textinput" x="61" y="26" layer="1" margin="2" var="txt_path" width="200" height="22"/>
+    <Label text="资源" styleSkin="png.comp.label" x="27" y="27" layer="1" color="0xbdbdbd"/>
+    <CheckBox label="批量" skin="png.comp.checkbox" x="264" y="28" layer="1" var="cb_batch" labelColors="0xe0e0e0,0xFFFFFF,0xFFFFFF"/>
+    <Label text="目标" styleSkin="png.comp.label" x="12" layer="1" color="0xe0e0e0"/>
+    <Button label="浏览" skin="png.comp.btn_small_secondary" x="313" y="22" layer="1" var="btn_browse" sizeGrid="19,0,19,0" width="50" height="30"/>
+  </Box>
+</Dialog>

@@ -1,0 +1,10 @@
+<View width="200" height="600" sceneColor="0x0" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_bg" layer="1" left="0" right="0" top="0" bottom="0" x="641" y="81"/>
+  <Image skin="png.comp.bg" layer="1" sizeGrid="2,2,2,2" left="0" right="0" top="19" bottom="0"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" bottom="3" left="3" right="3" x="10" y="10">
+    <TextInput skin="png.comp.textinput" layer="1" text="快捷查找" margin="25,2" color="0xe0e0e0" left="0" right="0"/>
+    <Image skin="png.comp.btn_search" x="0" y="-1" layer="1" scale="0.8" smoothing="true"/>
+  </Box>
+  <Panel layers="1,1,0,0,第 1 层" layer="1" top="22" bottom="26" left="2" right="2" vScrollBarSkin="png.comp.vscroll" var="box_container"/>
+  <Tab labels="配置属性" skin="png.comp.tab" layer="1" selectedIndex="0" left="0" top="0"/>
+</View>

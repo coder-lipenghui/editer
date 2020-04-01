@@ -1,0 +1,36 @@
+<View width="200" height="600" sceneColor="0x0" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_bg" layer="1" left="0" right="0" top="0" bottom="0"/>
+  <Image skin="png.comp.bg" x="2" y="295" layer="1" top="19" left="0" right="0" bottom="0" sizeGrid="2,2,2,2"/>
+  <Label text="文件名称" styleSkin="png.comp.label" x="5" y="32" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="31" layer="1" var="txt_name" editable="false"/>
+  <Label text="素材分类" styleSkin="png.comp.label" x="5" y="58" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="57" layer="1" var="txt_path" editable="false" disabled="true"/>
+  <Label text="方向总数" styleSkin="png.comp.label" x="5" y="110" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="109" layer="1" var="txt_dir"/>
+  <Label text="动作帧数" styleSkin="png.comp.label" x="5" y="136" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="135" layer="1" var="txt_frameCount"/>
+  <Label text="中心点X" styleSkin="png.comp.label" x="5" y="162" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="161" layer="1" var="txt_centerX"/>
+  <Label text="中心点Y" styleSkin="png.comp.label" x="5" y="188" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="187" layer="1" var="txt_centerY"/>
+  <Label text="游戏帧率" styleSkin="png.comp.label" x="5" y="214" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="213" layer="1" var="txt_renderTicket"/>
+  <Label text="动过时长" styleSkin="png.comp.label" x="5" y="240" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="239" layer="1" var="txt_playTime" editable="false" disabled="true"/>
+  <Image skin="png.comp.img_splite_h" x="0" y="272" layer="1" left="0" right="0"/>
+  <List layers="1,1,0,0,第 1 层" layer="1" x="9" y="262" vScrollBarSkin="png.comp.vscroll" repeatY="15" left="5" right="5" var="list_frame" bottom="5" top="280" spaceY="1">
+    <Box layers="1,1,0,0,第 1 层" layer="1" name="render">
+      <Label text="动过时长" styleSkin="png.comp.label" y="1" layer="1" name="txt_id"/>
+      <TextInput text="TextInput" skin="png.comp.textinput" x="57" layer="1" name="txt_frame" y="0" width="116" height="22"/>
+    </Box>
+  </List>
+  <Label text="动作名称" styleSkin="png.comp.label" x="5" y="84" layer="1"/>
+  <TextInput skin="png.comp.textinput" x="62" y="83" layer="1" var="txt_action"/>
+  <Button skin="png.comp.btn_action" layer="1" var="btn_action" right="0" top="0"/>
+  <Tab layers="1,1,0,0,第 1 层" layer="1" x="1" y="0" selectedIndex="0" var="tab_displayModel">
+    <Button label="外观" skin="png.comp.tab" layer="1" sizeGrid="2,2,2,2,1" width="38" height="20" name="item0"/>
+    <Button label="武器" skin="png.comp.tab" x="40" layer="1" sizeGrid="2,2,2,2,1" width="38" height="20" name="item1"/>
+    <Button label="翅膀" skin="png.comp.tab" x="80" layer="1" sizeGrid="2,2,2,2,1" width="38" height="20" name="item2"/>
+    <Button label="特效" skin="png.comp.tab" x="120" layer="1" sizeGrid="2,2,2,2,1" width="38" height="20" name="item3"/>
+  </Tab>
+</View>

@@ -1,0 +1,22 @@
+<View width="240" height="300" sceneColor="0x212121" layers="1,1,0,0,第 1 层">
+  <Clip skin="png.comp.clip_select" x="-594" y="83" layer="1" name="selectBox" clipX="1" clipY="2" left="0" right="0" top="0" bottom="0"/>
+  <Image skin="png.comp.bg" layer="1" left="0" right="0" top="0" bottom="0" sizeGrid="2,2,2,2" var="img_bg" visible="true" alpha="0.8" x="10" y="10"/>
+  <Button skin="png.comp.btn_left" layer="1" stateNum="1" left="0" x="0" y="260" var="btn_turn_left" visible="false" bottom="0"/>
+  <Button skin="png.comp.btn_right" layer="1" stateNum="1" right="0" x="200" y="260" var="btn_turn_right" visible="false" bottom="0"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" centerX="0" bottom="5" mouseEnabled="false" x="10" y="10" var="box_play" visible="false">
+    <Button skin="png.comp.btn_playCircle" x="69" layer="1" scale="0.85" var="btn_playRepeat"/>
+    <Button skin="png.comp.btn_playCircleFill" layer="1" scale="0.85" var="btn_playOnce"/>
+  </Box>
+  <Image skin="png.comp.hongxian" x="20" layer="1" left="0" right="0" bottom="100" alpha="0.4" y="20" var="img_h"/>
+  <Image skin="png.comp.hongxianV" x="165" y="94" layer="1" top="0" bottom="0" centerX="0" alpha="0.4" var="img_v"/>
+  <Image skin="png.comp.shadow" layer="1" var="img_pos" y="176" centerX="0" x="88"/>
+  <Label text="动作" styleSkin="png.comp.label" layer="1" var="txt_name" x="107" y="232" centerX="0" bottom="50"/>
+  <List layers="1,1,0,0,第 1 层" layer="1" y="40" var="list_displayModel" width="63" height="246" spaceX="1" left="0" top="20" visible="false" x="-287">
+    <Box layers="1,1,0,0,第 1 层" layer="1" name="render" x="0" y="-1">
+      <Image skin="png.comp.blank" layer="1" width="60" height="22"/>
+      <Clip skin="png.comp.clip_select" layer="1" clipX="1" clipY="2" sizeGrid="2,2,2,2,1" clipWidth="60" clipHeight="22" width="60" height="22" name="selectBox"/>
+      <Label text="label" styleSkin="png.comp.label" x="14" y="1" layer="1" name="txt_displayModelName"/>
+    </Box>
+  </List>
+  <Button skin="png.comp.btn_action" x="-85" y="37" layer="1" stateNum="3" left="0" top="0" var="btn_trigger"/>
+</View>

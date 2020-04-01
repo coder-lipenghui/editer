@@ -1,0 +1,15 @@
+<Dialog width="400" height="200" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" x="20" y="20" layer="1" sizeGrid="22,22,22,22" left="0" right="0" top="0" bottom="0"/>
+  <Label text="新增怪物" styleSkin="png.comp.label" x="22" y="21" layer="1" color="0x212121" centerX="0" top="1"/>
+  <Image skin="png.comp.img_container" x="190" y="50" layer="1" sizeGrid="40,5,5,5" left="20" top="40" right="20" bottom="50"/>
+  <Label text="基础属性" styleSkin="png.comp.label" x="35" y="32" layer="1" color="0xffffff"/>
+  <Button label="确认" skin="png.comp.btn_small_primary" x="427" y="265" layer="1" var="btn_add" right="20" bottom="15"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="247" y="155" layer="1" name="close" bottom="15"/>
+  <TextInput skin="png.comp.textinput" x="119" y="57" layer="1" margin="2" var="txt_number" width="175" height="22" text="1"/>
+  <Label text="生成数量" styleSkin="png.comp.label" x="54" y="58.5" layer="1" color="0xbdbdbd"/>
+  <TextInput skin="png.comp.textinput" x="119" y="87" layer="1" margin="2" var="txt_range" width="175" height="22" text="1"/>
+  <Label text="活动范围" styleSkin="png.comp.label" x="54" y="88.5" layer="1" color="0xbdbdbd"/>
+  <TextInput skin="png.comp.textinput" x="119" y="117" layer="1" margin="2,2,30,2" var="txt_refTime" width="175" height="22" text="100"/>
+  <Label text="刷新时间" styleSkin="png.comp.label" x="54" y="118.5" layer="1" color="0xbdbdbd"/>
+  <Label text="(毫秒)" styleSkin="png.comp.label" x="254" y="117" layer="1" color="0xbdbdbd"/>
+</Dialog>

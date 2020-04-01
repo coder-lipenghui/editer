@@ -1,0 +1,20 @@
+<res>
+  <item name="png.comp.tab" type="Tab" compress="0" quality="80" props="labelColors=0xFFFFFF,0xFFFFFF,0xFFFFFF"/>
+  <item name="png.comp.button" type="Button" compress="0" quality="80" props="labelColors=0xFFFFFF,0xFFFFFF,0xFFFFFF"/>
+  <item name="png.comp.textinput" type="TextInput" compress="0" quality="80" props="color=0xFFFFFF&#xA;margin=2,2"/>
+  <item name="png.comp.label" type="Label" compress="0" quality="80" props="color=0xFFFFFF"/>
+  <item name="png.comp.combobox" type="ComboBox" compress="0" quality="80" props="labelColors=0xFFFFFF,0xFFFFFF,0xFFFFFF&#xA;sizeGrid=20,0,30,0"/>
+  <item name="png.comp.radio_blue" type="RadioButton" compress="0" quality="80" props="lableColors=0xFFFFFF,0xFFFFFF,0xFFFFFF"/>
+  <item name="png.comp.check_dark" type="CheckBox" compress="0" quality="80" props="labelColors=0xFFFFFF,0xFFFFFF,0xFFFFFF"/>
+  <item name="png.comp.img_bg" type="Image" compress="0" quality="80" props="sizeGrid=10,22,10,10"/>
+  <item name="png.comp.checkbox" type="CheckBox" compress="0" quality="100" props="labelColors=0xE0E0E0,0xE0E0E0,0xE0E0E0"/>
+  <item name="png.comp.btn_small_primary" type="Button" compress="0" quality="100" props="labelColors=0xe0e0e0,0xe0e0e0,0xe0e0e0"/>
+  <item name="png.comp.btn_small_secondary" type="Button" compress="0" quality="100" props="labelColors=0xCDCDCD,0x2E2E2E,0xFFFFFF"/>
+  <item name="png.comp.img_dialog" type="Image" compress="0" quality="100" props="sizeGrid=22,22,22,22"/>
+  <item name="png.comp.tab_vertical" type="Tab" compress="0" quality="100" props="labelColors=0xFFFFFF,0xFFFFFF,0xFFFFFF"/>
+  <item name="png.comp.radiogroup" type="RadioGroup" compress="0" quality="100" props="labelColors=0xe1e1e1,0xe1e1e1,0xe1e1e1"/>
+  <item name="png.comp.btn_right" type="Button" compress="0" quality="100" props="stateNum=1"/>
+  <item name="png.comp.btn_playCircle" type="Button" compress="0" quality="100" props="stateNum=1&#xA;"/>
+  <item name="png.comp.btn_playCircleFill" type="Button" compress="0" quality="100" props="stateNum=1&#xA;"/>
+  <item name="png.comp.btn_search" type="Button" compress="1" quality="100" props="stateNum=1"/>
+</res>

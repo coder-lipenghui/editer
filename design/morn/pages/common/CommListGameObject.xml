@@ -1,0 +1,8 @@
+<View width="100" height="400" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.bg" x="59" y="68" layer="1" left="0" right="0" top="0" bottom="0" alpha="0.5" sizeGrid="2,2,2,2,1"/>
+  <List layers="1,1,0,0,第 1 层" layer="1" left="0" right="0" top="0" bottom="0" spaceX="1" var="list_name">
+    <Box layers="1,1,0,0,第 1 层" layer="1" name="render">
+      <Label text="label" styleSkin="png.comp.label" layer="1" x="0" y="0" width="99" height="18"/>
+    </Box>
+  </List>
+</View>

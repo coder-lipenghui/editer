@@ -1,0 +1,16 @@
+<Dialog width="400" height="200" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" layer="1" left="0" right="0" top="0" bottom="0" sizeGrid="22,22,22,22" x="30" y="50"/>
+  <Button label="确认" skin="png.comp.btn_small_primary" x="572" y="407" layer="1" var="btn_ok" labelBold="false" right="10" bottom="10"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="502" y="407" layer="1" sizeGrid="19,0,19,0" name="close" right="80" bottom="10"/>
+  <Label text="资源分类" styleSkin="png.comp.label" layer="1" color="0x212121" centerX="0" top="1" x="40" y="40"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" centerX="0" right="15" left="15" x="15" y="44">
+    <Image skin="png.comp.img_container" y="12" layer="1" sizeGrid="40,5,5,5" width="370" height="80" x="0"/>
+    <Label text="分类" styleSkin="png.comp.label" x="12" layer="1" color="0xe0e0e0"/>
+    <Label styleSkin="png.comp.label" x="17" y="21" layer="1" width="326" height="20" color="0xcccccc" text="单目录内的（N_N^N）格式的资源进行归类及改名"/>
+    <TextInput skin="png.comp.textinput" x="51" y="46" layer="1" margin="2" var="txt_path" width="197" height="22"/>
+    <Label text="资源" styleSkin="png.comp.label" x="17" y="47" layer="1" color="0xbdbdbd"/>
+    <Button label="浏览" skin="png.comp.btn_small_secondary" x="303" y="42" layer="1" var="btn_browse" sizeGrid="19,0,19,0" width="50" height="30"/>
+    <CheckBox label="批量" skin="png.comp.check_dark" x="253" y="48" layer="1" var="ck_batch"/>
+  </Box>
+  <Label styleSkin="png.comp.label" x="17" y="137" layer="1" width="367" height="20" color="0x99cc66" var="txt_msg"/>
+</Dialog>

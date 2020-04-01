@@ -1,0 +1,11 @@
+<View width="200" height="400" sceneColor="0x0" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_bg" layer="1" left="0" right="0" top="0" bottom="0"/>
+  <Image skin="png.comp.bg" layer="1" left="0" right="0" top="19" bottom="0" x="-787" y="330"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" bottom="3" left="5" visible="false">
+    <TextInput skin="png.comp.textinput" layer="1" width="191" height="22" text="快捷查找" margin="25,2" color="0xe0e0e0"/>
+    <Button skin="png.comp.btn_zoom_out" x="2" y="2" layer="1" stateNum="1"/>
+  </Box>
+  <Panel layers="1,1,0,0,第 1 层" layer="1" x="1862" y="1372" top="24" bottom="26" left="2" right="2" vScrollBarSkin="png.comp.vscroll" var="box_container"/>
+  <TextArea layer="1" left="2" right="2" top="24" bottom="26" var="txt_oldDrop" vScrollBarSkin="png.comp.vscroll"/>
+  <Tab labels="掉落信息" skin="png.comp.tab" layer="1" selectedIndex="0" left="0" top="1"/>
+</View>

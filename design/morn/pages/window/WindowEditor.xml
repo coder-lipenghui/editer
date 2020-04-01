@@ -1,0 +1,11 @@
+<View width="842" height="583" sceneColor="0x0" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_bg" layer="1" left="0" right="0" top="0" bottom="0" sizeGrid="10,22,10,10" x="228" y="706"/>
+  <Image skin="png.comp.bg" layer="1" sizeGrid="2,2,2,2" left="0" right="0" top="19" bottom="0"/>
+  <Tab labels="地图编辑,资源编辑,文本编辑" skin="png.comp.tab" layer="1" labelColors="0xe0e0e0,0xe0e0e0,0xe0e0e0" left="0" top="0" var="tab_edit" selectedIndex="0"/>
+  <Image skin="png.comp.img_blackBg" x="138" y="186" layer="1" left="0" right="0" top="20" bottom="0"/>
+  <ViewStack layers="3,1,0,0,第 3 层;2,1,0,0,第 2 层;1,0,0,0,第 1 层" layer="1" left="0" right="0" top="20" bottom="0" x="273" y="316" var="vs_edit">
+    <UIView source="window/WindowMapEdit.xml" layer="1" y="0" name="item0" runtime="view.window.MapEdit" x="0" left="0" right="0" top="0" bottom="0" var="uv_mapEditer"/>
+    <UIView source="window/WindowResEdit.xml" x="0" layer="2" name="item1" y="0" left="0" right="0" top="0" bottom="0" runtime="view.window.ResEdit" var="uv_resEditer"/>
+    <UIView source="window/WindowTextEdit.xml" x="0" y="0" layer="3" var="uv_code" name="item2" left="0" right="0" top="0" bottom="0" runtime="view.window.CodeEdit"/>
+  </ViewStack>
+</View>

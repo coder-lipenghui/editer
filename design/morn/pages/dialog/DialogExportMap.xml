@@ -1,0 +1,17 @@
+<Dialog width="400" height="200" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" layer="1" left="0" right="0" top="0" bottom="0" sizeGrid="22,22,22,22" x="0" y="20"/>
+  <Button label="导出" skin="png.comp.btn_small_primary" x="542" y="377" layer="1" var="btn_export" labelBold="false" right="10" bottom="15"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="472" y="377" layer="1" sizeGrid="19,0,19,0" name="close" right="80" bottom="15"/>
+  <Label text="导出地图" styleSkin="png.comp.label" layer="1" color="0x212121" centerX="0" top="1" x="10" y="10"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" centerX="0" right="15" left="15" x="15" y="30">
+    <Image skin="png.comp.img_container" y="12" layer="1" sizeGrid="40,5,5,5" width="370" height="80" x="0"/>
+    <Label text="导出" styleSkin="png.comp.label" x="12" layer="1" color="0xe0e0e0"/>
+    <TextInput skin="png.comp.textinput" x="90" y="34" layer="1" margin="2" var="txt_mapId" width="256" height="22"/>
+    <Label text="地图编号" styleSkin="png.comp.label" x="27" y="35" layer="1" color="0xbdbdbd"/>
+    <CheckBox skin="png.comp.checkbox" x="90" y="62.5" layer="1" var="ck_mapo"/>
+    <Label text="只导配置" styleSkin="png.comp.label" x="27" y="61.5" layer="1" color="0xbdbdbd"/>
+    <CheckBox skin="png.comp.checkbox" x="221" y="62" layer="1" var="ck_minimap"/>
+    <Label text="只导小地图" styleSkin="png.comp.label" x="147" y="61" layer="1" color="0xbdbdbd"/>
+  </Box>
+  <Label styleSkin="png.comp.label" x="20.5" y="127" layer="1" width="359" height="20" color="0x9933" var="txt_msg"/>
+</Dialog>
