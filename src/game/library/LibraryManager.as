@@ -401,48 +401,56 @@ package game.library
 			}
 			App.log.info("资源全部导出完毕");
 		}
+		
 		private function getExportAssets(displayId:int):Array
 		{
 			var catalogs:Array = CatalogManager.instance.getCatalogIdByDisplayId(displayId);
 			var assets:Array = [];
 			for (var k:int = 0; k < catalogs.length; k++) 
 			{
-				//if (catalogs[k]==2) 
-				//{
-					//continue;
-				//}
-				var dic:Dictionary = _resDic[catalogs[k]];
-				if (dic) 
+				assets=assets.concat(getAssetsByCatalogId(catalogs[k]));
+			}
+			return assets;
+		}
+		/**
+		 * 根据目录ID获取资源李彪
+		 * @param	id
+		 * @return array
+		 */
+		public function getAssetsByCatalogId(id:int):Array 
+		{
+			var assets:Array = [];
+			var dic:Dictionary = _resDic[id];
+			var displayId:int = CatalogManager.instance.getDisplayIdByCatalogId(id);
+			if (dic) 
+			{
+				for each(var xml:XML in dic) 
 				{
-					for each(var xml:XML in dic) 
+					if (displayId==3)
 					{
-						//newXML = new XML(xml.toString());
-						if (displayId==3)
+						var item:Object = new Object;
+						item.catalog = id;
+						item.id = xml.@export;
+						item.name = xml.@name;
+						item.folderName = item.name;
+						item.action = xml.@id;
+						assets.push(item);
+					}else
+					{
+						var children:XMLList = xml.children();
+						for (var i:int = 0; i < children.length(); i++) 
 						{
-							var item:Object = new Object;
-							item.catalog = catalogs[k];
-							item.id = xml.@export;
-							item.name = xml.@name;
-							item.folderName = item.name;
-							item.action = xml.@id;
-							assets.push(item);
-						}else
-						{
-							var children:XMLList = xml.children();
-							for (var i:int = 0; i < children.length(); i++) 
+							var child:XML = children[i] as XML;
+							if (DataManager.action.getActionPublish(ProjectConfig.adoptAction,child.@id)) 
 							{
-								var child:XML = children[i] as XML;
-								if (DataManager.action.getActionPublish(ProjectConfig.adoptAction,child.@id)) 
-								{
-									child.@catalog = catalogs[k];
-									item = new Object;
-									item.name = String(xml.@name);
-									item.folderName = item.name;
-									item.id = String(xml.@export + child.@id);
-									item.action = String(child.@id);
-									item.catalog = catalogs[k];
-									assets.push(item);
-								}
+								child.@catalog = id;
+								item = new Object;
+								item.name = String(xml.@name);
+								item.folderName = item.name;
+								item.id = String(xml.@export + child.@id);
+								item.action = String(child.@id);
+								item.catalog = id;
+								assets.push(item);
 							}
 						}
 					}

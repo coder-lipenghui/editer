@@ -7,4 +7,5 @@
     <Button skin="png.comp.btn_加号" layer="2" stateNum="1" var="btn_hide" height="22" alpha="0" x="311" width="50" left="0" right="0" top="0"/>
   </Box>
   <Box layers="1,1,0,0,第 1 层" layer="1" var="box_container" left="0" right="0" top="24" bottom="0"/>
+  <Button skin="png.comp.btn_action" x="178" y="1" layer="1" var="btn_action"/>
 </View>

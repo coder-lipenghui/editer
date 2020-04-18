@@ -36,6 +36,28 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
+			
+			App.init(this);
+			App.loader.loadAssets(["assets/comp.swf"], new Handler(handlerEnterEditer));
+			TexturePacker.tpPath = "C:/Program Files/CodeAndWeb/TexturePacker/bin/TexturePacker.exe";
+		}
+		private function handlerEnterEditer():void 
+		{
+			stage.addEventListener(Event.RESIZE, handleResize);
+			this.addChild(work.instance);
+			work.instance.setSize(stage.stageWidth, stage.stageHeight);
+			EditorManager.init(this);
+		}
+		//测试用例
+		private function doTest():void 
+		{
+			MapInfo_Test.exportTest();
+		}
+		/**
+		 * 複製版本資源
+		 */
+		private function copyResource():void 
+		{
 			if (false) //复制资源
 			{
 				var file:File = File.applicationDirectory.resolvePath("D:/JiuYin/client/design/JiuYinNew/library/特效/其他特效");
@@ -62,21 +84,6 @@ package
 				}
 				return;
 			}
-			App.init(this);
-			App.loader.loadAssets(["assets/comp.swf"], new Handler(handlerEnterEditer));
-			TexturePacker.tpPath = "C:/Program Files/CodeAndWeb/TexturePacker/bin/TexturePacker.exe";
-		}
-		private function handlerEnterEditer():void 
-		{
-			stage.addEventListener(Event.RESIZE, handleResize);
-			this.addChild(work.instance);
-			work.instance.setSize(stage.stageWidth, stage.stageHeight);
-			EditorManager.init(this);
-		}
-		//测试用例
-		private function doTest():void 
-		{
-			MapInfo_Test.exportTest();
 		}
 		private function handleResize(e:Event):void 
 		{

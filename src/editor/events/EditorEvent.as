@@ -24,6 +24,7 @@ package editor.events
 		public static var CONTEXT_MAP_EXPORT:String = "context_map_export";
 		public static var CONTEXT_RES_EXPORT:String = "context_res_export";
 		public static var CONTEXT_RES_DELETE:String = "contexzt_res_delete";
+		public static var CONTEXT_RES_EXPORT_CATALOG:String = "context_res_export_catalog";
 		
 		public static var CONTEXT_RES_EDIT:String = "context_res_edit";
 		public static var CONTEXT_EFFECT_EDIT:String = "context_effect_edit";

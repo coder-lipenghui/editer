@@ -14,6 +14,7 @@ package view
 	import view.dialog.delRes;
 	import view.dialog.exportMapRes;
 	import view.dialog.exprotRes;
+	import view.dialog.exprotResByCatalog;
 	import view.dialog.groupJiuYinRes;
 	import view.dialog.welcome;
 	import view.window.DropInfo;
@@ -53,6 +54,10 @@ package view
 			App.stage.addEventListener(EditorEvent.CONTEXT_RES_DELETE,function (e:EditorEvent):void 
 			{
 				App.dialog.show(new delRes(e.data));
+			});
+			App.stage.addEventListener(EditorEvent.CONTEXT_RES_EXPORT_CATALOG,function (e:EditorEvent):void 
+			{
+				App.dialog.show(new exprotResByCatalog(e.data));
 			});
 			btn_addComRes.clickHandler = new Handler(function ():void 
 			{

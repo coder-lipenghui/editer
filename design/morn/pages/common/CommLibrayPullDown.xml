@@ -1,5 +1,5 @@
 <View width="200" height="300" sceneColor="0xffffff" layers="1,1,0,0,第 1 层" x="0">
-  <Box layers="2,1,1,1,第 2 层;1,1,1,0,第 1 层" layer="1" var="box_title" left="0" right="0">
+  <Box layers="2,1,1,1,第 2 层;1,1,1,1,第 1 层" layer="1" var="box_title" left="0" right="0">
     <Image skin="png.comp.img_title" y="49" layer="1" left="0" right="0" top="0" sizeGrid="1,1,1,1"/>
     <Label text="title" styleSkin="png.comp.label" layer="1" top="2" var="txt_title" height="18" width="81" x="87" color="0xe0e0e0" y="2"/>
     <Clip skin="png.comp.clip_tree_arrow" y="149" layer="1" var="clip_arrow" clipX="1" clipY="2" index="1" top="5" left="1" x="83"/>

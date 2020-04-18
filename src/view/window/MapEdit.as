@@ -165,7 +165,7 @@ package view.window
 			{
 				_drawType = index;
 			});
-			cb_object.selectHandler = new Handler(function (index:int):void 
+			cb_object.selectHandler = new Handler(function (index:int):void
 			{
 				if (_mapDesp) 
 				{

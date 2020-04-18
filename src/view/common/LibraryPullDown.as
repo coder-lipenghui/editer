@@ -31,6 +31,9 @@ package view.common
 			btn_hide.clickHandler = new Handler(handleContainerState, [0]);
 			btn_show.clickHandler = new Handler(handleContainerState, [1]);
 			
+			btn_show.addEventListener(MouseEvent.RIGHT_CLICK, handleTitleRightClick);
+			btn_hide.addEventListener(MouseEvent.RIGHT_CLICK, handleTitleRightClick);
+			
 			treeLibrary.array = [];
 			treeLibrary.renderHandler = new Handler(handlerTreeRender);
 			treeLibrary.rightClickHandler = new Handler(handlerTreeRightClick);
@@ -114,6 +117,11 @@ package view.common
 			else{
 				App.stage.dispatchEvent(new EditorEvent(EditorEvent.CONTEXT_RES_EDIT, obj, null, true));
 			}
+		}
+		private function handleTitleRightClick(e:Event):void 
+		{
+			var m1:menu = new menu("导出", EditorEvent.CONTEXT_RES_EXPORT_CATALOG, _catalogId, null);
+			EditorManager.contextMenu.show([m1]);
 		}
 		/**
 		 * 右键菜单

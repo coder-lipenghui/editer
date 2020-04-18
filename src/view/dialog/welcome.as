@@ -78,7 +78,7 @@ package view.dialog
 				for (var i:int = 0; i < xmllist.length(); i++) 
 				{
 					var item:XML = xmllist[i] as XML;
-					if (item.@selected)
+					if (String(item.@selected)=="true")
 					{
 						_projectPath = item.@path;
 						break;
@@ -110,7 +110,6 @@ package view.dialog
 					{
 						have = true;
 						item.@selected = "true";
-						break;
 					}else{
 						item.@selected = "false";
 					}

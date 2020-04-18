@@ -21,6 +21,7 @@ package view.common
 			super();
 			addEventListener(LibraryPullDown.LIBRARY_PULL_DOWN_HIDE, handleVisible);
 			addEventListener(LibraryPullDown.LIBRARY_PULL_DOWN_SHOW, handleVisible);
+			
 			this.addEventListener(Event.RESIZE, handleResize);
 		}
 		public function doRefresh():void 

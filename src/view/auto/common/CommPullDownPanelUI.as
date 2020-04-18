@@ -8,6 +8,7 @@ package view.auto.common {
 		public var btn_show:Button = null;
 		public var btn_hide:Button = null;
 		public var box_container:Box = null;
+		public var btn_action:Button = null;
 		protected static var uiXML:XML =
 			<View width="200" height="300">
 			  <Box left="0" right="0" var="box_title" top="0" x="-19" y="-269">
@@ -18,6 +19,7 @@ package view.auto.common {
 			    <Button skin="png.comp.btn_加号" stateNum="1" var="btn_hide" height="22" alpha="0" x="311" width="50" left="0" right="0" top="0"/>
 			  </Box>
 			  <Box var="box_container" left="0" right="0" top="24" bottom="0"/>
+			  <Button skin="png.comp.btn_action" x="178" y="1" var="btn_action"/>
 			</View>;
 		public function CommPullDownPanelUI(){}
 		override protected function createChildren():void {
