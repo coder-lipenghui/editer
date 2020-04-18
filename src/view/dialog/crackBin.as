@@ -26,6 +26,7 @@ package view.dialog
 	public class crackBin extends DialogCrackUI 
 	{
 		private static var _instance:crackBin = null;
+		private var _files:Array = [];
 		private var _pngfiles:Dictionary = new Dictionary;
 		private var _rootFolderPath:String = ""; 
 		private var _totalPng:int = 0;
@@ -50,33 +51,49 @@ package view.dialog
 			function handlerSelected(e:Event):void 
 			{
 				var folder:File = File.applicationDirectory.resolvePath(e.target.nativePath);
+				txt_file.text = _rootFolderPath = folder.nativePath;
 				if (folder.isDirectory) 
 				{
-					txt_file.text=_rootFolderPath = folder.nativePath;
-				}
-				var files:Array = folder.getDirectoryListing();
-				for (var i:int = 0; i < files.length; i++) 
-				{
-					var png:File = files[i] as File;
-					if (png.extension=="png") 
+					var files:Array = folder.getDirectoryListing();
+					for (var i:int = 0; i < files.length; i++) 
 					{
-						_totalBin++;
+						var png:File = files[i] as File;
+						if (png.extension=="png") 
+						{
+							_totalBin++;
+						}
 					}
+					_currStep = 0;
+					txt_file.text = "当前进度: 0/" + _totalBin;
+				}else{
+					_totalBin = 1;
+					_currStep = 0;
+					
 				}
-				_currStep = 0;
-				txt_file.text = "当前进度: 0/" + _totalBin;
+				
 			}
-			file.browseForDirectory("请选择资源目录");
+			if (ck_batch.selected) 
+			{
+				file.browseForDirectory("请选择资源目录");
+			}else{
+				file.browseForOpen("请选择png");
+			}
+			
 			file.addEventListener(Event.SELECT,handlerSelected);
 		}
 		
 		private function handlerStart():void
 		{
 			var folder:File = File.applicationDirectory.resolvePath(_rootFolderPath);
-			var files:Array = folder.getDirectoryListing();
-			for (var i:int = 0; i < files.length; i++) 
+			if (folder.isDirectory) 
 			{
-				var pngFile:File = files[i] as File;
+				_files=folder.getDirectoryListing();
+			}else{
+				_files = [folder];
+			}
+			for (var i:int = 0; i < _files.length; i++) 
+			{
+				var pngFile:File = _files[i] as File;
 				if (pngFile.extension=="png") 
 				{
 					var reg:RegExp = new RegExp("\\\\","g");
@@ -109,8 +126,8 @@ package view.dialog
 			var tempArr:Array = path.split("/");
 			var fileName:String = tempArr[tempArr.length - 1];
 			var id:int = int(fileName.replace(".png", ""));
-			var fristId:int = int(int(fileName.replace(".png", "")) / 10);
-			var secondId:int = id % 10;
+			var fristId:int = int(int(fileName.replace(".png", "")) / 100);
+			var secondId:int = id % 100;
 			//var folderNameArr:Array = txt_action.text.split(",");
 			var folderNameArr:Array = ["待机", "走路", "跑步", "预备", "攻击", "施法", "受伤", "死亡", "打坐", "挖矿", "骑待", "骑走", "骑跑", "跳跃"];
 			//这个是千年的动作列表
@@ -148,7 +165,11 @@ package view.dialog
 							var hh:int = stream.readShort();
 							var cx:int = stream.readShort();
 							var cy:int = stream.readShort();
-							var newPngFilePath:String = _rootFolderPath + "/" + fristId + "/" + folderName+"/" + id + ".png";
+							if (binFile.parent.nativePath) 
+							{
+								_rootFolderPath = binFile.parent.nativePath;
+							}
+							var newPngFilePath:String = _rootFolderPath + "/" + fristId + "/" + folderName+"/" + (id<10?"0"+id:id+"") + ".png";
 							if (!File.applicationDirectory.resolvePath(newPngFilePath).exists) 
 							{
 								var newBmd:BitmapData = new BitmapData(512, 512,true,0x00FFFFFF);
@@ -166,6 +187,7 @@ package view.dialog
 									file = null;
 									newBmd.dispose();
 									byteArray = null;
+									App.log.info("成功:",newPngFilePath);
 								}catch (e:Error)
 								{
 									App.log.warn("[ 创建素材出现异常 ]"); 
@@ -192,7 +214,8 @@ package view.dialog
 						loader.unload();
 						loader = null;
 						_pngfiles[path] = null;
-						txt_file.text = "当前进度: "+_currStep+"/" + _totalBin+"("+int((_currStep / _totalBin)*100)+"%)";
+						txt_file.text = "当前进度: " + _currStep + "/" + _totalBin + "(" + int((_currStep / _totalBin) * 100) + "%)";
+						
 					}
 				}catch (err:Error)
 				{

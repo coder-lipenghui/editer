@@ -107,6 +107,14 @@ package view
 			{
 				DataManager.library.exprotPet()
 			});
+			btn_export.clickHandler = new Handler(function ():void 
+			{
+				box_action.visible = !box_action.visible;
+			});
+			btn_crack.clickHandler = new Handler(function ():void 
+			{
+				box_crack.visible = !box_crack.visible;
+			});
 			uv_action.remove();
 		}
 		public function refesh():void 

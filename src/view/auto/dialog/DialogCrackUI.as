@@ -5,6 +5,7 @@ package view.auto.dialog {
 		public var btn_start:Button = null;
 		public var txt_file:TextInput = null;
 		public var btn_select:Button = null;
+		public var ck_batch:CheckBox = null;
 		public var ck_delete:CheckBox = null;
 		public var txt_action:TextInput = null;
 		protected static var uiXML:XML =
@@ -17,7 +18,7 @@ package view.auto.dialog {
 			  <TextInput skin="png.comp.textinput" x="69" y="94" var="txt_file" width="231" height="22" color="0xFFFFFF" margin="2,2"/>
 			  <Label text="目录" x="35" y="95" color="0xdbdbdb"/>
 			  <Button label="浏览" skin="png.comp.btn_small_secondary" x="371" y="90" var="btn_select" width="50" height="30" labelColors="0xCDCDCD,0x2E2E2E,0xFFFFFF"/>
-			  <CheckBox label="批量" skin="png.comp.checkbox" x="304" y="96" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0"/>
+			  <CheckBox label="批量" skin="png.comp.checkbox" x="304" y="96" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0" var="ck_batch"/>
 			  <TextArea text="批量：单目录下所有的png+bin文件将被拆解&lt;br/>常规：选择单张PNG进行拆解，需要bin文件在同级目录" skin="png.comp.textarea" x="22" y="134" width="404" height="57" isHtml="true" selectable="false" editable="false"/>
 			  <CheckBox label="完成后删除原文件" skin="png.comp.checkbox" x="304" y="61" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0" var="ck_delete"/>
 			  <TextInput skin="png.comp.textinput" x="69" y="59" var="txt_action" width="231" height="22" text="待机,走路,跑步,准备,攻击,施法,受伤,死亡" color="0xcccccc" toolTip="按照“,”截取，顺序对应的动作" margin="2,2"/>
