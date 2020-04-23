@@ -69,7 +69,8 @@ package game.tools.other
 						original[y] = new Dictionary;
 					}
 					original[y][x] = _map.mapDesp.logicCell[y][x];
-					_map.mapDesp.logicCell[y][x] = type;
+					var tmp:int = fixDrawType(type, x, y);
+					_map.mapDesp.logicCell[y][x] = tmp;
 					x+=unitx,e=e+2*fabs_dy;
 					if(e>=0)
 					{
@@ -87,7 +88,8 @@ package game.tools.other
 						original[y] = new Dictionary;
 					}
 					original[y][x] = _map.mapDesp.logicCell[y][x];
-					_map.mapDesp.logicCell[y][x] = type;
+					tmp = fixDrawType(type, x, y);
+					_map.mapDesp.logicCell[y][x] = tmp;
 					y+=unity,e=e+2*fabs_dx;
 					if(e>=0)
 					{
@@ -117,7 +119,8 @@ package game.tools.other
 					original[p.y] = new Dictionary;
 				}
 				original[p.y][p.x] = _map.mapDesp.logicCell[p.y][p.x] ;
-				_map.mapDesp.logicCell[p.y][p.x] = type;
+				var tmp:int = fixDrawType(type,p.x,p.y);
+				_map.mapDesp.logicCell[p.y][p.x] = tmp;
 				backup(original);
 			}else{
 				trace("不存在:",p.x,p.y);
@@ -165,7 +168,18 @@ package game.tools.other
 				floodFill4(x,y - 1, type,openlist,original);
 			} 
 		}
-		
+		private function fixDrawType(type:int,x:int,y:int):int
+		{
+			var result:int = type;
+			if (_map && _map.mapDesp && _map.mapDesp.logicCell[y] && _map.mapDesp.logicCell[y][x]==2) 
+			{
+				if (type==4) 
+				{
+					result = 6;
+				}
+			}
+			return result;
+		}
 		/**
 		 * 撤销操作
 		 */

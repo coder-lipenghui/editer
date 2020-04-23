@@ -34,6 +34,7 @@ package view.window
 		public var MAP_LINE_COLOR:uint = 0xFFFFFF;
 		public var MAP_MASK_COLOR:uint = 0x00FF00;
 		public var MAP_BLOCK_COLOR:uint = 0xFF0000;
+		public var MAP_HEIGH_COLOR:uint = 0xFFFF00;
 		public var MAP_COLOR_ALPHA:Number = 0.3;
 		public static var MAP_PATTERN_RES:String = "map_pattern_res";
 		public static var MAP_PATTERN_LIB:String = "map_pattern_lib";
@@ -111,10 +112,17 @@ package view.window
 			this.addChild(_container);
 			
 			super();
-			
 			cb_drawType.selectHandler = new Handler(function (index:int):void 
 			{
 				_drawType = index;
+				if (index==3) 
+				{
+					_drawType = 4;
+				}
+				if (index==4)
+				{
+					_drawType = 6;
+				}
 			});
 			btn_export.clickHandler = new Handler(function ():void 
 			{
@@ -160,10 +168,6 @@ package view.window
 					_displayObjLayer.mouseChildren = true;
 				}
 				App.log.info("切换到:",index==0?"画图模式":"布局模式");
-			});
-			cb_drawType.selectHandler = new Handler(function (index:int):void 
-			{
-				_drawType = index;
 			});
 			cb_object.selectHandler = new Handler(function (index:int):void
 			{
@@ -567,6 +571,14 @@ package view.window
 						App.log.info("当前画笔为:遮挡");
 						cb_drawType.selectedIndex = 2;
 						break;
+					case "shift,4":
+						App.log.info("当前画笔为:绕开");
+						cb_drawType.selectedIndex = 3;
+						break;
+					case "shift,5":
+						App.log.info("当前画笔为:遮挡+绕开");
+						cb_drawType.selectedIndex = 4;
+						break;
 					case "ctrl,1":
 						cb_editType.selectedIndex = 0;
 						break;
@@ -580,7 +592,7 @@ package view.window
 						export("mapo");
 						break;
 					case "ctrl,d":
-						_tools.drawFill(_clickPoint,cb_drawType.selectedIndex);
+						_tools.drawFill(_clickPoint,_drawType);
 						break;
 					case "ctrl,shift,s":
 						
@@ -639,6 +651,17 @@ package view.window
 								break;
 							case 2:
 								color = MAP_MASK_COLOR;
+								break;
+							//case 3:
+								//color = 0xFF00FF;
+								//break;
+							case 4:
+								color = MAP_HEIGH_COLOR;
+								break;
+							//case 5:
+								//break;
+							case 6:
+								color = 0xFF00FF;
 								break;
 						}
 						if (color!=0x0) 

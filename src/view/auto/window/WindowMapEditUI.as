@@ -20,7 +20,7 @@ package view.auto.window {
 			<View width="840" height="583">
 			  <Image skin="png.comp.blank" var="img_mask" left="2" right="2" top="1" bottom="1"/>
 			  <Image skin="png.comp.blank" x="0" y="0" left="0" right="0" top="0" height="24"/>
-			  <ComboBox labels="路点,阻挡,遮罩" skin="png.comp.combobox" x="305" y="1" selectedIndex="1" var="cb_drawType" labelColors="0xe0e0e0,0xe0e0e0,0xe0e0e0" sizeGrid="20,0,30,0"/>
+			  <ComboBox labels="路点,阻挡,遮罩,绕开,遮绕" skin="png.comp.combobox" x="305" y="1" selectedIndex="1" var="cb_drawType" labelColors="0xe0e0e0,0xe0e0e0,0xe0e0e0" sizeGrid="20,0,30,0"/>
 			  <Label text="画笔" x="276" y="2" color="0x99ff"/>
 			  <Label text="当前坐标:" x="375" y="2.5" color="0x99ff"/>
 			  <Label text="999,999" x="430" y="3" color="0xffcc00" var="txt_point" width="53" height="18"/>
