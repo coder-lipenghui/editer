@@ -97,6 +97,7 @@ package view.common
 		{
 			if (_baseAttribute) 
 			{
+				
 				_baseAttribute.setValue(_component.name, e.target.text);
 				dispatchEvent(new EditorEvent(EditorEvent.DATA_REFRESH, _baseAttribute,null,true));
 			}
@@ -133,7 +134,24 @@ package view.common
 				{
 					if (_component.name==key) 
 					{
-						_component.dataSource = _baseAttribute.getValue(key);
+						
+						var tmpVal:*= null;
+						if (_baseAttribute.getType(key) == "array" ) 
+						{
+							var tmp:Array = _baseAttribute.getValue(key);
+							if (!tmp) 
+							{
+								if (String(tmp).length>0) 
+								{
+									tmpVal = tmp;
+								}	
+							}else{
+								tmpVal = tmp.join(",");
+							}
+						}else{
+							tmpVal=_baseAttribute.getValue(key);
+						}
+						_component.dataSource = tmpVal;
 						break;
 					}
 				}

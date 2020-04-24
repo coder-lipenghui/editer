@@ -48,7 +48,7 @@ package view.object
 			_body = new Bitmap();
 			this.graphics.clear();
 			this.graphics.beginFill(0x0,0.2);
-			this.graphics.drawEllipse(0, 0, MapDesp.CELL_W, MapDesp.CELL_H);
+			this.graphics.drawEllipse(0, 0, ProjectConfig.CELL_W, ProjectConfig.CELL_H);
 			this.graphics.endFill();
 			init();
 			this.addEventListener(MouseEvent.CLICK, handleClick);
@@ -90,11 +90,11 @@ package view.object
 		{
 			if (e.attribute=="x") 
 			{
-				this.x = int(e.value) * MapDesp.CELL_W;
+				this.x = int(e.value) * ProjectConfig.CELL_W;
 			}
 			if (e.attribute=="y") 
 			{
-				this.y = int(e.value) * MapDesp.CELL_H;
+				this.y = int(e.value) * ProjectConfig.CELL_H;
 			}
 			if (e.attribute=="name") 
 			{
@@ -167,8 +167,8 @@ package view.object
 			_mouseDown = false;
 			if (ba && _enableDrag) 
 			{
-				var xx:int = int(this.x / MapDesp.CELL_W);
-				var yy:int = int(this.y / MapDesp.CELL_H);
+				var xx:int = int(this.x / ProjectConfig.CELL_W);
+				var yy:int = int(this.y / ProjectConfig.CELL_H);
 				ba.setValue("x", xx);
 				ba.setValue("y", yy);
 			}

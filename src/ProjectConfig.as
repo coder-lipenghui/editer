@@ -1,6 +1,7 @@
 package 
 {
 	import editor.events.EditorEvent;
+	import game.data.configuration.MapDesp;
 	
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
@@ -28,6 +29,16 @@ package
 		public static var descriptionModelPath:String = "";
 		/*当前采用的动作*/
 		public static var adoptAction:String = "";
+		
+		/**逻辑格子宽度*/
+		public static var CELL_W:int = 0;
+		/**逻辑格子高度*/
+		public static var CELL_H:int = 0;
+		/**切图宽度*/
+		public static var GROUND_W:int = 0;
+		/**切图高度*/
+		public static var GROUND_H:int = 0;
+		
 		public function ProjectConfig() 
 		{
 			
@@ -44,11 +55,24 @@ package
 				projectPath = projectXML.@path;
 				
 				var config:XMLList = projectXML.config;
+				var mapsetting:XMLList = projectXML.mapsetting;
 				
 				actionModelPath 		= projectPath+"/"+config.child("action").@path;
 				descriptionModelPath 	= projectPath+"/"+config.child("description").@path;
 				textureModelPath 		= projectPath+"/"+config.child("texturepacker").@path;
 				adoptAction				= config.child("action").@selected;
+				
+				var logic:String = mapsetting.logic;
+				var cutcell:String = mapsetting.cutcell;
+				
+				var tmp:Array = logic.split(",");
+				CELL_W = int(tmp[0]);
+				CELL_H = int(tmp[1]);
+				
+				tmp = cutcell.split(",");
+				GROUND_W = int(tmp[0]);
+				GROUND_H = int(tmp[1]);
+				
 				var library:XMLList = projectXML.library;
 				libraryPath = library.@path;
 				var catalog:XMLList = library.catalog;

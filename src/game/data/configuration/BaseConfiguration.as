@@ -1,5 +1,7 @@
 package game.data.configuration 
 {
+	import flash.errors.IOError;
+	import flash.events.IOErrorEvent;
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
@@ -149,7 +151,12 @@ package game.data.configuration
 			var resultStr:String = result.join("\r\n");
 			var filePath:String = File.applicationDirectory.resolvePath(path).nativePath;
 			var file:File = new File(filePath);
+			
 			var fs:FileStream = new FileStream();
+			fs.addEventListener(IOErrorEvent.IO_ERROR,function (e:IOError):void 
+			{
+				trace(e.message);
+			});
 			fs.open(file, FileMode.WRITE);
 			fs.writeMultiByte(resultStr,charSet);
 			fs.close();

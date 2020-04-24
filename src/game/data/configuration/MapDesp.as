@@ -17,15 +17,6 @@ package game.data.configuration
 	 */
 	public class MapDesp 
 	{
-		/**逻辑格子宽度*/
-		public static var CELL_W:int = 70;
-		/**逻辑格子高度*/
-		public static var CELL_H:int = 48;
-		/**切图宽度*/
-		public static var GROUND_W:int = 512;
-		/**切图高度*/
-		public static var GROUND_H:int = 512;
-		
 		public var mapId:String = "";
 		public var mapRes:String = "";
 		public var mapObj:String = "";
@@ -83,8 +74,8 @@ package game.data.configuration
 					fileStream.close();
 					
 				mapVersion = byteArray.readShort();
-				GROUND_W = byteArray.readShort();  	//在c++代码中 此值其实是个无用的值
-				GROUND_H = byteArray.readShort(); 	//在c++代码中 此值其实是个无用的值
+				ProjectConfig.GROUND_W = byteArray.readShort();  	//在c++代码中 此值其实是个无用的值
+				ProjectConfig.GROUND_H = byteArray.readShort(); 	//在c++代码中 此值其实是个无用的值
 				mapCellH = byteArray.readShort();   //横向格子数量 __height
 				mapCellV = byteArray.readShort();  	//纵向格子数量 __width
 				mapGroundDir = byteArray.readByte();
@@ -144,8 +135,8 @@ package game.data.configuration
 		{
 			mapWidth = mw;
 			mapHeight = mh;
-			mapCellH = int(mw / MapDesp.CELL_W);
-			mapCellV = int(mh / MapDesp.CELL_H);
+			mapCellH = int(mw / ProjectConfig.CELL_W);
+			mapCellV = int(mh / ProjectConfig.CELL_H);
 			for (var i:int = 0; i < mapCellV; i++) {
 				for (var j:int = 0; j < mapCellH; j++) {
 					if (logicCell[i] == undefined) {
@@ -178,8 +169,8 @@ package game.data.configuration
 			var ba:ByteArray = new ByteArray;
 			ba.endian = Endian.LITTLE_ENDIAN;
 			ba.writeShort(4);
-			ba.writeShort(GROUND_W);
-			ba.writeShort(GROUND_H);
+			ba.writeShort(ProjectConfig.GROUND_W);
+			ba.writeShort(ProjectConfig.GROUND_H);
 			
 			ba.writeShort(row);
 			ba.writeShort(cow);

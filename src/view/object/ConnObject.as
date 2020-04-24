@@ -23,11 +23,11 @@ package view.object
 			{
 				var ww:int = _img.bitmapData.width;
 				var hh:int = _img.bitmapData.height;
-				_img.y =-hh+MapDesp.CELL_H/2;
+				_img.y =-hh+ProjectConfig.CELL_H/2;
 				_img.x =-ww / 2;
 				_oname.y =-hh - 20;
-				_oname.x = (ww - _oname.width) / 2-MapDesp.CELL_W/2;
-				_shadow.x = (ww - 64) / 2-MapDesp.CELL_W/2;
+				_oname.x = (ww - _oname.width) / 2-ProjectConfig.CELL_W/2;
+				_shadow.x = (ww - 64) / 2-ProjectConfig.CELL_W/2;
 			});
 			_img.skin = "conn.png";
 			this.addChild(_img);

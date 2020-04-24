@@ -148,8 +148,8 @@ package view.object
 					var row:int = temp[1].replace("r","");
 					var cel:int = temp[2].replace("c", "");
 					var ground:Bitmap = new Bitmap(bmd);
-					ground.x = (cel-1) * MapDesp.GROUND_W;
-					ground.y = (row-1) * MapDesp.GROUND_H;
+					ground.x = (cel-1) * ProjectConfig.GROUND_W;
+					ground.y = (row-1) * ProjectConfig.GROUND_H;
 					addChild(ground);
 				}
 			}

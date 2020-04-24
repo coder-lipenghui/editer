@@ -222,18 +222,18 @@ package game.tools.other
 		}
 		public static function exportMap(bmd:BitmapData,mapId:String):void 
 		{
-			var row:int = bmd.width / MapDesp.GROUND_W;
-			var cow:int = bmd.height / MapDesp.GROUND_H;
+			var row:int = bmd.width / ProjectConfig.GROUND_W;
+			var cow:int = bmd.height / ProjectConfig.GROUND_H;
 			var total:int = row * cow;
 			
 			var shu:Boolean = false;
 			var heng:Boolean = false;
-			if (bmd.width % MapDesp.GROUND_W!=0)
+			if (bmd.width % ProjectConfig.GROUND_W!=0)
 			{
 				row = row + 1;
 				shu = true;
 			}
-			if (bmd.height % MapDesp.GROUND_H!=0)
+			if (bmd.height % ProjectConfig.GROUND_H!=0)
 			{
 				cow = cow + 1;
 				heng = true;
@@ -242,22 +242,22 @@ package game.tools.other
 			{
 				for (var w:int = 0; w < row; w++ )
 				{
-					var ww:int = MapDesp.GROUND_W;
-					var hh:int = MapDesp.GROUND_H;
-					var xx:int = w * MapDesp.GROUND_W;
-					var yy:int = h * MapDesp.GROUND_H;
+					var ww:int = ProjectConfig.GROUND_W;
+					var hh:int = ProjectConfig.GROUND_H;
+					var xx:int = w * ProjectConfig.GROUND_W;
+					var yy:int = h * ProjectConfig.GROUND_H;
 					if (shu)
 					{
 						if ((row - 1) == w)
 						{
-							ww = bmd.width - w * MapDesp.GROUND_W;
+							ww = bmd.width - w * ProjectConfig.GROUND_W;
 						}
 					}
 					if (heng)
 					{
 						if ((cow - 1) == h)
 						{
-							hh = bmd.height - h * MapDesp.GROUND_H;
+							hh = bmd.height - h * ProjectConfig.GROUND_H;
 						}
 					}
 					if (ww >0 && hh>0) 

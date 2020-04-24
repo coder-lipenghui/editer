@@ -332,8 +332,8 @@ package view.window
 		{
 			trace(e.data);
 			var ba:BaseAttribute = e.data as BaseAttribute;
-			var xx:int = e.target.mouseX / MapDesp.CELL_W;
-			var yy:int = e.target.mouseY / MapDesp.CELL_H;
+			var xx:int = e.target.mouseX / ProjectConfig.CELL_W;
+			var yy:int = e.target.mouseY / ProjectConfig.CELL_H;
 			var monName:String = ba.getValue("name");
 			App.dialog.show(new addMon(_mapDesp.mapId, xx + "", yy + "", monName));
 		}
@@ -524,8 +524,8 @@ package view.window
 			}
 			if (bo) 
 			{
-				bo.x = xx * MapDesp.CELL_W;
-				bo.y = yy * MapDesp.CELL_H;
+				bo.x = xx * ProjectConfig.CELL_W;
+				bo.y = yy * ProjectConfig.CELL_H;
 				_displayObjLayer.addChild(bo);
 				container.push(bo);
 			}else{
@@ -543,7 +543,7 @@ package view.window
 			_bottomLayer.graphics.lineStyle(1,MAP_LINE_COLOR, 0.1);
 			for (var i:int = 0; i < _mapDesp.mapCellV; i++) {
 				for (var j:int = 0; j < _mapDesp.mapCellH; j++) {
-					_bottomLayer.graphics.drawRect(j * MapDesp.CELL_W, i * MapDesp.CELL_H, MapDesp.CELL_W, MapDesp.CELL_H);
+					_bottomLayer.graphics.drawRect(j * ProjectConfig.CELL_W, i * ProjectConfig.CELL_H, ProjectConfig.CELL_W, ProjectConfig.CELL_H);
 				}
 			}
 			_bottomLayer.graphics.endFill();
@@ -641,8 +641,8 @@ package view.window
 				for (var j:int = 0; j < _mapDesp.mapCellV; j++) {
 					if (_mapDesp.logicCell[j] && _mapDesp.logicCell[j][i] &&_mapDesp.logicCell[j][i]!=0) 
 					{
-						var xx:int = i * MapDesp.CELL_W;
-						var yy:int = j * MapDesp.CELL_H;
+						var xx:int = i * ProjectConfig.CELL_W;
+						var yy:int = j * ProjectConfig.CELL_H;
 						var flag:int = _mapDesp.logicCell[j][i];
 						switch (flag) 
 						{
@@ -667,7 +667,7 @@ package view.window
 						if (color!=0x0) 
 						{
 							_graphicsLayer.graphics.beginFill(color, MAP_COLOR_ALPHA);
-							_graphicsLayer.graphics.drawRect(xx, yy, MapDesp.CELL_W, MapDesp.CELL_H);
+							_graphicsLayer.graphics.drawRect(xx, yy, ProjectConfig.CELL_W, ProjectConfig.CELL_H);
 							_graphicsLayer.graphics.endFill();
 						}
 					}
@@ -754,8 +754,8 @@ package view.window
 		}
 		private function setClickPoint():void 
 		{
-			_clickPoint.x = Math.floor(_container.mouseX / MapDesp.CELL_W);
-			_clickPoint.y = Math.floor(_container.mouseY / MapDesp.CELL_H);
+			_clickPoint.x = Math.floor(_container.mouseX / ProjectConfig.CELL_W);
+			_clickPoint.y = Math.floor(_container.mouseY / ProjectConfig.CELL_H);
 			txt_point.text = _clickPoint.x + "," + _clickPoint.y;
 		}
 		private function handlerProgress(value:Number):void 
@@ -828,8 +828,8 @@ package view.window
 						xx = ba.getValue("sx");
 						yy = ba.getValue("sy");
 					}
-					xx = xx * MapDesp.CELL_W;
-					yy = yy * MapDesp.CELL_H;
+					xx = xx * ProjectConfig.CELL_W;
+					yy = yy * ProjectConfig.CELL_H;
 					xx = xx * _cScale;
 					yy = yy * _cScale;
 					_container.x = -xx + this.width / 2;

@@ -52,6 +52,8 @@ package view.dialog
 			{
 				var folder:File = File.applicationDirectory.resolvePath(e.target.nativePath);
 				txt_file.text = _rootFolderPath = folder.nativePath;
+				_totalBin = 0;
+				_pngfiles = new Dictionary;
 				if (folder.isDirectory) 
 				{
 					var files:Array = folder.getDirectoryListing();
@@ -180,14 +182,14 @@ package view.dialog
 									var byteArray:ByteArray = newBmd.encode(newBmd.rect,compressor);
 									var file:File = new File(File.applicationDirectory.resolvePath(newPngFilePath).nativePath);
 									var fs:FileStream = new FileStream();
-									fs.open(file,FileMode.WRITE);
+									fs.open(file, FileMode.WRITE);
 									fs.writeBytes(byteArray);
 									fs.close();
 									fs = null;
 									file = null;
 									newBmd.dispose();
 									byteArray = null;
-									App.log.info("成功:",newPngFilePath);
+									//App.log.info("成功:",newPngFilePath);
 								}catch (e:Error)
 								{
 									App.log.warn("[ 创建素材出现异常 ]"); 
@@ -214,7 +216,7 @@ package view.dialog
 						loader.unload();
 						loader = null;
 						_pngfiles[path] = null;
-						txt_file.text = "当前进度: " + _currStep + "/" + _totalBin + "(" + int((_currStep / _totalBin) * 100) + "%)";
+						//txt_file.text = "当前进度: " + _currStep + "/" + _totalBin + "(" + int((_currStep / _totalBin) * 100) + "%)";
 						
 					}
 				}catch (err:Error)

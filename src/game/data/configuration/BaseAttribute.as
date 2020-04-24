@@ -88,17 +88,27 @@ package game.data.configuration
 			}
 			return null;
 		}
+		/**
+		 * 当设置array类型的值时，除了初始化的时候使用concat形式，其他时候都直接替换。
+		 * @param	key
+		 * @param	value
+		 */
 		public function setValue(key:String,value:*):void 
 		{
 			if (value is Array) 
 			{
-				if (!_values[key]) 
+				if (!_values[key])
 				{
 					_values[key] = [];
 				}
 				_values[key] = (_values[key] as Array).concat(value);
-			}else{
-				_values[key] = value;
+			}else {
+				if (getType(key)=="array" && !(value as Array))
+				{
+					value = String("value").split(",");
+				}else{
+					_values[key] = value;
+				}
 			}
 			dispatchEvent(new AttributeChangeEvent(AttributeChangeEvent.ATTRIBUTE_CHANGE,key,value));
 		}
@@ -111,7 +121,15 @@ package game.data.configuration
 			}
 			return null;
 		}
-		
+		public function getType(key:String):String
+		{
+			var xa:XmlAttribute = haveKey(key);
+			if (xa) 
+			{
+				return xa.type;
+			}
+			return "unknow";
+		}
 		public function get values():Dictionary 
 		{
 			return _values;

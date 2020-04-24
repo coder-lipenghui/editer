@@ -25,6 +25,10 @@ package view.dialog
 			{
 				var fileFilter:FileFilter = new FileFilter("jpg", "*.jpg");
 				var file:File = File.desktopDirectory;
+				if (txt_path.text!="") 
+				{
+					file = File.applicationDirectory.resolvePath(txt_path.text);
+				}
 				file.browseForOpen("选择地图资源",[fileFilter]);
 				file.addEventListener(Event.SELECT,function (e:Event):void 
 				{
