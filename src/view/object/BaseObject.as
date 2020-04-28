@@ -34,10 +34,11 @@ package view.object
 		private var _catalogId:int = 2;
 		private var _action:String = "00";
 		private var _resId:String = "";
+		private var _type:String = "png";
 		private var _dir:int = 4;
 		private var _bname:String = "";
 		private var _selected:Boolean = false;
-		public function BaseObject(ba:BaseAttribute,objName:String,res:String,action:String,catalog:int,dir:int) 
+		public function BaseObject(ba:BaseAttribute,objName:String,type:String,res:String,action:String,catalog:int,dir:int) 
 		{
 			super();
 			_bname = objName;
@@ -45,6 +46,7 @@ package view.object
 			_action = action;
 			_catalogId = catalog;
 			_dir = dir;
+			_type = type;
 			_body = new Bitmap();
 			this.graphics.clear();
 			this.graphics.beginFill(0x0,0.2);
@@ -115,7 +117,7 @@ package view.object
 		 */
 		protected function show():void 
 		{
-			_gameObject.show(_body.bitmapData, new Point(_body.width/2,_body.height), int(resId), _bname, action, catalogId);
+			_gameObject.show(_body.bitmapData, new Point(_body.width/2,_body.height), int(resId), _bname,_type, action, catalogId);
 			_gameObject.changeDir(_dir);
 		}
 		private function handleSelected(e:AttributeEvent):void 

@@ -20,7 +20,7 @@ package view.object
 			{
 				_resId = monBa.getValue("resid");
 			}
-			super(baseAttr, _monName,_resId,"00",2,4);
+			super(baseAttr, _monName,"png",_resId,"00",2,4);
 		}
 	}
 

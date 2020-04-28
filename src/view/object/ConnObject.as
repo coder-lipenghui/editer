@@ -17,7 +17,7 @@ package view.object
 		{
 			this.name = "connObject";
 			enableDrag = true;
-			super(ba, name, res, "00", 0, 0);
+			super(ba, name,"png", res, "00", 0, 0);
 			
 			_img.addEventListener(UIEvent.IMAGE_LOADED,function ():void 
 			{

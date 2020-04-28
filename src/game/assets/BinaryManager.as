@@ -185,5 +185,91 @@ package game.assets
 			var bin:Bin = new Bin();
 			bin.create(inputPath,outputPath,"","");
 		}
+		/**
+		 * 
+		 * @param	inPath
+		 * @param	outPath
+		 */
+		public function convertBin(inPath:String):void 
+		{
+			var targetFile:File = File.applicationDirectory.resolvePath(inPath);
+			var bins:Array = [];
+			if (targetFile.isDirectory) 
+			{
+				var files:Array = targetFile.getDirectoryListing();
+				for (var l:int = 0; l < files.length; l++) 
+				{
+					var tmp:File = files[l] as File;
+					
+					if (tmp.extension=="bin") 
+					{
+						var jpg:File = File.applicationDirectory.resolvePath(tmp.nativePath.replace("." + tmp.extension, ".jpg"));
+						if (jpg.exists)
+						{
+							bins.push(tmp);
+							var newJpg:File = File.applicationDirectory.resolvePath(inPath + "/jpg/" + jpg.name);
+							jpg.copyToAsync(newJpg, true);
+						}
+					}
+				}
+			}else{
+				if (targetFile.extension=="bin") 
+				{
+					bins = [targetFile];
+				}
+			}
+			for (var k:int = 0; k <bins.length ; k++) 
+			{
+				var bin:File = bins[k] as File;
+				var outPath:String = bin.nativePath.replace(".bin", "_tmp.bin");
+				var newBinFile:File = File.applicationDirectory.resolvePath(outPath);
+				try 
+				{
+					var fs1:FileStream = new FileStream();
+					var stream:FileStream = new FileStream();
+					fs1.endian=stream.endian = Endian.LITTLE_ENDIAN;
+					stream.open(bin, FileMode.READ);
+					fs1.open(newBinFile, FileMode.WRITE);
+					var _flag:int = stream.readByte();
+					var dircount:int = stream.readByte();
+					fs1.writeByte(dircount);
+					fs1.writeByte(_flag);
+					var imgCount:int = stream.readByte();//图片数量
+					fs1.writeByte(imgCount);
+					var frame:int=0
+					for (var i:int = 0; i < imgCount; i++)
+					{
+						frame = stream.readByte();
+						fs1.writeByte(frame);
+					}
+					for (i = 0; i < dircount;i++)
+					{
+						for (var j:int = 0; j < imgCount;j++ )
+						{
+							var xx:int = stream.readShort();
+							fs1.writeShort(xx);
+							var yy:int = stream.readShort();
+							fs1.writeShort(yy);
+							var ww:int = stream.readShort();
+							fs1.writeShort(ww);
+							var hh:int = stream.readShort();
+							fs1.writeShort(hh);
+							var cx:int = stream.readShort();
+							fs1.writeShort(cx);
+							var cy:int = stream.readShort();
+							fs1.writeShort(1);//老素材没有旋转选项
+							fs1.writeShort(cy);
+						}
+					}
+					fs1.close();
+					stream.close();
+					stream = null;
+				}catch (err:Error)
+				{
+					App.log.error(err.message)
+				}
+				trace("转换完成");
+			}
+		}
 	}
 }

@@ -130,7 +130,7 @@ package view.window
 			}
 			if (spaceY>0) 
 			{
-				previewObj.show(previewBm.bitmapData, new Point(100, 180),resId, resName, action, catalogId);
+				previewObj.show(previewBm.bitmapData, new Point(100, 180),resId, resName,"png", action, catalogId);
 				if (!previewBm.parent) 
 				{
 					this.addChild(previewBm);

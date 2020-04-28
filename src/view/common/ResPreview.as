@@ -108,6 +108,7 @@ package view.common
 				effectObj = new Object;
 				effectObj.id = int(resNode.@id);
 				effectObj.action = String(resNode.@action);
+				effectObj.type = String(resNode.@type);
 				if (!effectObj.action||effectObj.action=="") 
 				{
 					effectObj.action = "00";
@@ -129,6 +130,7 @@ package view.common
 						resObj.action = String(child.@id);
 						resObj.name = String(resNode.@name);
 						resObj.catalog = int(resNode.@catalog);
+						resObj.type = String(resNode.@type);//png jpg
 						_displayModel[displayId] = resObj;
 						draw(resObj);
 						break;
@@ -139,7 +141,7 @@ package view.common
 		public function draw(obj:Object):void 
 		{
 			var pos:Point = new Point(img_pos.x+(img_pos.width)/2,img_pos.y+img_pos.height/2);
-			_gameObject.show(_canvas.bitmapData, pos, obj.id, obj.name, obj.action, obj.catalog);
+			_gameObject.show(_canvas.bitmapData, pos, obj.id, obj.name,obj.type,obj.action, obj.catalog);
 		}
 		public function get actionName():String 
 		{

@@ -134,7 +134,13 @@ package game.tools.other
 		{
 			var original:Dictionary = new Dictionary;
 			var openlist:Array = [];
-			floodFill4(p.x, p.y, type, openlist,original);
+			try 
+			{
+				floodFill4(p.x, p.y, type, openlist,original);
+			}catch (err:Error)
+			{
+				App.log.error("填充出现异常,可ctrl+z撤销");
+			}
 			openlist = null;
 			backup(original);
 		}
