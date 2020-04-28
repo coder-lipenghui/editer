@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="Main.as" projectUUID="50fca281-861e-4c29-8f1b-cc2a7941d7d2" version="11">
+  <compiler additionalCompilerArguments="-locale zh_CN&#13;&#10;-swf-version=18" autoRSLOrdering="true" copyDependentFiles="true" flexSDK="Flex 4.6.0 (build 23201)" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="true" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <theme themeIsDefault="false" themeIsSDK="true" themeLocation="${SDK_THEMES_DIR}/frameworks/themes/Halo"/>
+  <applications>
+    <application path="Main.as">
+      <airExcludes/>
+    </application>
+  </applications>
+  <modules/>
+  <workers/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+  <buildTargets>
+    <buildTarget buildTargetName="default" platformId="default">
+      <airSettings airCertificatePath="C:/Users/Administrator/Desktop/LegendEditor.p12" airTimestamp="false" anePathSet="true" version="1">
+        <airExcludes>
+          <pathEntry path="tests"/>
+        </airExcludes>
+        <anePaths/>
+        <newLaunchParams/>
+        <modifiedLaunchParams/>
+        <newPackagingParams/>
+        <modifiedPackagingParams>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\configruation\itemgift.csv" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\configruation\magicdef.csv" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\configruation\magicup.csv" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\configruation\minimap.txt" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\configruation\safearea.txt" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\script\chufa.lua" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\script\task1000.lua" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+          <Parameter name="FILE : \LegendEditor\bin-release-temp\tests\script\task2000.lua" value="&lt;闂佺锕ら崥瀣耿椤撶姵濯奸柟顖嗗懏姣�gt;"/>
+        </modifiedPackagingParams>
+      </airSettings>
+      <actionScriptSettings version="1"/>
+    </buildTarget>
+  </buildTargets>
+</actionScriptProperties>
