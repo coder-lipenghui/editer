@@ -140,9 +140,9 @@ package view.dialog
 						return;
 					}
 					var centerStr:String = txt_x.text + "," + txt_y.text;
-					if (_pdm.selectedId==10 ||_pdm.selectedId==11 ||_pdm.selectedId==12||_pdm.selectedId==13) 
+					if (_pdm.selectedId==10 ||_pdm.selectedId==11 ||_pdm.selectedId==12||_pdm.selectedId==13)
 					{
-						var tpcmd:TexturePacker = new TexturePacker(__id,file.nativePath,_savePath+"/"+__name+"/export/",ProjectConfig.textureModelPath+"/cmd_cloth.txt");
+						var tpcmd:TexturePacker = new TexturePacker(__id,file.nativePath,_savePath+"/"+__name+"/export/",ProjectConfig.textureModelPath+"/cmd_effect_"+(rg_extension.selectedIndex?"jpg":"png")+".txt");
 						tpcmd.successHandler = next;
 						tpcmd.errorHandler = onError;
 						tpcmd.rootPath = file.nativePath;

@@ -8,6 +8,7 @@ package view.auto.dialog {
 		public var ck_batch:CheckBox = null;
 		public var ck_delete:CheckBox = null;
 		public var txt_action:TextInput = null;
+		public var ck_effect:CheckBox = null;
 		protected static var uiXML:XML =
 			<Dialog width="450" height="250">
 			  <Image skin="png.comp.img_dialog" x="0" y="0" sizeGrid="22,22,22,22" left="0" right="0" top="0" bottom="0"/>
@@ -24,6 +25,7 @@ package view.auto.dialog {
 			  <TextInput skin="png.comp.textinput" x="69" y="59" var="txt_action" width="231" height="22" text="待机,走路,跑步,准备,攻击,施法,受伤,死亡" color="0xcccccc" toolTip="按照“,”截取，顺序对应的动作" margin="2,2"/>
 			  <Label text="动作" x="35" y="60.5" color="0xdbdbdb"/>
 			  <Label text="基础" x="26" y="29" color="0xffffff"/>
+			  <CheckBox label="特效" skin="png.comp.checkbox" x="304" y="127" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0" var="ck_effect"/>
 			</Dialog>;
 		public function DialogCrackUI(){}
 		override protected function createChildren():void {

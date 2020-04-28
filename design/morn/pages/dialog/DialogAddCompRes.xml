@@ -47,6 +47,7 @@
       <ComboBox skin="png.comp.combobox" x="36" y="0" layer="1" selectedIndex="0" width="80" height="22" sizeGrid="10,0,20,0" var="cb_effect_action" visible="true"/>
     </Box>
     <CheckBox label="素材允许旋转" skin="png.comp.check_dark" x="180" y="127" layer="1" selected="true" var="check_rotaion"/>
+    <RadioGroup labels="png,jpg" skin="png.comp.radiogroup" x="278" y="127" layer="1" selectedIndex="0" var="rg_extension"/>
   </Box>
   <Box layers="1,1,0,0,第 1 层" layer="1" x="11" y="36">
     <Image skin="png.comp.img_container" y="10" layer="1" sizeGrid="40,5,5,5" width="370" height="53" x="0"/>

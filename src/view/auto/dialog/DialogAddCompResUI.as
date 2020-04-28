@@ -16,6 +16,7 @@ package view.auto.dialog {
 		public var box_effect_model:Box = null;
 		public var cb_effect_action:ComboBox = null;
 		public var check_rotaion:CheckBox = null;
+		public var rg_extension:RadioGroup = null;
 		public var txt_path:TextInput = null;
 		public var cb_batch:CheckBox = null;
 		public var btn_browse:Button = null;
@@ -69,6 +70,7 @@ package view.auto.dialog {
 			      <ComboBox skin="png.comp.combobox" x="36" y="0" selectedIndex="0" width="80" height="22" sizeGrid="10,0,20,0" var="cb_effect_action" visible="true" labelColors="0xFFFFFF,0xFFFFFF,0xFFFFFF"/>
 			    </Box>
 			    <CheckBox label="素材允许旋转" skin="png.comp.check_dark" x="180" y="127" selected="true" var="check_rotaion" labelColors="0xFFFFFF,0xFFFFFF,0xFFFFFF"/>
+			    <RadioGroup labels="png,jpg" skin="png.comp.radiogroup" x="278" y="127" selectedIndex="0" var="rg_extension" labelColors="0xe1e1e1,0xe1e1e1,0xe1e1e1"/>
 			  </Box>
 			  <Box x="11" y="36">
 			    <Image skin="png.comp.img_container" y="10" sizeGrid="40,5,5,5" width="370" height="53" x="0"/>

@@ -11,7 +11,7 @@ package view.object
 		public function NpcObject(ba:BaseAttribute,name:String="", res:String="") 
 		{
 			enableDrag = true;
-			super(ba, name, res,"00",3,0);
+			super(ba, name,"png", res,"00",3,0);
 		}
 		override protected function attributeChange(key:String, value:*):void 
 		{

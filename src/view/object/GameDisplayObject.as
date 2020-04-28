@@ -103,7 +103,7 @@ package view.object
 		 * @param	id 动作ID 例：00| 01| 02| 03
 		 * @param	name 例：新手衣服(1000)
 		 */
-		public function show(background:BitmapData,pos:Point,id:int,name:String,action:String,catalogId:int):void 
+		public function show(background:BitmapData,pos:Point,id:int,name:String,type:String,action:String,catalogId:int):void 
 		{
 			_parent = background;
 			_id = id;
@@ -126,21 +126,22 @@ package view.object
 			model.id = id;
 			model.action = action;
 			model.bmd = null;
+			model.type = type;
 			model.displayId = displayId;
 			if (!avatar[displayId] || avatar[displayId].path!=_path) 
 			{
 				avatar[displayId] = model;
-				loadRes(displayId);
+				loadRes(displayId,type);
 			}else{
 				draw(_parent,_pos,_dir, 0);
 			}
 		}
-		private function loadRes(displayId:int):void 
+		private function loadRes(displayId:int,type:String="png"):void 
 		{
 			var model:Object = avatar[displayId];
 			if (model) 
 			{
-				App.loader.loadBMD("file:///"+model.path + ".png",new Handler(handlerComplete,[displayId]),null,new Handler(handlerLoadError,[displayId]),false);
+				App.loader.loadBMD("file:///"+model.path + "."+type,new Handler(handlerComplete,[displayId]),null,new Handler(handlerLoadError,[displayId]),false);
 			}
 		}
 		private function handlerComplete(displayId:int,bmd:BitmapData):void

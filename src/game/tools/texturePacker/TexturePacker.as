@@ -76,7 +76,8 @@ package game.tools.texturePacker
 					return;
 				}
 				var cmd:File = new File();
-				_tpPath="/Applications/TexturePacker.app/Contents/MacOS/TexturePacker";
+				
+				//_tpPath="/Applications/TexturePacker.app/Contents/MacOS/TexturePacker";
 				cmd = cmd.resolvePath(_tpPath);
 				if (!cmd.exists) 
 				{

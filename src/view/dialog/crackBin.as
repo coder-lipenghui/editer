@@ -2,6 +2,8 @@ package view.dialog
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.BlendMode;
+	import flash.display.JPEGEncoderOptions;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
 	import flash.display.PNGEncoderOptions;
@@ -10,6 +12,8 @@ package view.dialog
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
+	import flash.geom.ColorTransform;
+	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
@@ -60,7 +64,7 @@ package view.dialog
 					for (var i:int = 0; i < files.length; i++) 
 					{
 						var png:File = files[i] as File;
-						if (png.extension=="png") 
+						if (png.extension=="png" || png.extension=="jpg") 
 						{
 							_totalBin++;
 						}
@@ -96,7 +100,7 @@ package view.dialog
 			for (var i:int = 0; i < _files.length; i++) 
 			{
 				var pngFile:File = _files[i] as File;
-				if (pngFile.extension=="png") 
+				if (pngFile.extension=="png" || pngFile.extension=="jpg") 
 				{
 					var reg:RegExp = new RegExp("\\\\","g");
 					var tempPath:String = pngFile.nativePath.replace(reg, "/");
@@ -123,19 +127,28 @@ package view.dialog
 		private function createNewImg(path:String,source:Bitmap):void 
 		{
 			//获取对应名称的binbin文件
-			var binFilePath:String = path.replace(".png", ".bin");
+			var extension:String = File.applicationDirectory.resolvePath(path).extension;
+			
+			var binFilePath:String = path.replace("."+extension, ".bin");
+			
 			var binFile:File = File.applicationDirectory.resolvePath(binFilePath);
 			var tempArr:Array = path.split("/");
 			var fileName:String = tempArr[tempArr.length - 1];
-			var id:int = int(fileName.replace(".png", ""));
-			var fristId:int = int(int(fileName.replace(".png", "")) / 100);
+			var tmpId:String = fileName.replace("."+extension, "");
+			tmpId = fileName.replace("."+extension, "");
+			var id:int = int(tmpId);
+			var fristId:int = int(int(tmpId) / 100);
 			var secondId:int = id % 100;
 			//var folderNameArr:Array = txt_action.text.split(",");
+			//wwj
 			var folderNameArr:Array = ["待机", "走路", "跑步", "预备", "攻击", "施法", "受伤", "死亡", "打坐", "挖矿", "骑待", "骑走", "骑跑", "跳跃"];
-			//这个是千年的动作列表
+			//qn
 			//folderNameArr=["待机", "走路", "跑步", "预备","拳","腿","刀","斧","剑","棍","弓","抱拳","打坐","受伤","死亡","待机2","攻击","死亡2" ]
 			var folderName:String = folderNameArr[secondId];
-			//trace(fristId,folderName);
+			if (ck_effect.selected) 
+			{
+				folderName = id + "";
+			}
 			if (binFile.exists)
 			{
 				//解析bin文件
@@ -171,14 +184,31 @@ package view.dialog
 							{
 								_rootFolderPath = binFile.parent.nativePath;
 							}
-							var newPngFilePath:String = _rootFolderPath + "/" + fristId + "/" + folderName+"/" + (id<10?"0"+id:id+"") + ".png";
+							var newPngFilePath:String = _rootFolderPath + "/" + fristId + "/" + folderName+"/" + (id < 10?"0" + id:id + "") + "." + extension;
+							if (ck_effect.selected) 
+							{
+								newPngFilePath = _rootFolderPath + "/"+folderName+"/" + (id < 10?"0" + id:id + "") + "." + extension;
+							}
+							if (extension=="jpg")
+							{
+								trace();
+							}
 							if (!File.applicationDirectory.resolvePath(newPngFilePath).exists) 
 							{
-								var newBmd:BitmapData = new BitmapData(512, 512,true,0x00FFFFFF);
-								newBmd.copyPixels(source.bitmapData, new Rectangle(xx, yy, ww, hh), new Point(256 + cx, 256 + cy));
+								var newBmd:BitmapData = null;
+								var tmpBmd:BitmapData = new BitmapData(512, 512,true,0x00);
+								//source.blendMode = BlendMode.ADD;
+								tmpBmd.copyPixels(source.bitmapData, new Rectangle(xx, yy, ww, hh), new Point(256 + cx, 256 + cy));
+								if (extension=="jpg") 
+								{
+									newBmd = new BitmapData(512, 512,true,0x00);
+									newBmd.draw(tmpBmd,new Matrix(),new ColorTransform(0,0,0,0,0,0,0,1));
+								}else{
+									newBmd = tmpBmd;
+								}
 								try 
 								{
-									var compressor:*=new PNGEncoderOptions(true);
+									var compressor:*= new PNGEncoderOptions(true);
 									var byteArray:ByteArray = newBmd.encode(newBmd.rect,compressor);
 									var file:File = new File(File.applicationDirectory.resolvePath(newPngFilePath).nativePath);
 									var fs:FileStream = new FileStream();
@@ -203,7 +233,7 @@ package view.dialog
 					stream = null;
 					if (_pngfiles[path])
 					{
-						var pngFile:File = File.applicationDirectory.resolvePath(binFile.nativePath.replace(".bin", ".png"));
+						var pngFile:File = File.applicationDirectory.resolvePath(binFile.nativePath.replace(".bin", "."+extension));
 						if (pngFile.exists && ck_delete.selected) 
 						{
 							binFile.moveToTrash();
