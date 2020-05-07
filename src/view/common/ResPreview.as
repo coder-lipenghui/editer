@@ -6,6 +6,7 @@ package view.common
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 	import game.assets.animat.Animat;
+	import game.assets.bin.BinInfo;
 	import game.data.DataManager;
 	import game.library.CatalogManager;
 	import morn.core.components.Box;
@@ -268,23 +269,28 @@ package view.common
 			var obj:Object =_displayModel[selecteIndex];
 			if (obj) 
 			{
-				trace("正在修改:", _actionName, _actionId, _resId);
 				var node:XML = DataManager.library.getResNode(obj.id, obj.catalog);
 				var center:String = node.@center;
 				var point:Array = center.split(",");
 				var pointX:int = int(point[0]);
 				var pointY:int = int(point[1]);
+				var catalogId:int=int(node.@catalog)
 				pointX += tempX;
 				pointY += tempY;
-				node.@center = pointX + "," + pointY;	
+				node.@center = pointX + "," + pointY;
+				
 				var childXmlList:XMLList = node.children();
 				if (!childXmlList || !childXmlList[0]) 
 				{
 					node.@center = pointX + "," + pointY;
 				}
+				if (CatalogManager.instance.isEffectCatalog(catalogId)) 
+				{
+					childXmlList = new XMLList(node);
+				}
 				for each(var xml:XML in childXmlList) 
 				{
-					if (xml.@id==_actionId) 
+					if (xml.@id==_actionId || CatalogManager.instance.isEffectCatalog(catalogId)) 
 					{
 						var childCenter:String = xml.@center;
 						if (childCenter && childCenter!="") 
@@ -297,11 +303,21 @@ package view.common
 						pointX += tempX;
 						pointY += tempY;
 						xml.@center = pointX + "," + pointY;
+						var type:String=String(xml.@type)=="jpg"?"jpg":"png";
+						var resId:String = xml.@action + "." + type;
+						if(CatalogManager.instance.isEffectCatalog(catalogId)) 
+						{
+							resId = String(xml.@id) + "." + type;
+						}
+						var path:String =[ProjectConfig.libraryPath,CatalogManager.instance.getAbsolutePath(catalogId),xml.@name,"export",resId].join("/");
+						var bin:BinInfo = new BinInfo(path.replace("."+type,".bin"));
+						bin.changeCenter(new Point(tempX,tempY));
 						break;
 					}
 				}
 				DataManager.library.addResNode(node);
-				DataManager.library.createBinFileByXmlNode(node, obj.action);
+				
+				//DataManager.library.createBinFileByXmlNode(node, obj.action);
 				draw(obj);
 				dispatchEvent(new EditorEvent(EditorEvent.ATTRIBUTE_ACTION,obj ,null,true));
 			}

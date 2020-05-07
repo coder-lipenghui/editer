@@ -140,14 +140,14 @@ package view.dialog
 						return;
 					}
 					var centerStr:String = txt_x.text + "," + txt_y.text;
-					if (_pdm.selectedId==10 ||_pdm.selectedId==11 ||_pdm.selectedId==12||_pdm.selectedId==13)
+					if (CatalogManager.instance.isEffectCatalog(_pdm.selectedId))
 					{
 						var tpcmd:TexturePacker = new TexturePacker(__id,file.nativePath,_savePath+"/"+__name+"/export/",ProjectConfig.textureModelPath+"/cmd_effect_"+(rg_extension.selectedIndex?"jpg":"png")+".txt");
 						tpcmd.successHandler = next;
 						tpcmd.errorHandler = onError;
 						tpcmd.rootPath = file.nativePath;
 						tpcmd.center = centerStr;
-						if (!check_rotaion.selected) 
+						if (!check_rotaion.selected)
 						{
 							tpcmd.allowRotation = false;
 						}
@@ -207,11 +207,10 @@ package view.dialog
 		}
 		private function next(tp:TexturePacker):void
 		{
-			if (tp && tp.data!="" && tp.sheet!="") 
+			if (tp && tp.data!="" && tp.sheet!="")
 			{
-				
 				var descriptionXML:XML = null;
-				switch (_pdm.selectedId) 
+				switch (_pdm.selectedId)
 				{
 					case 10:
 					case 11:

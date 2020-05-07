@@ -46,13 +46,15 @@ package view.dialog
 				{
 					var id:String = obj.id+"";
 					var action:String = obj.action + "";
-					var oldFile:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(int(_catalogId)) + "/" + obj.folderName+"/export/" + action + ".png");
+					var oldFile:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(int(_catalogId)) + "/" + obj.folderName+"/export/" + action + "."+obj.type);
 					if (oldFile.exists) 
 					{
-						var outPath:String=CatalogManager.instance.getOutputPathById(_catalogId)+"/" + id + ".png"
+						var outPath:String = CatalogManager.instance.getOutputPathById(_catalogId) + "/" + id + "." + obj.type;
 						var newFile:File = File.applicationDirectory.resolvePath(ProjectConfig.assetsPath +outPath);
 						oldFile.addEventListener(Event.COMPLETE,copyComplete);
 						oldFile.copyToAsync(newFile,true);
+					}else{
+						App.log.debug("不存在文件:", oldFile.nativePath);
 					}
 				}
 			}

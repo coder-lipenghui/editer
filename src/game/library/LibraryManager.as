@@ -10,6 +10,7 @@ package game.library
 	import flash.utils.Endian;
 	import flash.utils.getTimer;
 	import game.assets.ActionManager;
+	import game.assets.AnimateManager;
 	import game.assets.action.Action;
 	import game.assets.animat.AnimatInfo;
 	import game.data.DataManager;
@@ -112,7 +113,7 @@ package game.library
 						xml.@export = id;
 					break;
 				}
-				if (catalogId==10||catalogId==11||catalogId==12||catalogId==13) 
+				if (CatalogManager.instance.isEffectCatalog(catalogId)) 
 				{
 					var frame:int = 2;
 					if (actionId!="") 
@@ -434,6 +435,7 @@ package game.library
 						item.name = xml.@name;
 						item.folderName = item.name;
 						item.action = xml.@id;
+						item.type = String(xml.@type) == "jpg"?"jpg":"png";
 						assets.push(item);
 					}else
 					{
@@ -450,6 +452,7 @@ package game.library
 								item.id = String(xml.@export + child.@id);
 								item.action = String(child.@id);
 								item.catalog = id;
+								item.type = String(xml.@type) == "jpg"?"jpg":"png";
 								assets.push(item);
 							}
 						}
@@ -574,7 +577,7 @@ package game.library
 				var path:String =[ProjectConfig.libraryPath,CatalogManager.instance.getAbsolutePath(catalogId),xml.@name,"export",""].join("/");
 				
 				var xmlList:XMLList = null;
-				if (catalogId==10 || catalogId==11 || catalogId==12 || catalogId==13) 
+				if (CatalogManager.instance.isEffectCatalog(catalogId)) 
 				{
 					xmlList = new XMLList(xml);
 					targetAction = "";
@@ -609,6 +612,7 @@ package game.library
 				}
 			}
 		}
+		
 		/**
 		 * 
 		 * @param	outputPath 保存路径
@@ -659,7 +663,6 @@ package game.library
 			binStream = null;
 			binfile = null;
 		}
-		
 		public function get instance():LibraryManager 
 		{
 			if (_instance==null) 

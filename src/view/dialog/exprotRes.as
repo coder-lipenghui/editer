@@ -53,10 +53,11 @@ package view.dialog
 		{
 			if (_xml) 
 			{
-				if (_catalogId=="10"||_catalogId=="11"||_catalogId=="12"||_catalogId=="13") 
+				var type:String = _xml.@type;
+				if (CatalogManager.instance.isEffectCatalog(int(_catalogId))) 
 				{
 					var _resName:String = DataManager.library.getPathByExportId(int(_catalogId),_xml.@export);
-					var oldFile:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(int(_catalogId)) + "/" + _resName+"/export/" + _xml.@id + ".png");
+					var oldFile:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(int(_catalogId)) + "/" + _resName+"/export/" + _xml.@id + "."+type);					
 					if (oldFile.exists) 
 					{
 						var newFile:File = File.applicationDirectory.resolvePath(ProjectConfig.assetsPath +"effect/" + _xml.@id + ".png");
@@ -65,7 +66,7 @@ package view.dialog
 					//DataManager.library.unuseNode(true, _xml);
 					_xml.@unuse = '';
 					DataManager.library.addResNode(_xml);
-					App.log.info("资源已导出:","effect/"+_xml.@id + ".png");
+					App.log.info("资源已导出:","effect/"+_xml.@id + "."+type=="jpg"?"jpg":"png");
 				}else{
 					var xmllist:XMLList = _xml.children();
 					for (var i:int = 0; i < xmllist.length(); i++) 
@@ -82,7 +83,7 @@ package view.dialog
 								oldFile.copyTo(newFile, true);
 								_xml.@unuse = '';
 								DataManager.library.addResNode(_xml);
-								App.log.info("资源已导出:", path+"/" + _id + child.@id + ".png");
+								App.log.info("资源已导出:", path+"/" + _id + child.@id + "."+type);
 							}
 						}
 					}

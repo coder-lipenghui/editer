@@ -171,6 +171,22 @@ package game.library
 				}
 			}
 		}
+		public function isEffectCatalog(id:int):Boolean 
+		{
+			switch (id) 
+			{
+				case 10:
+				case 11:
+				case 12:
+				case 13:
+				case 17:
+				case 18:
+					return true;
+					break;
+				default:
+					return false;
+			}
+		}
 		public function getIconById(id:int):String
 		{
 			for (var i:int = 0; i < _directoryList.length; i++) 

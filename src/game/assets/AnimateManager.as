@@ -23,12 +23,14 @@ package game.assets
 		}
 		public static function getAnimateInfo(catalogId:int,resName:String,resId:String,action:String):Array 
 		{
-			var _actInfo:Object = new Object;
-			
-			
 			var _path:String = ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(catalogId) + "/" + DataManager.library.getPathByExportId(catalogId,resId)+ "/export/" + action;
-			
-			var file:File = File.applicationDirectory.resolvePath(_path + ".bin");
+			return getBinAnimateInfo(_path);
+		}
+		public static function getBinAnimateInfo(path:String):Array 
+		{
+			var keyFrameData:Array = [];
+			var frameData:Array = [];
+			var file:File = File.applicationDirectory.resolvePath(path);
 			if (!file.exists) 
 			{
 				App.log.error("不存在帧描述信息资源:",file.name);
@@ -46,17 +48,14 @@ package game.assets
 				ba.readByte();  					// 暂时无用
 				var imgNum:int=ba.readByte(); 		// 图片数量
 				var frameCount:int = 0;
-				var keyFrameData:Array = [];
-				var frameData:Array = [];
-				
 				for (var i:int = 0; i < imgNum; i++) 
 				{
 					var temp:int=ba.readByte();
 					keyFrameData[i] = temp;
 					frameCount += temp;
 				}
-				_actInfo.dirCount = dirCount;
-				_actInfo.frameCount = frameCount;
+				//_actInfo.dirCount = dirCount;
+				//_actInfo.frameCount = frameCount;
 				var _frameCount:int = frameCount;
 				i = 0;
 				try 
@@ -89,17 +88,13 @@ package game.assets
 							}
 						}
 					}
-					return frameData;
 				}catch (err:Error)
 				{
 					App.log.error("出现异常",err.message);
 					return null;
 				}
-			}else
-			{
-				return null;
 			}
-			return null;
+			return frameData;
 		}
 	}
 

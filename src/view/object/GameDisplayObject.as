@@ -105,6 +105,7 @@ package view.object
 		 */
 		public function show(background:BitmapData,pos:Point,id:int,name:String,type:String,action:String,catalogId:int):void 
 		{
+			type=type=="jpg"?"jpg":"png";
 			_parent = background;
 			_id = id;
 			_pos = pos;
@@ -116,7 +117,7 @@ package view.object
 			}
 			
 			_path = ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(catalogId) + "/" +DataManager.library.getPathByExportId(catalogId,id+"")+"/export/" + action;
-			if (catalogId>10 && catalogId<14) 
+			if (CatalogManager.instance.isEffectCatalog(catalogId)) 
 			{
 				_path = ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(catalogId) + "/" +DataManager.library.getPathByExportId(catalogId,id+"")+"/export/" + id;
 			}

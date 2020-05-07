@@ -1,6 +1,6 @@
 package game.assets 
 {
-	import game.assets.bin.Bin;
+	import game.assets.bin.BinInfo;
 	import game.assets.biz.FrameInfo;
 	import game.assets.biz.Texture;
 	import flash.filesystem.File;
@@ -175,16 +175,7 @@ package game.assets
 			}
 			return bin;
 		}
-		/**
-		 * 导出bin文件
-		 * @param	inputPath plist路径
-		 * @param	outputPath 导出路径
-		 */
-		public function exportBin(inputPath:String,outputPath:String):void 
-		{
-			var bin:Bin = new Bin();
-			bin.create(inputPath,outputPath,"","");
-		}
+		
 		/**
 		 * 
 		 * @param	inPath
@@ -257,8 +248,8 @@ package game.assets
 							var cx:int = stream.readShort();
 							fs1.writeShort(cx);
 							var cy:int = stream.readShort();
-							fs1.writeShort(1);//老素材没有旋转选项
 							fs1.writeShort(cy);
+							fs1.writeShort(1);//老素材没有旋转选项
 						}
 					}
 					fs1.close();

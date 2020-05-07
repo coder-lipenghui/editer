@@ -100,7 +100,7 @@ package view.dialog
 			for (var i:int = 0; i < _files.length; i++) 
 			{
 				var pngFile:File = _files[i] as File;
-				if (pngFile.extension=="png" || pngFile.extension=="jpg") 
+				if (pngFile.extension=="png") 
 				{
 					var reg:RegExp = new RegExp("\\\\","g");
 					var tempPath:String = pngFile.nativePath.replace(reg, "/");
@@ -188,10 +188,6 @@ package view.dialog
 							if (ck_effect.selected) 
 							{
 								newPngFilePath = _rootFolderPath + "/"+folderName+"/" + (id < 10?"0" + id:id + "") + "." + extension;
-							}
-							if (extension=="jpg")
-							{
-								trace();
 							}
 							if (!File.applicationDirectory.resolvePath(newPngFilePath).exists) 
 							{
