@@ -68,14 +68,9 @@ package view.dialog
 			if (list_action.array) 
 			{
 				var effectModel:Boolean = false;
-				switch (_pdm.selectedId) 
+				if (CatalogManager.instance.isEffectCatalog(_pdm.selectedId))
 				{
-					case 10:
-					case 11:
-					case 12:
-					case 13:
-						effectModel = true;
-						break;
+					effectModel = true;
 				}
 				box_effect_model.visible = effectModel;
 				cb_effect_action.selectedIndex =-1;
@@ -210,16 +205,11 @@ package view.dialog
 			if (tp && tp.data!="" && tp.sheet!="")
 			{
 				var descriptionXML:XML = null;
-				switch (_pdm.selectedId)
+				if (CatalogManager.instance.isEffectCatalog(_pdm.selectedId))
 				{
-					case 10:
-					case 11:
-					case 12:
-					case 13:
-						descriptionXML = LibraryManager.getDescriptionXML(tp.rootPath, _pdm.selectedId, int(cb_dirCount.selectedLabel), tp.center, com_moudle.selectedLabel,cb_effect_action.selectedLabel);
-						break;
-					default:
-						descriptionXML = LibraryManager.getDescriptionXML(tp.rootPath, _pdm.selectedId, int(cb_dirCount.selectedLabel), tp.center, com_moudle.selectedLabel);
+					descriptionXML = LibraryManager.getDescriptionXML(tp.rootPath, _pdm.selectedId, int(cb_dirCount.selectedLabel), tp.center, com_moudle.selectedLabel,cb_effect_action.selectedLabel);
+				}else{
+					descriptionXML = LibraryManager.getDescriptionXML(tp.rootPath, _pdm.selectedId, int(cb_dirCount.selectedLabel), tp.center, com_moudle.selectedLabel);
 				}
 				var imgNum:int = 0;
 				var pointStr:String = String(descriptionXML.@center);

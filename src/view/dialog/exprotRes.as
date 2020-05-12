@@ -53,7 +53,8 @@ package view.dialog
 		{
 			if (_xml) 
 			{
-				var type:String = _xml.@type;
+				
+				var type:String = String(_xml.@type)==""?"png":"jpg";
 				if (CatalogManager.instance.isEffectCatalog(int(_catalogId))) 
 				{
 					var _resName:String = DataManager.library.getPathByExportId(int(_catalogId),_xml.@export);
