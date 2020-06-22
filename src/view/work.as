@@ -10,6 +10,7 @@ package view
 	import view.auto.MainWorkUI;
 	import view.dialog.addComRes;
 	import view.dialog.addMapRes;
+	import view.dialog.converDir;
 	import view.dialog.crackBin;
 	import view.dialog.delRes;
 	import view.dialog.exportMapRes;
@@ -45,11 +46,11 @@ package view
 			});
 			App.stage.addEventListener(EditorEvent.CONTEXT_MAP_EXPORT,function (e:EditorEvent):void 
 			{
-				App.dialog.show(new exportMapRes(e.data),true);
+				App.dialog.show(new exportMapRes(e.data));
 			});
 			App.stage.addEventListener(EditorEvent.CONTEXT_RES_EXPORT,function (e:EditorEvent):void 
 			{
-				App.dialog.show(new exprotRes(e.data),true);
+				App.dialog.show(new exprotRes(e.data));
 			});
 			App.stage.addEventListener(EditorEvent.CONTEXT_RES_DELETE,function (e:EditorEvent):void 
 			{
@@ -61,11 +62,11 @@ package view
 			});
 			btn_addComRes.clickHandler = new Handler(function ():void 
 			{
-				App.dialog.show(new addComRes, true);
+				App.dialog.show(new addComRes);
 			});
 			btn_crackBin.clickHandler = new Handler(function ():void
 			{
-				App.dialog.show(new crackBin, true);
+				App.dialog.show(new crackBin);
 			});
 			btn_project.clickHandler = new Handler(function ():void 
 			{
@@ -73,7 +74,7 @@ package view
 			});
 			btn_addMap.clickHandler = new Handler(function ():void 
 			{
-				App.dialog.show(new addMapRes,true);
+				App.dialog.show(new addMapRes);
 			});
 			btn_exportCloth.clickHandler = new Handler(function ():void 
 			{
@@ -114,6 +115,10 @@ package view
 			btn_crack.clickHandler = new Handler(function ():void 
 			{
 				box_crack.visible = !box_crack.visible;
+			});
+			btn_convert.clickHandler = new Handler(function ():void 
+			{
+				App.dialog.show(new converDir);
 			});
 			uv_action.remove();
 		}

@@ -229,32 +229,32 @@ package view.common
 			switch (key) 
 			{
 				case "shift,left":
-					tempX =10;
-					break;
-				case "shift,right":
 					tempX =-10;
 					break;
+				case "shift,right":
+					tempX =10;
+					break;
 				case "shift,up":
-					tempY =+10;
+					tempY =-10;
 					break;
 				case "shift,down":
-					tempY = -10;
+					tempY =10;
 					break;
 				case "ctrl,down":
 				case "down":
-					tempY =-1;
+					tempY =1;
 					break;
 				case "ctrl,up":
 				case "up":
-					tempY = 1;
+					tempY =-1;
 					break;
 				case "ctrl,right":
 				case "right":
-					tempX = -1;
+					tempX = 1;
 					break;
 				case "ctrl,left":
 				case "left":
-					tempX =1;
+					tempX =-1;
 					break;
 				default :
 					doSave = false;
@@ -275,9 +275,9 @@ package view.common
 				var pointX:int = int(point[0]);
 				var pointY:int = int(point[1]);
 				var catalogId:int=int(node.@catalog)
-				pointX += tempX;
-				pointY += tempY;
-				node.@center = pointX + "," + pointY;
+				//pointX += tempX;
+				//pointY += tempY;
+				//node.@center = pointX + "," + pointY;
 				
 				var childXmlList:XMLList = node.children();
 				if (!childXmlList || !childXmlList[0]) 
@@ -304,20 +304,14 @@ package view.common
 						pointY += tempY;
 						xml.@center = pointX + "," + pointY;
 						var type:String=String(xml.@type)=="jpg"?"jpg":"png";
-						var resId:String = xml.@action + "." + type;
-						if(CatalogManager.instance.isEffectCatalog(catalogId)) 
-						{
-							resId = String(xml.@id) + "." + type;
-						}
-						var path:String =[ProjectConfig.libraryPath,CatalogManager.instance.getAbsolutePath(catalogId),xml.@name,"export",resId].join("/");
+						var resId:String = String(xml.@id) + "." + type;
+						var path:String =[ProjectConfig.libraryPath,CatalogManager.instance.getAbsolutePath(catalogId),node.@name,"export",resId].join("/");
 						var bin:BinInfo = new BinInfo(path.replace("."+type,".bin"));
 						bin.changeCenter(new Point(tempX,tempY));
 						break;
 					}
 				}
 				DataManager.library.addResNode(node);
-				
-				//DataManager.library.createBinFileByXmlNode(node, obj.action);
 				draw(obj);
 				dispatchEvent(new EditorEvent(EditorEvent.ATTRIBUTE_ACTION,obj ,null,true));
 			}

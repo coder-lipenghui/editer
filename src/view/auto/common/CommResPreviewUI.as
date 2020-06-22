@@ -15,7 +15,7 @@ package view.auto.common {
 		public var list_displayModel:List = null;
 		public var btn_trigger:Button = null;
 		protected static var uiXML:XML =
-			<View width="240" height="300">
+			<View width="300" height="420">
 			  <Clip skin="png.comp.clip_select" x="-594" y="83" name="selectBox" clipX="1" clipY="2" left="0" right="0" top="0" bottom="0"/>
 			  <Image skin="png.comp.bg" left="0" right="0" top="0" bottom="0" sizeGrid="2,2,2,2" var="img_bg" visible="true" alpha="0.8" x="10" y="10"/>
 			  <Button skin="png.comp.btn_left" stateNum="1" left="0" x="0" y="260" var="btn_turn_left" visible="false" bottom="0"/>
@@ -26,7 +26,7 @@ package view.auto.common {
 			  </Box>
 			  <Image skin="png.comp.hongxian" x="20" left="0" right="0" bottom="100" alpha="0.4" y="20" var="img_h"/>
 			  <Image skin="png.comp.hongxianV" x="165" y="94" top="0" bottom="0" centerX="0" alpha="0.4" var="img_v"/>
-			  <Image skin="png.comp.shadow" var="img_pos" y="176" centerX="0" x="88"/>
+			  <Image skin="png.comp.shadow" var="img_pos" y="296" centerX="0" x="98"/>
 			  <Label text="动作" var="txt_name" x="107" y="232" centerX="0" bottom="50" color="0xFFFFFF"/>
 			  <List y="40" var="list_displayModel" width="63" height="246" spaceX="1" left="0" top="20" visible="false" x="-287">
 			    <Box name="render" x="0" y="-1">

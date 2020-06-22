@@ -53,6 +53,7 @@ package game.assets.bin
 				for (i; i < dirCount; i++)
 				{
 					var index:int = 0;
+					frameData[i] = [];
 					for (var j:int = 0; j < imgNum; j++)
 					{
 						var x:int=ba.readShort();
@@ -62,14 +63,15 @@ package game.assets.bin
 						var cx:int=ba.readShort();
 						var cy:int=ba.readShort();
 						var rotated:int = ba.readShort();
-						frameData[j] = [x,y,w,h,cx,cy,rotated];
+						frameData[i][j] = [x,y,w,h,cx,cy,rotated];
 					}
 				}
+				inited = true;
 			}catch (err:Error)
 			{
-				App.log.error("出现异常",err.message);
+				App.log.error("出现异常", err.message);
+				inited = false;
 			}
-			inited = true;
 		}
 		
 		public function changeCenter(center:Point):void 
@@ -91,9 +93,9 @@ package game.assets.bin
 				}
 				for (var j:int=0; j < dirCount; j++)
 				{
-					for (var k:int = 0; k <frameData.length; k++) 
+					for (var k:int = 0; k <imgNum; k++) 
 					{
-						var info:Array = frameData[k];
+						var info:Array = frameData[j][k];
 						binStream.writeShort(info[0]);			//x
 						binStream.writeShort(info[1]);			//y
 						binStream.writeShort(info[2]);			//w

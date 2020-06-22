@@ -1,0 +1,13 @@
+<Dialog width="450" height="250" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" x="0" y="10" layer="1" sizeGrid="22,22,22,22" left="0" right="0" top="0" bottom="0"/>
+  <Image skin="png.comp.img_container" x="12.5" y="49" layer="1" width="425" height="156" sizeGrid="40,5,5,5"/>
+  <Button label="开 始" skin="png.comp.btn_small_primary" x="367" y="211" layer="1" var="btn_start" right="20" bottom="15"/>
+  <Label text="8方向转5方向" styleSkin="png.comp.label" x="186" y="1" layer="1" color="0x212121" centerX="0"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="297" y="211" layer="1" name="close" bottom="15"/>
+  <TextInput skin="png.comp.textinput" x="79" y="104" layer="1" var="txt_file" width="231" height="22"/>
+  <Label text="目录" styleSkin="png.comp.label" x="45" y="105" layer="1" color="0xdbdbdb"/>
+  <Button label="浏览" skin="png.comp.btn_small_secondary" x="371" y="100" layer="1" var="btn_select" width="50" height="30"/>
+  <CheckBox label="批量" skin="png.comp.checkbox" x="314" y="106" layer="1" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0" var="ck_batch"/>
+  <Label text="基础" styleSkin="png.comp.label" x="26" y="39" layer="1" color="0xffffff"/>
+  <TextArea text="会删掉三个方向资源，8方向资源务必先做好备份" skin="png.comp.textarea" x="24" y="157" layer="1" width="404" height="38" isHtml="true" selectable="false" editable="false" color="0xcccccc"/>
+</Dialog>

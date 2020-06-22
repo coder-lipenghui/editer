@@ -36,6 +36,7 @@ package view.dialog
 		private var _totalPng:int = 0;
 		private var _totalBin:int = 0;
 		private var _currStep:int = 0;
+		private var _size:int = 512;
 		public function crackBin() 
 		{
 			super();
@@ -90,6 +91,7 @@ package view.dialog
 		
 		private function handlerStart():void
 		{
+			
 			var folder:File = File.applicationDirectory.resolvePath(_rootFolderPath);
 			if (folder.isDirectory) 
 			{
@@ -97,6 +99,7 @@ package view.dialog
 			}else{
 				_files = [folder];
 			}
+			_size = int(rg_size.selectedValue);
 			for (var i:int = 0; i < _files.length; i++) 
 			{
 				var pngFile:File = _files[i] as File;
@@ -192,12 +195,12 @@ package view.dialog
 							if (!File.applicationDirectory.resolvePath(newPngFilePath).exists) 
 							{
 								var newBmd:BitmapData = null;
-								var tmpBmd:BitmapData = new BitmapData(512, 512,true,0x00);
+								var tmpBmd:BitmapData = new BitmapData(_size, _size,true,0x00);
 								//source.blendMode = BlendMode.ADD;
-								tmpBmd.copyPixels(source.bitmapData, new Rectangle(xx, yy, ww, hh), new Point(256 + cx, 256 + cy));
+								tmpBmd.copyPixels(source.bitmapData, new Rectangle(xx, yy, ww, hh), new Point(_size/2 + cx, _size/2 + cy));
 								if (extension=="jpg") 
 								{
-									newBmd = new BitmapData(512, 512,true,0x00);
+									newBmd = new BitmapData(_size, _size,true,0x00);
 									newBmd.draw(tmpBmd,new Matrix(),new ColorTransform(0,0,0,0,0,0,0,1));
 								}else{
 									newBmd = tmpBmd;

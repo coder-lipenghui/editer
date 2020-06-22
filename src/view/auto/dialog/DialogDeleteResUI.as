@@ -16,9 +16,9 @@ package view.auto.dialog {
 			    <Image skin="png.comp.img_container" y="12" sizeGrid="40,5,5,5" width="370" height="80" x="0"/>
 			    <Label text="删除" x="12" color="0xe0e0e0"/>
 			    <Label x="24" y="21" width="326" height="20" color="0xcccccc" var="txt_msg" text="是否删除资源?"/>
-			    <CheckBox skin="png.comp.checkbox" x="27" y="68" var="ck_release" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0"/>
+			    <CheckBox skin="png.comp.checkbox" x="27" y="68" var="ck_release" selected="true" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0"/>
 			    <Label text="删除Release中的资源" x="51" y="66" color="0xbdbdbd" width="150"/>
-			    <CheckBox skin="png.comp.checkbox" x="27" y="47" var="ck_library" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0"/>
+			    <CheckBox skin="png.comp.checkbox" x="27" y="47" var="ck_library" selected="true" labelColors="0xE0E0E0,0xE0E0E0,0xE0E0E0"/>
 			    <Label x="51" y="44" width="150" height="20" color="0xcccccc" text="刪除资源库中的资源"/>
 			  </Box>
 			</Dialog>;

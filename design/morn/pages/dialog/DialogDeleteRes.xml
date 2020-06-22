@@ -7,9 +7,9 @@
     <Image skin="png.comp.img_container" y="12" layer="1" sizeGrid="40,5,5,5" width="370" height="80" x="0"/>
     <Label text="删除" styleSkin="png.comp.label" x="12" layer="1" color="0xe0e0e0"/>
     <Label styleSkin="png.comp.label" x="24" y="21" layer="1" width="326" height="20" color="0xcccccc" var="txt_msg" text="是否删除资源?"/>
-    <CheckBox skin="png.comp.checkbox" x="27" y="68" layer="1" var="ck_release"/>
+    <CheckBox skin="png.comp.checkbox" x="27" y="68" layer="1" var="ck_release" selected="true"/>
     <Label text="删除Release中的资源" styleSkin="png.comp.label" x="51" y="66" layer="1" color="0xbdbdbd" width="150"/>
-    <CheckBox skin="png.comp.checkbox" x="27" y="47" layer="1" var="ck_library"/>
+    <CheckBox skin="png.comp.checkbox" x="27" y="47" layer="1" var="ck_library" selected="true"/>
     <Label styleSkin="png.comp.label" x="51" y="44" layer="1" width="150" height="20" color="0xcccccc" text="刪除资源库中的资源"/>
   </Box>
 </Dialog>

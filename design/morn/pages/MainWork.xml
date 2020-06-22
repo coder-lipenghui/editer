@@ -30,7 +30,8 @@
   </Box>
   <Button label="资源整理" skin="png.comp.button" x="246" y="2" layer="1" var="btn_crack" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true"/>
   <Box layers="1,1,0,0,第 1 层" layer="1" x="246" y="25" var="box_crack" visible="false">
-    <Button label="游戏B" skin="png.comp.button" y="24" layer="1" var="btn_crackBin" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" x="0"/>
-    <Button label="游戏A" skin="png.comp.button" layer="1" var="btn_group" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true"/>
+    <Button label="游戏B" skin="png.comp.button" y="23" layer="1" var="btn_crackBin" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" x="0"/>
+    <Button label="游戏A" skin="png.comp.button" layer="1" var="btn_group" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" y="0"/>
+    <Button label="8转5" skin="png.comp.button" y="46" layer="1" var="btn_convert" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" x="0"/>
   </Box>
 </View>

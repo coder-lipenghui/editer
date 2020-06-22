@@ -113,6 +113,7 @@ package game.library
 					case 16:
 					case 17:
 					case 18:
+					case 19:
 						xml.@export = id;
 					break;
 				}

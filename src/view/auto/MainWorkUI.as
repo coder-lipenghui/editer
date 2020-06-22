@@ -33,6 +33,7 @@ package view.auto {
 		public var box_crack:Box = null;
 		public var btn_crackBin:Button = null;
 		public var btn_group:Button = null;
+		public var btn_convert:Button = null;
 		protected static var uiXML:XML =
 			<View width="1280" height="760">
 			  <Image skin="png.comp.bg" left="0" right="0" top="0" bottom="0" x="-62" y="-9" sizeGrid="2,2,2,2,1"/>
@@ -66,8 +67,9 @@ package view.auto {
 			  </Box>
 			  <Button label="资源整理" skin="png.comp.button" x="246" y="2" var="btn_crack" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true"/>
 			  <Box x="246" y="25" var="box_crack" visible="false">
-			    <Button label="游戏B" skin="png.comp.button" y="24" var="btn_crackBin" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" x="0"/>
-			    <Button label="游戏A" skin="png.comp.button" var="btn_group" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true"/>
+			    <Button label="游戏B" skin="png.comp.button" y="23" var="btn_crackBin" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" x="0"/>
+			    <Button label="游戏A" skin="png.comp.button" var="btn_group" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" y="0"/>
+			    <Button label="8转5" skin="png.comp.button" y="46" var="btn_convert" labelColors="0xbdbdbd,0xffffff,0xe0e0e0" visible="true" x="0"/>
 			  </Box>
 			</View>;
 		public function MainWorkUI(){}
