@@ -7,7 +7,7 @@ package view.window
 	import flash.events.MouseEvent;
 	import game.assets.action.Action;
 	import game.data.DataManager;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	import morn.core.handlers.Handler;
 	import view.auto.window.WindowResEditUI;
 	import view.common.ResPreview;

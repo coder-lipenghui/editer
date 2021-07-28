@@ -1,7 +1,7 @@
 package morn.core.components 
 {
 	import flash.events.Event;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	import morn.core.components.ComboBox;
 	import morn.core.components.HBox;
 	import morn.core.handlers.Handler;

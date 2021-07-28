@@ -5,7 +5,7 @@ package view.dialog
 	import view.auto.dialog.DialogExportAssetsUI;
 	import morn.core.handlers.Handler;
 	import game.data.DataManager;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	/**
 	 * ...
 	 * @author ...

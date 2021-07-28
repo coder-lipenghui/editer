@@ -8,7 +8,7 @@ package view.window
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.utils.getTimer;
-	import game.library.CatalogManager;;
+	import editor.manager.CatalogManager;;
 	import morn.core.handlers.Handler;
 	import view.auto.window.WindowLibraryUI;
 	

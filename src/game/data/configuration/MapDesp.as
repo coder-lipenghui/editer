@@ -8,7 +8,7 @@ package game.data.configuration
 	import flash.utils.Endian;
 	import editor.log.Logger;
 	import game.data.DataManager;
-	import game.library.LibraryManager;
+	import editor.manager.LibraryManager;
 	import view.window.Log;
 	/**
 	 * 地图格子描述文件：

@@ -12,7 +12,7 @@ package view.object
 	import flash.utils.Dictionary;
 	import flash.utils.Endian;
 	import game.data.DataManager;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	import morn.core.handlers.Handler;
 	
 	/**

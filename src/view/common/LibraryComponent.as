@@ -2,7 +2,7 @@ package view.common
 {
 	import flash.events.Event;
 	import game.data.DataManager;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	import morn.core.components.Component;
 	import morn.core.components.VBox;
 	

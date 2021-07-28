@@ -8,7 +8,7 @@ package view.common
 	import game.assets.animat.Animat;
 	import game.assets.bin.BinInfo;
 	import game.data.DataManager;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	import morn.core.components.Box;
 	import morn.core.components.Label;
 	import morn.core.handlers.Handler;

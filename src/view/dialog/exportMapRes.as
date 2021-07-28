@@ -5,7 +5,7 @@ package view.dialog
 	import flash.filesystem.File;
 	import flash.geom.Matrix;
 	import game.data.DataManager;
-	import game.library.LibraryManager;
+	import editor.manager.LibraryManager;
 	import game.tools.other.MapTools;
 	import morn.core.handlers.Handler;
 	import view.auto.dialog.DialogExportMapUI;

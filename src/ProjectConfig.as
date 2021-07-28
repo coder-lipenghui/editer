@@ -7,7 +7,7 @@ package
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 	
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 
 	/**
 	 * ...

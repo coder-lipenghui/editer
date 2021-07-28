@@ -6,8 +6,8 @@ package view.window
 	import flash.text.TextField;
 	import game.data.DataManager;
 	import game.data.events.AttributeEvent;
-	import game.library.CatalogManager;
-	import game.library.LibraryManager;
+	import editor.manager.CatalogManager;
+	import editor.manager.LibraryManager;
 	import morn.core.components.*;
 	import morn.core.handlers.Handler;
 	import view.auto.window.WindowActionUI;

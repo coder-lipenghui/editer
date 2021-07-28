@@ -6,7 +6,7 @@ package view.dialog
 	import flash.filesystem.FileStream;
 	import flash.net.FileFilter;
 	import game.data.DataManager;
-	import game.library.LibraryManager;
+	import editor.manager.LibraryManager;
 	import game.tools.BrowseTools;
 	import morn.core.handlers.Handler;
 	import view.auto.dialog.DialogAddMapResUI;

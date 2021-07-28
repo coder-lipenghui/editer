@@ -8,8 +8,8 @@ package view.dialog
 	import flash.filesystem.File;
 	import editor.log.Logger;
 	import game.data.DataManager;
-	import game.library.CatalogManager;
-	import game.library.LibraryManager
+	import editor.manager.CatalogManager;
+	import editor.manager.LibraryManager
 	import game.tools.BrowseTools;
 	import morn.core.components.Box;
 	import morn.core.components.PullDownMenu;

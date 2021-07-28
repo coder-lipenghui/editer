@@ -1,6 +1,6 @@
 package editor 
 {
-	import editor.shortcut.ShortcutManager;
+	import editor.manager.ShortcutManager;
 	import flash.filesystem.File;
 	import game.assets.ActionManager;
 	import game.assets.BinaryManager;
@@ -12,7 +12,7 @@ package editor
 	import flash.display.Stage;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
-	import game.library.LibraryManager;
+	import editor.manager.LibraryManager;
 	import morn.core.handlers.Handler;
 	import view.work;
 	import view.dialog.welcome;

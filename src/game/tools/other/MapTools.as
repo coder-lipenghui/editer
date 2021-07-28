@@ -11,7 +11,7 @@ package game.tools.other
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import game.data.configuration.MapDesp;
-	import game.data.memento.MementoManager;
+	import editor.manager.MementoManager;
 	import flash.geom.Point;
 	import view.window.MapEdit;
 	/**

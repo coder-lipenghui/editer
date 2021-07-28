@@ -9,7 +9,7 @@ package view.object
 	import flash.geom.Rectangle;
 	import flash.utils.ByteArray;
 	import flash.utils.Endian;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	import morn.core.handlers.Handler;
 	
 	/**

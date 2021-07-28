@@ -22,7 +22,7 @@ package game.data
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
-	import game.library.LibraryManager;
+	import editor.manager.LibraryManager;
 	import morn.core.handlers.Handler;
 	import game.tools.fileParser.BaseFileParser;
 	import view.window.Log;

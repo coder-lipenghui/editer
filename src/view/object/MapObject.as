@@ -15,7 +15,7 @@ package view.object
 	import flash.geom.Matrix;
 	import flash.net.URLRequest;
 	import flash.utils.getTimer;
-	import game.library.LibraryManager;
+	import editor.manager.LibraryManager;
 	import morn.core.handlers.Handler;
 	import morn.core.managers.ResLoader;
 	import view.window.Log;

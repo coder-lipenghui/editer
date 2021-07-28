@@ -8,7 +8,7 @@ package game.assets
 	import flash.utils.Dictionary;
 	import flash.utils.Endian;
 	import game.data.DataManager;
-	import game.library.CatalogManager;
+	import editor.manager.CatalogManager;
 	/**
 	 * ...
 	 * @author 李鹏辉

@@ -8,7 +8,7 @@ package game.assets.bin
 	import flash.utils.Dictionary;
 	import flash.utils.Endian;
 	import game.assets.animat.AnimatInfo;
-	import game.library.LibraryManager;
+	import editor.manager.LibraryManager;
 	/**
 	 * ...
 	 * @author 3464285@gmail.com
