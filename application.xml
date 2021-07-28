@@ -14,7 +14,7 @@
     <minimizable>true</minimizable>
     <maximizable>true</maximizable>
     <resizable>true</resizable>
-    <requestedDisplayResolution>standard</requestedDisplayResolution>
+	  <requestedDisplayResolution>high</requestedDisplayResolution>
   </initialWindow>
   <!-- 
 	More options:
