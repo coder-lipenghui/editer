@@ -2,7 +2,7 @@ package
 {
 	import flash.filesystem.File;
 	import editor.EditorManager;
-	import game.tools.texturePacker.TexturePacker;
+	import editor.tools.texturePacker.TexturePacker;
 	import tests.configruation.MapInfo_Test;
 	import view.work;
 	import flash.display.Sprite;

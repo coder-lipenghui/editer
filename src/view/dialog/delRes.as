@@ -1,7 +1,7 @@
 package view.dialog 
 {
 	import flash.filesystem.File;
-	import game.data.DataManager;
+	import editor.manager.DataManager;
 	import editor.manager.CatalogManager;
 	import morn.core.handlers.Handler;
 	import view.auto.dialog.DialogDeleteResUI;

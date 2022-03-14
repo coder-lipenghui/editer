@@ -2,9 +2,9 @@ package view.window
 {
 	import editor.menu.menu;
 	import flash.display.Sprite;
-	import game.data.configuration.BaseAttribute;
-	import game.data.DataManager;
-	import game.data.events.AttributeEvent;
+	import editor.configuration.BaseAttribute;
+	import editor.manager.DataManager;
+	import editor.events.AttributeEvent;
 	import editor.EditorManager;
 	import editor.events.EditorEvent;
 	import flash.events.Event;

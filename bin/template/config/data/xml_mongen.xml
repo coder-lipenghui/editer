@@ -1,0 +1,11 @@
+<mongen charSet="ANSI" separator=",">
+      <attr name="所在地图" key="mapid" tips="所在地图编号" type="string" group="1"/>
+      <attr name="地图X点" key="x" tips="所在地图X位置" type="int" group="1"/>
+      <attr name="地图Y点" key="y" tips="所在地图Y,位置" type="int" group="1"/>
+      <attr name="怪物名称" key="name" tips="怪物名称" type="string" group="1"/>
+      <attr name="活动范围" key="monMoveRange" tips="怪物的活动范围,以格为单位" default="2" type="int" group="1"/>
+      <attr name="生成数量" key="monNum" tips="生成数量" type="string" default="1" group="1"/>
+      <attr name="复活时间" key="monReliveTime" tips="复活时间" type="int" default="3" group="1"/>
+      <attr name="掉落无主" key="allpick" tips="开区x天数内掉落物品无归属" type="array" group="2" displayGroup=""/>
+      <attr name="显示名称" key="show_name" tips="开启后怪物名称会显示在小地图上" type="check" group="2" displayGroup=""/>
+</mongen>

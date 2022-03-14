@@ -1,0 +1,14 @@
+<actions name="传奇">
+    <item id="00" name="待机" num="4" frame="3" amendment="" enable="true" publish="true"/>
+    <item id="01" name="走路" num="6" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="02" name="跑步" num="6" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="03" name="预备" num="1" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="04" name="攻击" num="6" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="05" name="施法" num="6" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="06" name="受伤" num="3" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="07" name="死亡" num="5" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="08" name="跳跃" num="6" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="09" name="骑待" num="4" frame="3" amendment="" enable="true" publish="true"/>
+    <item id="10" name="骑走" num="6" frame="2" amendment="" enable="true" publish="true"/>
+    <item id="11" name="骑跑" num="6" frame="2" amendment="" enable="true" publish="true"/>
+</actions>

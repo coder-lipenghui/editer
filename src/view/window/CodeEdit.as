@@ -7,7 +7,7 @@ package view.window
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
-	import game.data.configuration.BaseAttribute;
+	import editor.configuration.BaseAttribute;
 	import view.auto.window.WindowTextEditUI;
 	
 	/**

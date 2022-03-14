@@ -1,0 +1,12 @@
+<shortcut>
+  <item target="MODEL_BLOCK" key="F1" desp="画笔:阻挡"/>
+  <item target="MODEL_MASK" key="F2" desp="画笔:遮罩"/>
+  <item target="MODEL_ERASER" key="F3" desp="画笔:橡皮"/>
+  <item target="MODEL_FILL" key="ctrl,d" desp="画笔:填充"/>
+  <item target="TYPE_DRAW" key="ctrl,1" desp="模式:地编"/>
+  <item target="TYPE_LAYOUT" key="ctrl,2" desp="模式:布局"/>
+  <item target="EXPORT_MON" key="ctrl,shift,m" desp="导出:MON配置"/>
+  <item target="EXPORT_NPC" key="ctrl,shift,n" desp="导出:NPC配置"/>
+  <item target="EXPORT_TEL" key="ctrl,shift,t" desp="导出:传送点配置"/>
+  <item target="EXPORT_MAP" key="ctrl,alt,m" desp="导出:MAP配置"/>
+</shortcut>

@@ -1,12 +1,22 @@
 package view.dialog 
 {
+	import flash.desktop.NativeApplication;
+	import flash.desktop.NativeProcess;
+	import flash.desktop.NativeProcessStartupInfo;
+	
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.events.IOErrorEvent;
+	import flash.events.NativeProcessExitEvent;
+	import flash.events.ProgressEvent;
+	
 	import flash.data.EncryptedLocalStore;
 	import flash.display.BitmapData;
 	import flash.filesystem.File;
 	import flash.geom.Matrix;
-	import game.data.DataManager;
+	import editor.manager.DataManager;
 	import editor.manager.LibraryManager;
-	import game.tools.other.MapTools;
+	import editor.tools.MapTools;
 	import morn.core.handlers.Handler;
 	import view.auto.dialog.DialogExportMapUI;
 	
@@ -38,6 +48,61 @@ package view.dialog
 			btn_export.clickHandler = new Handler(export);
 			
 		}
+		public function exportMapByExe(source:String,target:String,name:String,size:int):void 
+		{
+			App.log.debug("正在切图:", source, target, name, size);
+			if (NativeProcess.isSupported) 
+			{
+				var exePath:String ="tools/exportMap.exe"
+				var cmd:File = File.applicationDirectory;
+				trace("===>>>");
+				cmd = cmd.resolvePath(exePath);
+				trace(cmd.nativePath);
+				if (!cmd.exists) 
+				{
+					App.log.error("exportMap.exe文件未找到");
+					return;
+				}
+				
+				var args:Vector.<String> = new Vector.<String>;
+				args.push(source);//文件
+				args.push(target+"/");
+				args.push(name);
+				args.push(size);
+				var process:NativeProcess = new NativeProcess();
+				NativeApplication.nativeApplication.autoExit = true;
+					
+				process.addEventListener(ProgressEvent.STANDARD_OUTPUT_DATA, function (e:ProgressEvent):void 
+				{
+					var info:String = process.standardError.readUTFBytes(process.standardError.bytesAvailable);
+					App.log.info(info);
+				});
+				process.addEventListener(ProgressEvent.STANDARD_ERROR_DATA, function (e:ProgressEvent):void 
+				{
+					var info:String = process.standardError.readUTFBytes(process.standardError.bytesAvailable);
+					App.log.error(info)
+				});
+				process.addEventListener(NativeProcessExitEvent.EXIT, function (e:NativeProcessExitEvent):void 
+				{
+					App.log.info("done");
+				});
+				process.addEventListener(IOErrorEvent.STANDARD_OUTPUT_IO_ERROR, function (e:IOErrorEvent):void 
+				{
+					App.log.error("STANDARD_OUTPUT_IO_ERROR");
+				});
+				process.addEventListener(IOErrorEvent.STANDARD_ERROR_IO_ERROR, function (e:IOErrorEvent):void 
+				{
+					App.log.error("STANDARD_ERROR_IO_ERROR");
+				});
+				
+				var info:NativeProcessStartupInfo = new NativeProcessStartupInfo();
+				info.executable = cmd;
+				info.arguments = args;
+				process.start(info);
+			}else{
+				App.log.error("当前环境不支持执行exe文件");
+			}
+		}
 		private function export():void 
 		{
 			if (txt_mapId.text=="")
@@ -47,8 +112,16 @@ package view.dialog
 			}
 			if (!ck_mapo.selected || ck_minimap.selected) 
 			{
+				var mapId:String = txt_mapId.text;
 				var url:String = ProjectConfig.libraryPath + "地图/" +_mapName+".jpg";
-				App.loader.loadBMD(url, new Handler(hanlderMapLoaded), new Handler(handlerMapLoadProgress), new Handler(handlerMapLoadError), false);
+				var target:String = ProjectConfig.assetsPath + "/map/" + mapId;
+				if (true)
+				{
+					exportMapByExe(url,target,mapId,ProjectConfig.GROUND_W)
+				}else{
+					App.loader.loadBMD(url, new Handler(hanlderMapLoaded), new Handler(handlerMapLoadProgress), new Handler(handlerMapLoadError), false);
+				}
+				
 			}
 			var mapo:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath + "地图/" + _mapName+".mapo");
 			if (mapo.exists) 

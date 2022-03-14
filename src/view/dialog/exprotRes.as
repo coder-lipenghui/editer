@@ -4,7 +4,7 @@ package view.dialog
 	import flash.events.KeyboardEvent;
 	import flash.filesystem.File;
 	import flash.ui.Keyboard;
-	import game.data.DataManager;
+	import editor.manager.DataManager;
 	import editor.manager.CatalogManager;
 	import morn.core.handlers.Handler;
 	import view.auto.dialog.DialogExportResUI;

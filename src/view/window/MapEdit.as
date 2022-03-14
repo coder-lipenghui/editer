@@ -1,24 +1,26 @@
 package view.window 
 {
 	import editor.events.ShortcutEvent;
+	import editor.manager.ShortcutManager;
 	import flash.events.Event;
-	import game.data.DataManager;
-	import game.data.configuration.BaseAttribute;
-	import game.data.configuration.BaseConfiguration;
-	import game.data.configuration.MapDesp;
+	import editor.manager.DataManager;
+	import editor.configuration.BaseAttribute;
+	import editor.configuration.BaseConfiguration;
+	import editor.configuration.MapDesp;
 	import editor.EditorManager;
 	import editor.events.EditorEvent;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	import game.data.events.AttributeEvent;
+	import editor.events.AttributeEvent;
 	import morn.core.components.Box;
 	import morn.core.components.Label;
 	import morn.core.events.DragEvent;
 	import morn.core.handlers.Handler;
-	import game.tools.other.MapTools;
+	import editor.tools.MapTools;
 	import view.auto.window.WindowMapEditUI;
 	import view.dialog.addMon;
+	import view.dialog.addNpc;
 	import view.object.BaseObject;
 	import view.object.ConnObject;
 	import view.object.MapObject;
@@ -65,6 +67,8 @@ package view.window
 		private var _tools:MapTools;
 		private var _currSelecteTarget:BaseAttribute = null;
 		private var _linePoint:Point = new Point( -1, -1);
+		private var _mouseDown:Boolean = false;
+		private var _rightMouseDown:Boolean = false;
 		/**绘制类型:0路点 1阻挡 2遮罩*/
 		private var _drawType:int = 1;
 		
@@ -80,17 +84,19 @@ package view.window
 			App.stage.addEventListener(EditorEvent.CONTEXT_MAP_EDIT, hanldeShowMap);
 			App.stage.addEventListener(ShortcutEvent.SHORTCUT_EVENT, handlerShortcut);
 			App.stage.addEventListener(AttributeEvent.SELECTED, handleGameDisplayObjectSelected);
-			App.stage.addEventListener(EditorEvent.ADD_ONE_MONGEN,handlerAddMonGenAttribute);
+			App.stage.addEventListener(EditorEvent.ADD_ONE_MONGEN, handlerAddMonGenAttribute);
+			App.stage.addEventListener(EditorEvent.ADD_ONE_NPCGEN, handlerAddMonGenAttribute)
 			_tools = new MapTools(this);
 			
 			_container.addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 			_container.addEventListener(MouseEvent.MOUSE_UP, handleMouseUp);
+			_container.addEventListener(MouseEvent.MOUSE_MOVE, handleMouseMove);
 			_container.addEventListener(MouseEvent.MOUSE_WHEEL, handleMouseWheel);
 			_container.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, handleRightMouseDown);
 			_container.addEventListener(MouseEvent.RIGHT_MOUSE_UP, handleRightMouseUp);
 			_container.addEventListener(MouseEvent.RIGHT_CLICK,handleRightClick);
 			_container.addEventListener(MouseEvent.CLICK, handlerClick);
-			_container.addEventListener(DragEvent.DRAG_DROP,handlerDrop2AddMon);
+			_container.addEventListener(DragEvent.DRAG_DROP,handlerDrop2Add);
 			_map.x = _map.y = 2;
 			_map.progressFun = handlerProgress;
 			_map.addEventListener(Event.COMPLETE,function (e:Event):void 
@@ -204,6 +210,7 @@ package view.window
 			App.stage.removeEventListener(ShortcutEvent.SHORTCUT_EVENT, handlerShortcut);
 			App.stage.removeEventListener(AttributeEvent.SELECTED, handleGameDisplayObjectSelected);
 			App.stage.removeEventListener(EditorEvent.ADD_ONE_MONGEN, handlerAddMonGenAttribute);
+			App.stage.removeEventListener(EditorEvent.ADD_ONE_NPCGEN, handlerAddMonGenAttribute);
 			
 			_container.removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 			_container.removeEventListener(MouseEvent.MOUSE_UP, handleMouseUp);
@@ -212,7 +219,7 @@ package view.window
 			_container.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, handleRightMouseUp);
 			_container.removeEventListener(MouseEvent.RIGHT_CLICK,handleRightClick);
 			_container.removeEventListener(MouseEvent.CLICK, handlerClick);
-			_container.removeEventListener(DragEvent.DRAG_DROP,handlerDrop2AddMon);
+			_container.removeEventListener(DragEvent.DRAG_DROP,handlerDrop2Add);
 			list_object.renderHandler = null;
 			list_object.selectHandler = null;
 			btn_export.clickHandler = null;
@@ -328,14 +335,21 @@ package view.window
 		 * 在当前地图上拖动增加一个怪物
 		 * @param	e DragEvent
 		 */
-		private function handlerDrop2AddMon(e:DragEvent):void 
+		private function handlerDrop2Add(e:DragEvent):void 
 		{
-			trace(e.data);
-			var ba:BaseAttribute = e.data as BaseAttribute;
 			var xx:int = e.target.mouseX / ProjectConfig.CELL_W;
 			var yy:int = e.target.mouseY / ProjectConfig.CELL_H;
-			var monName:String = ba.getValue("name");
-			App.dialog.show(new addMon(_mapDesp.mapId, xx + "", yy + "", monName));
+			if (e.data as BaseAttribute) 
+			{
+				var ba:BaseAttribute = e.data as BaseAttribute;
+				var monName:String = ba.getValue("name");
+				App.dialog.show(new addMon(_mapDesp.mapId, xx + "", yy + "", monName));
+			}
+			if(e.data as XML){
+				var temp:XML = e.data as XML;
+				var resId:String = String(temp.@id);
+				App.dialog.show(new addNpc(resId,_mapDesp.mapId,xx,yy));
+			}
 		}
 		private function handlerAddMonGenAttribute(e:EditorEvent):void 
 		{
@@ -375,18 +389,25 @@ package view.window
 				mapO = xml.@name;
 				mapRes = xml.@name;
 				mapName = xml.@name;
+				trace("当前为xml文件");
 			}
 			else if (obj as BaseAttribute) 
 			{
 				var ba:BaseAttribute = obj as BaseAttribute;
-				
+				App.log.info("正在编辑:"+ba.name);
 				switch (ba.name) 
 				{
 					case "mapinfo":
 						mapId = ba.getValue("id");
 						mapRes = ba.getValue("resid");
 						mapO = ba.getValue("mapo");
+						if (mapO==""|| mapO==null) 
+						{
+							mapO = mapRes;
+						}
+						mapName=ba.getValue("name");
 						txt_mapName.text = ba.getValue("name");
+						trace(mapId, mapRes, mapO, mapRes, mapName);
 						break;
 					case "npcgen":
 					case "mongen":
@@ -399,6 +420,8 @@ package view.window
 				if (mapId!="") 
 				{
 					showImg(mapId, mapO, mapRes, MAP_PATTERN_RES);
+				}else{
+					App.log.error("未找到资源id:["+mapId+"]","或检查配置表是否包含id字段");
 				}
 				return;
 			}
@@ -431,7 +454,7 @@ package view.window
 			var yy:int = 0;
 			clean();
 			_map.init(_mapDesp, mapo,pattern);
-			var mapOPath:String = pattern == MAP_PATTERN_RES?ProjectConfig.assetsPath + "map/" + mapo + ".mapo":ProjectConfig.libraryPath + "地图/" + mapo + ".mapo";
+			var mapOPath:String = pattern == MAP_PATTERN_RES?ProjectConfig.assetsPath + "/map/" + mapo + ".mapo":ProjectConfig.libraryPath + "地图/" + mapo + ".mapo";
 			var haveMapConfig:Boolean = _mapDesp.doImport(mapId,mapo,mapRes,mapOPath);
 			if (haveMapConfig){
 				drawGrid();
@@ -453,7 +476,9 @@ package view.window
 		}
 		private function showMons():void 
 		{
+			
 			var id:String = _mapDesp.mapId.replace("[", "");
+			App.log.info("加载:"+id+"区域的怪物");
 			showObject(DataManager.monGen.monList[id]);
 		}
 		private function showNpcs():void 
@@ -555,19 +580,18 @@ package view.window
 		private function handlerShortcut(e:ShortcutEvent):void 
 		{
 			var key:String = e.key;
-			if (EditorManager.focus==this) 
-			{
+			
 				switch (key) 
 				{
-					case "shift,1":
+					case ShortcutManager.instance.MODEL_ERASER:
 						App.log.info("当前画笔为:路点/橡皮");
 						cb_drawType.selectedIndex = 0;
 						break;
-					case "shift,2":
+					case ShortcutManager.instance.MODEL_BLOCK:
 						App.log.info("当前画笔为:阻挡");
 						cb_drawType.selectedIndex = 1;
 						break;
-					case "shift,3":
+					case ShortcutManager.instance.MODEL_MASK:
 						App.log.info("当前画笔为:遮挡");
 						cb_drawType.selectedIndex = 2;
 						break;
@@ -579,19 +603,25 @@ package view.window
 						App.log.info("当前画笔为:遮挡+绕开");
 						cb_drawType.selectedIndex = 4;
 						break;
-					case "ctrl,1":
+					case ShortcutManager.instance.TYPE_DRAW:
 						cb_editType.selectedIndex = 0;
 						break;
-					case "ctrl,2":
+					case ShortcutManager.instance.TYPE_LAYOUT:
 						cb_editType.selectedIndex = 1;
 						break;
 					case "ctrl,z":
-						_tools.revocation();
+						if (EditorManager.focus==this) 
+						{
+							_tools.revocation();
+						}
 						break;
 					case "ctrl,s":
-						export("mapo");
+						if (EditorManager.focus==this)
+						{
+							export("mapo");
+						}
 						break;
-					case "ctrl,d":
+					case ShortcutManager.instance.MODEL_FILL:
 						_tools.drawFill(_clickPoint,_drawType);
 						break;
 					case "ctrl,shift,s":
@@ -603,26 +633,31 @@ package view.window
 					case "ctrl,c":
 						break;
 					case "ctrl,v":
-						pasteGameDisplayObject();
+						if (EditorManager.focus==this) 
+						{
+							pasteGameDisplayObject();
+						}
 						break;
 					case "del":
-						deleteGameDisplayObject();
+						{
+							deleteGameDisplayObject();
+						}
 						break;
-					case "ctrl,shift,m":
+					case ShortcutManager.instance.EXPORT_MON:
 						export("mongen");
 						break;
-					case "ctrl,shift,n":
+					case ShortcutManager.instance.EXPORT_NPC:
 						export("npcgen");
 						break;
-					case "ctrl,shift,t":
+					case ShortcutManager.instance.EXPORT_TEL:
 						export("mapconn");
 						break;
-					case "ctrl,alt,m":
+					case ShortcutManager.instance.EXPORT_MAP:
 						export("mapinfo");
 						break;
 					default:
 				}
-			}
+			//}
 		}
 		/**
 		 * 绘制地图描述信息
@@ -677,6 +712,7 @@ package view.window
 		}
 		private function handleMouseDown(e:MouseEvent):void 
 		{
+			_mouseDown = true;
 			setClickPoint();
 			if (_editType==0) 
 			{
@@ -698,6 +734,7 @@ package view.window
 		}
 		private function handleMouseUp(e:MouseEvent):void 
 		{
+			_mouseDown = false;
 			if (EditorManager.altDown) 
 			{
 				if (_linePoint.x==-1 && _linePoint.y==-1) 
@@ -742,7 +779,7 @@ package view.window
 		{
 			_rcd = false;
 			_container.stopDrag();
-			_container.removeEventListener(MouseEvent.MOUSE_MOVE, handleMouseMove);
+			//_container.removeEventListener(MouseEvent.MOUSE_MOVE, handleMouseMove);
 		}
 		private function handleRightClick(e:MouseEvent):void 
 		{
@@ -751,6 +788,12 @@ package view.window
 		private function handleMouseMove(e:MouseEvent):void 
 		{
 			//trace("鼠标移动");
+			if (_editType==0 && _mouseDown && !_rcd)
+			{
+				var x:int = Math.floor(_container.mouseX / ProjectConfig.CELL_W);
+				var y:int = Math.floor(_container.mouseY / ProjectConfig.CELL_H);
+				_tools.drawOne(new Point(x, y), _drawType);
+			}
 		}
 		private function setClickPoint():void 
 		{

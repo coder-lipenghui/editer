@@ -5,6 +5,9 @@ package editor.manager
 	import flash.events.EventDispatcher;
 	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
 	import flash.text.TextField;
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
@@ -28,6 +31,21 @@ package editor.manager
 		private var _func4Key:Dictionary = new Dictionary;
 		
 		private var _keys:Array = [];
+		
+		public var MODEL_BLOCK:String = "";
+		public var MODEL_MASK:String = "";
+		public var MODEL_ERASER:String = "";
+		public var MODEL_FILL:String = "";
+		
+		public var TYPE_DRAW:String = "";
+		public var TYPE_LAYOUT:String = "";
+		
+		public var EXPORT_MON:String = "";
+		public var EXPORT_NPC:String = "";
+		public var EXPORT_TEL:String = "";
+		public var EXPORT_MAP:String = "";
+		
+		
 		public function ShortcutManager() 
 		{
 			_code4key[Keyboard.Q] = "q";
@@ -76,6 +94,18 @@ package editor.manager
 			_code4key[Keyboard.NUMBER_7] = "7";
 			_code4key[Keyboard.NUMBER_8] = "8";
 			_code4key[Keyboard.NUMBER_9] = "9";
+			
+			_code4key[Keyboard.NUMPAD_0] = "0";
+			_code4key[Keyboard.NUMPAD_1] = "1";
+			_code4key[Keyboard.NUMPAD_2] = "2";
+			_code4key[Keyboard.NUMPAD_3] = "3";
+			_code4key[Keyboard.NUMPAD_4] = "4";
+			_code4key[Keyboard.NUMPAD_5] = "5";
+			_code4key[Keyboard.NUMPAD_6] = "6";
+			_code4key[Keyboard.NUMPAD_7] = "7";
+			_code4key[Keyboard.NUMPAD_8] = "8";
+			_code4key[Keyboard.NUMPAD_9] = "9";
+			
 			_code4key[Keyboard.F1] = "F1";
 			_code4key[Keyboard.F2] = "F2";
 			_code4key[Keyboard.F3] = "F3";
@@ -99,7 +129,30 @@ package editor.manager
 				_stage.addEventListener(FocusEvent.FOCUS_IN, handlerFocusIn);
 				_stage.addEventListener(FocusEvent.FOCUS_OUT,handlerFocusOut);
 			}
-			//initProjectShortcutDefault();
+			initProjectShortcutDefault();
+		}
+		public function initProjectShortcutDefault():void
+		{
+			var file:File = File.applicationDirectory.resolvePath("shortcut.xml");
+			if (file.exists) 
+			{
+				var fs:FileStream = new FileStream();
+				fs.open(file, FileMode.READ);
+				var xmlString:String=fs.readMultiByte(fs.bytesAvailable, "utf-8");
+				fs.close();
+				var xml:XML = new XML(xmlString);
+				
+				var xmllist:XMLList = xml.children();
+				for (var i:int = 0; i < xmllist.length(); i++) 
+				{
+					var item:XML = xmllist[i] as XML;
+					var target:String = String(item.@target);
+					if (this.hasOwnProperty(target))
+					{
+						this[target] = String(item.@key);
+					}
+				}
+			}
 		}
 		/**
 		 * 增加一个快捷键

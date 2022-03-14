@@ -1,7 +1,7 @@
 package view.common 
 {
-	import game.data.configuration.BaseAttribute;
-	import game.data.configuration.XmlAttribute;
+	import editor.configuration.BaseAttribute;
+	import editor.configuration.XmlAttribute;
 	import editor.events.EditorEvent;
 	import flash.display.Sprite;
 	import flash.events.Event;

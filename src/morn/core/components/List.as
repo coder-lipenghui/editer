@@ -249,6 +249,7 @@ package morn.core.components {
 			{
 				if (e.type == MouseEvent.CLICK || e.type == MouseEvent.ROLL_OVER || e.type == MouseEvent.ROLL_OUT) {
 					if (e.type == MouseEvent.CLICK) {
+						trace("当前是否可选择:" + _selectEnable);
 						if (_selectEnable) {
 							selectedIndex = index;
 						} else {

@@ -20,6 +20,10 @@ package view.dialog
 			super();
 			btn_browse.clickHandler = new Handler(brower);
 			btn_start.clickHandler = new Handler(start);
+			btn_newProject.clickHandler = new Handler(function ():void 
+			{
+				App.dialog.show(new createNew);
+			});
 		}
 		private function brower():void 
 		{

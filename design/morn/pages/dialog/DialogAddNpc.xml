@@ -1,0 +1,20 @@
+<Dialog width="400" height="300" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" x="40" y="40" layer="1" sizeGrid="22,22,22,22" left="0" right="0" top="0" bottom="0"/>
+  <Label text="新增NPC" styleSkin="png.comp.label" x="42" y="41" layer="1" color="0x212121" centerX="0" top="1"/>
+  <Image skin="png.comp.img_container" x="10" y="30" layer="1" sizeGrid="40,5,5,5" left="20" top="40" right="20" bottom="50"/>
+  <Label text="基础属性" styleSkin="png.comp.label" x="23" y="24" layer="1" color="0xffffff"/>
+  <Button label="确认" skin="png.comp.btn_small_primary" x="307" y="245" layer="1" var="btn_add" right="20" bottom="15"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="237" y="245" layer="1" name="close" bottom="15"/>
+  <TextInput skin="png.comp.textinput" x="129" y="57" layer="1" margin="2" var="txt_id" width="175" height="22"/>
+  <Label text="唯一编号" styleSkin="png.comp.label" x="64" y="58" layer="1" color="0xbdbdbd"/>
+  <TextInput skin="png.comp.textinput" x="129" y="87" layer="1" margin="2" var="txt_name" width="175" height="22"/>
+  <Label text="NPC名称" styleSkin="png.comp.label" x="64" y="88" layer="1" color="0xbdbdbd"/>
+  <TextInput skin="png.comp.textinput" x="129" y="117" layer="1" margin="2,2,30,2" width="175" height="22" text="null" var="txt_script"/>
+  <Label text="触发脚本" styleSkin="png.comp.label" x="64" y="118" layer="1" color="0xbdbdbd"/>
+  <TextInput skin="png.comp.textinput" x="129" y="147" layer="1" margin="2,2,30,2" width="175" height="22" text="null" var="txt_shopScript"/>
+  <Label text="商店脚本" styleSkin="png.comp.label" x="64" y="148" layer="1" color="0xbdbdbd"/>
+  <TextInput skin="png.comp.textinput" x="129" y="177" layer="1" margin="2,2,30,2" width="175" height="22" text="4" var="txt_dir"/>
+  <Label text="面        向" styleSkin="png.comp.label" x="64" y="178" layer="1" color="0xbdbdbd"/>
+  <TextInput skin="png.comp.textinput" x="129" y="207" layer="1" margin="2,2,30,2" width="175" height="22" var="txt_flyid" text="0"/>
+  <Label text="传从 ID" styleSkin="png.comp.label" x="64" y="208" layer="1" color="0xbdbdbd"/>
+</Dialog>

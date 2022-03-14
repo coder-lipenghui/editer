@@ -1,0 +1,24 @@
+﻿#-----------------------------------------------------------#
+# 以#开头的行为注释行											#
+# 必要参数描述：												#
+# TPPath TexturePacker.exe所在路径							#
+# 参数以key=value形式设置										#
+# 具体TexturePacker命令请参照：								#
+# https://www.codeandweb.com/texturepacker/documentation	#
+# 或者使用TexturePacker.exe --help参看各命令行				#
+#-----------------------------------------------------------#
+
+TPPath=C:\Program Files\CodeAndWeb\TexturePacker\bin\TexturePacker.exe
+#--sheet 该参数在客户端内传入，txt文件中不要设置
+#--data 该参数在客户端内传入，txt文件中不要设置
+--texture-format=jpg
+#版本不同 采用的format会不同：3.8版本前用cocos2d 3.8之后的版本用cocos2d-v2
+--format=cocos2d-v2
+#--premultiply-alpha
+--border-padding=0
+--shape-padding=0
+--max-size=1024
+--size-constraints=AnySize
+--trim-mode=Trim
+#--dither-fs-alpha
+#--png-opt-level=

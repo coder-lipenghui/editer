@@ -11,7 +11,7 @@ package view.object
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import flash.utils.Endian;
-	import game.data.DataManager;
+	import editor.manager.DataManager;
 	import editor.manager.CatalogManager;
 	import morn.core.handlers.Handler;
 	

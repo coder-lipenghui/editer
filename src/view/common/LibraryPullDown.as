@@ -3,11 +3,13 @@ package view.common
 	import editor.EditorManager;
 	import editor.events.EditorEvent;
 	import editor.menu.menu;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	import morn.core.components.Box;
 	import morn.core.components.Clip;
+	import morn.core.components.Image;
 	import morn.core.components.Label;
 	import morn.core.handlers.Handler;
 	import view.auto.common.CommLibrayPullDownUI;
@@ -97,6 +99,17 @@ package view.common
 			if (e.type==MouseEvent.DOUBLE_CLICK) 
 			{
 				selectItem();
+			}
+			if (e.type==MouseEvent.MOUSE_DOWN)
+			{
+				var obj:XML = treeLibrary.array[index];
+				var _catalog:int = int(obj.@catalog);
+				if (_catalog==3) 
+				{
+					var resid:int = int(obj.@id);
+					var dragImg:Image = new Image("png.comp.btn_file");
+					App.drag.doDrag(e.currentTarget as Sprite,dragImg as Sprite,obj);
+				}
 			}
 		}
 		/**

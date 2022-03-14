@@ -5,8 +5,8 @@ package view.window
 	import editor.events.ShortcutEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import game.assets.action.Action;
-	import game.data.DataManager;
+	import editor.Action;
+	import editor.manager.DataManager;
 	import editor.manager.CatalogManager;
 	import morn.core.handlers.Handler;
 	import view.auto.window.WindowResEditUI;
@@ -21,6 +21,7 @@ package view.window
 		private var _id:String = "";
 		private var _catalog:int = 0;
 		private var _displayId:int = 0;
+		private var _lastSelected:int = -1;
 		public function ResEdit() 
 		{
 			super();
@@ -85,6 +86,13 @@ package view.window
 		}
 		private function handlerSelectList(index:int):void 
 		{
+			if (index==_lastSelected) 
+			{
+				_lastSelected =-1;
+				list_preview.selectedIndex =-1;
+				return;
+			}
+			_lastSelected = index;
 			var obj:Object = list_preview.array[index];
 			for each(var view:ResPreview in list_preview.cells) 
 			{
@@ -139,31 +147,34 @@ package view.window
 				switch (key) 
 				{
 					case "shift,left":
-						tempX =10;
-						break;
-					case "shift,right":
 						tempX =-10;
 						break;
+					case "shift,right":
+						tempX =10;
+						break;
 					case "shift,up":
-						tempY =10;
+						tempY =-10;
 						break;
 					case "shift,down":
-						tempY = -10;
+						tempY =10;
 						break;
 					case "ctrl,down":
-						tempY =-1;
+					case "down":
+						tempY =1;
 						break;
 					case "ctrl,up":
-						tempY = 1;
+					case "up":
+						tempY =-1;
 						break;
 					case "ctrl,right":
-						tempX = -1;
+					case "right":
+						tempX = 1;
 						break;
 					case "ctrl,left":
-						tempX =1;
+					case "left":
+						tempX =-1;
 						break;
 				}
-				trace("正在批量调整:",list_preview.selectedIndex);
 				for (var i:int = 0; i < list_preview.array.length; i++) 
 				{
 					var resView:ResPreview = list_preview.getCell(i) as ResPreview;

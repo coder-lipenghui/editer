@@ -10,12 +10,12 @@ package editor.manager
 	import flash.utils.Dictionary;
 	import flash.utils.Endian;
 	import flash.utils.getTimer;
-	import game.assets.ActionManager;
-	import game.assets.AnimateManager;
-	import game.assets.action.Action;
-	import game.assets.animat.AnimatInfo;
-	import game.data.DataManager;
-	import game.tools.texturePacker.TexturePacker;
+	import editor.manager.ActionManager;
+	import editor.manager.AnimateManager;
+	import editor.Action;
+	import editor.AnimatInfo;
+	import editor.manager.DataManager;
+	import editor.tools.texturePacker.TexturePacker;
 	/**
 	 * ...
 	 * @author 3464285@gmail.com
@@ -88,11 +88,21 @@ package editor.manager
 				var tempStr:String = folder.name.replace("(", ",");
 				tempStr = tempStr.replace(")", "");
 				var tempArr:Array = tempStr.split(",");
-				var id:int = tempArr[1];
-				var name:String = tempArr[0];
+				
+				var tmpId:String = tempArr[1];
+				var tmpName:String = tempArr[0];
+				
+				var id:int = int(tmpId) == 0?int(tmpName):int(tmpId);
+				var name:String = int(tmpId) == 0?tmpId:tmpName;
+				
 				xml = <assets/>;
 				xml.@id = id;
 				xml.@name = name;
+				if (id==0) 
+				{
+					xml.@id = name;
+					xml.@name = id;
+				}
 				xml.@dir = dirCount;
 				xml.@center = center;
 				xml.@hideChildren = "true";
@@ -489,6 +499,7 @@ package editor.manager
 			//biz文件前期的描述: 0x43固定、文件数量
 			var bizByteArray:ByteArray = new ByteArray();
 				bizByteArray.endian = Endian.LITTLE_ENDIAN;
+				//bizByteArray.writeByte(0x43);
 				bizByteArray.writeByte(0x4c);
 				bizByteArray.writeByte(0x49);
 				bizByteArray.writeByte(0x50);

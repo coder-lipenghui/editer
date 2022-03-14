@@ -1,7 +1,7 @@
 package view.object 
 {
-	import game.data.DataManager;
-	import game.data.configuration.BaseAttribute;
+	import editor.manager.DataManager;
+	import editor.configuration.BaseAttribute;
 	/**
 	 * ...
 	 * @author 3464285@gmail.com

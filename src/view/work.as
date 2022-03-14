@@ -1,15 +1,17 @@
 package view 
 {
 	import editor.EditorManager;
-	import game.data.DataManager;
-	import game.data.events.AttributeEvent;
+	import editor.manager.DataManager;
+	import editor.events.AttributeEvent;
 	import editor.events.EditorEvent;
 	import flash.events.Event;
 	import morn.core.components.View;
 	import morn.core.handlers.Handler;
 	import view.auto.MainWorkUI;
 	import view.dialog.addComRes;
+	import view.dialog.addLegendRes;
 	import view.dialog.addMapRes;
+	import view.dialog.addXmlDescript;
 	import view.dialog.converDir;
 	import view.dialog.crackBin;
 	import view.dialog.delRes;
@@ -17,6 +19,7 @@ package view
 	import view.dialog.exprotRes;
 	import view.dialog.exprotResByCatalog;
 	import view.dialog.groupJiuYinRes;
+	import view.dialog.shortcut;
 	import view.dialog.welcome;
 	import view.window.DropInfo;
 	
@@ -63,50 +66,61 @@ package view
 			btn_addComRes.clickHandler = new Handler(function ():void 
 			{
 				App.dialog.show(new addComRes);
+				box_file.visible = false;
 			});
 			btn_crackBin.clickHandler = new Handler(function ():void
 			{
 				App.dialog.show(new crackBin);
+				box_crack.visible = !box_crack.visible;
 			});
-			btn_project.clickHandler = new Handler(function ():void 
-			{
-				App.dialog.show(new welcome, true);
-			});
+			//btn_project.clickHandler = new Handler(function ():void 
+			//{
+				//App.dialog.show(new welcome, true);
+			//});
 			btn_addMap.clickHandler = new Handler(function ():void 
 			{
 				App.dialog.show(new addMapRes);
+				box_file.visible = false;
 			});
 			btn_exportCloth.clickHandler = new Handler(function ():void 
 			{
 				DataManager.library.exportCloth();
+				box_action.visible = !box_action.visible;
 			});
 			btn_exportWeapon.clickHandler = new Handler(function ():void 
 			{
 				DataManager.library.exportWeapon();
+				box_action.visible = !box_action.visible;
 			});
 			btn_exportWing.clickHandler = new Handler(function ():void 
 			{
 				DataManager.library.exprotWing();
+				box_action.visible = !box_action.visible;
 			});
 			btn_exportEffect.clickHandler = new Handler(function ():void 
 			{
 				DataManager.library.exprotEffect();
+				box_action.visible = !box_action.visible;
 			});
 			btn_exportQiege.clickHandler = new Handler(function ():void 
 			{
 				DataManager.library.exportQiege();
+				box_action.visible = !box_action.visible;
 			});
 			btn_group.clickHandler = new Handler(function ():void 
 			{
 				App.dialog.show(new groupJiuYinRes);
+				box_crack.visible = !box_crack.visible;
 			});
 			btn_exportMount.clickHandler = new Handler(function ():void 
 			{
 				DataManager.library.exprotMount();
+				box_action.visible = !box_action.visible;
 			});
 			btn_exportPet.clickHandler = new Handler(function ():void 
 			{
 				DataManager.library.exprotPet()
+				box_action.visible = !box_action.visible;
 			});
 			btn_export.clickHandler = new Handler(function ():void 
 			{
@@ -116,9 +130,45 @@ package view
 			{
 				box_crack.visible = !box_crack.visible;
 			});
+			btn_project.clickHandler = new Handler(function ():void 
+			{
+				box_project.visible = !box_project.visible;
+			});
+			btn_file.clickHandler = new Handler(function ():void 
+			{
+				box_file.visible = !box_file.visible;
+			});
 			btn_convert.clickHandler = new Handler(function ():void 
 			{
 				App.dialog.show(new converDir);
+				box_crack.visible = !box_crack.visible;
+			});
+			btn_addConfig.clickHandler = new Handler(function ():void 
+			{
+				App.dialog.show(new addXmlDescript);
+				box_file.visible = false;
+			});
+			btn_open.clickHandler = new Handler(function ():void 
+			{
+				App.dialog.show(new welcome, true);
+				box_project.visible = false;
+			});
+			btn_create.clickHandler = new Handler(function ():void 
+			{
+				box_project.visible = false;
+			});
+			btn_last.clickHandler = new Handler(function ():void 
+			{
+				box_project.visible = false;
+			});
+			btn_legend.clickHandler=new Handler(function ():void 
+			{
+				box_crack.visible = !box_crack.visible;
+				App.dialog.show(new addLegendRes);
+			})
+			btn_setting.clickHandler = new Handler(function ():void 
+			{
+				App.dialog.show(new shortcut);
 			});
 			uv_action.remove();
 		}

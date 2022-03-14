@@ -1,7 +1,7 @@
 package view.object 
 {
 	import flash.geom.Point;
-	import game.data.configuration.BaseAttribute;
+	import editor.configuration.BaseAttribute;
 	/**
 	 * ...
 	 * @author 3464285@gmail.com

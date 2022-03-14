@@ -2,10 +2,10 @@ package editor
 {
 	import editor.manager.ShortcutManager;
 	import flash.filesystem.File;
-	import game.assets.ActionManager;
-	import game.assets.BinaryManager;
-	import game.data.DataManager;
-	import game.data.configuration.BaseAttribute;
+	import editor.manager.ActionManager;
+	import editor.manager.BinaryManager;
+	import editor.manager.DataManager;
+	import editor.configuration.BaseAttribute;
 	import editor.events.EditorEvent;
 	import editor.menu.EditorContextMenu;
 	import flash.display.Sprite;
@@ -29,7 +29,7 @@ package editor
 		public static var altDown:Boolean = false;
 		public static var ctrlDown:Boolean = false;
 		
-		public static var shortcut:ShortcutManager = new ShortcutManager();
+		//public static var shortcut:ShortcutManager = new ShortcutManager();
 		public function EditorManager()
 		{
 			
@@ -44,7 +44,7 @@ package editor
 			stage.addEventListener(KeyboardEvent.KEY_UP, handleKey);
 			stage.addEventListener(EditorEvent.DATA_REFRESH, handleDataRefesh);
 			
-			shortcut.init(stage);
+			ShortcutManager.instance.init(stage);
 			DataManager.init();
 			
 			var file:File = File.applicationDirectory.resolvePath("projects.xml");

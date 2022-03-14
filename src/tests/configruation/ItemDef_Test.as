@@ -1,9 +1,9 @@
 package tests.configruation 
 {
-	import game.data.configuration.BaseAttribute;
-	import game.data.configuration.ItemDef;
-	import game.data.configuration.XmlAttribute;
-	import editor.log.Logger;
+	import editor.configuration.BaseAttribute;
+	import editor.configuration.ItemDef;
+	import editor.configuration.XmlAttribute;
+	import editor.tools.Logger;
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;

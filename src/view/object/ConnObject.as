@@ -1,8 +1,8 @@
 package view.object 
 {
-	import game.data.DataManager;
-	import game.data.configuration.BaseAttribute;
-	import game.data.configuration.MapDesp;
+	import editor.manager.DataManager;
+	import editor.configuration.BaseAttribute;
+	import editor.configuration.MapDesp;
 	import morn.core.components.Image;
 	import morn.core.events.UIEvent;
 	

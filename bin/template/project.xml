@@ -1,0 +1,51 @@
+<project path="D:/CodeX/design/CodeXResource">
+  <output>D:/CodeX/client/res</output>
+  <center>256,256</center>
+  <last_type>1</last_type>
+  <action>CodeX</action>
+  <config>
+    <description path="config/data/"/>
+    <texturepacker path="config/texturepacker/"/>
+    <action path="config/action/" selected="CodeX"/>
+  </config>
+  <data path="D:/CodeX/data/zh_ZY/data/"/>
+  <library path="D:/CodeX/design/CodeXResource/library/">
+    <catalog>
+      <item id="1" parent="0" name="主角" path="" display="" icon="" hasChild="true" defaultDir="4" />
+      <item id="2" parent="0" name="怪物" path="cloth" display="0" icon="icon_mon2" hasChild="true" defaultDir="4" />
+      <item id="3" parent="0" name="游npc" path="cloth" display="0" icon="icon_npc" hasChild="true" defaultDir="0" />
+      <item id="4" parent="0" name="特效" path="effect" display="" icon="" hasChild="true" defaultDir="4" />
+      <item id="5" parent="0" name="地图" path="map" display="" icon="" hasChild="true" defaultDir="4" />
+      <item id="6" parent="0" name="UI" path="" display="" icon="" hasChild="true" defaultDir="4" enable="false" />
+      <item id="7" parent="1" name="外观" path="cloth" display="0" icon="icon_cloth" defaultDir="4" />
+      <item id="8" parent="1" name="武器" path="weapon" display="1" icon="icon_weapon1" defaultDir="4" />
+      <item id="9" parent="1" name="翅膀" path="wing" display="2" icon="" defaultDir="4" />
+      <item id="10" parent="4" name="战士技能" path="" display="3" icon="" defaultDir="4" />
+      <item id="11" parent="4" name="法师技能" path="" display="3" icon="" defaultDir="4" />
+      <item id="12" parent="4" name="道士技能" path="" display="3" icon="" defaultDir="4" />
+      <item id="13" parent="4" name="BOSS技能" path="" display="3" icon="" defaultDir="4" />
+      <item id="14" parent="0" name="宠物" path="cloth" display="0" icon="" hasChild="true" defaultDir="4" />
+      <item id="15" parent="1" name="法宝" path="fabao" display="4" icon="" defaultDir="4" />
+      <item id="16" parent="1" name="坐骑" path="mount" display="5" icon="" hasChild="true" defaultDir="2" />
+      <item id="17" parent="4" name="UI特效" path="" display="3" icon="" defaultDir="4" />
+      <item id="18" parent="4" name="场景特效" path="" display="3" icon="" defaultDir="4" />
+    </catalog>
+  </library>
+  <assets path="D:/codex/client/res"/>
+  <mapsetting>
+    <logic>48,32</logic>
+    <cutcell>512,512</cutcell>
+    <minimap>660,520</minimap>
+    <compress>true</compress>
+    <quality>50</quality>
+  </mapsetting>
+
+  <module>
+    <item id="0" name="外观" enable="true"/>
+    <item id="1" name="武器" enable="true"/>
+    <item id="2" name="翅膀" enable="true"/>
+    <item id="3" name="法宝" enable="true"/>
+    <item id="4" name="坐骑" enable="true"/>
+    <item id="5" name="裤子" enable="false"/>
+  </module>
+</project>

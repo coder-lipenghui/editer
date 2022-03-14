@@ -1,20 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/26.0">
   <supportedProfiles>extendedDesktop desktop</supportedProfiles>
-  <id>LegendEditer</id>
+  <id>Main</id>
   <versionNumber>1.0</versionNumber>
-  <filename>LegendEditer</filename>
-  <name>LegendEditer</name>
+  <filename>Main</filename>
+  <name>Main</name>
   <initialWindow>
     <title>LegendEditer</title>
-    <content>LegendEditor.swf</content>
+    <content>Main.swf</content>
     <systemChrome>standard</systemChrome>
     <transparent>false</transparent>
     <visible>true</visible>
     <minimizable>true</minimizable>
     <maximizable>true</maximizable>
     <resizable>true</resizable>
-	  <requestedDisplayResolution>high</requestedDisplayResolution>
+	<height>1080</height>
+	<width>1920</width>
+    <requestedDisplayResolution>high</requestedDisplayResolution>
   </initialWindow>
   <!-- 
 	More options:
@@ -24,8 +26,6 @@
     <manifestAdditions><![CDATA[<manifest android:installLocation="auto" xmlns:android="http://schemas.android.com/apk/res/android" />]]></manifestAdditions>
   </android>
   <iPhone>
-    <InfoAdditions><![CDATA[<key>UIPrerenderedIcon</key>
-<true />]]></InfoAdditions>
     <requestedDisplayResolution>high</requestedDisplayResolution>
   </iPhone>
 </application>

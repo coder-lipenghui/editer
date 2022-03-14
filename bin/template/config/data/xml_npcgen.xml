@@ -1,0 +1,13 @@
+<npcgen charSet="ANSI" separator=",">
+<attr id="1" name="NPC名称" key="name" tips="NPC名称" type="string" group="1"/>
+<attr id="2" name="触发脚本" key="script" tips="NPC触发的脚本" default="null" type="string" group="1"/>
+<!-- <attr id="3" name="商店配置" key="shopScript" tips="商店配置脚本" default="kong.csv" type="string" group="1"/> -->
+<attr id="3" name="所在地图" key="mapid" tips="所在地图编号" type="string" group="1"/>
+<attr id="4" name="地图X点" key="x" tips="所在地图X位置" type="int" group="1"/>
+<attr id="5" name="地图Y点" key="y" tips="所在地图Y,位置" type="int" group="1"/>
+<attr id="6" name="NPC外观" key="resid" tips="NCP外观素材ID" type="int" group="1"/>
+<attr id="7" name="传送编号" key="teleporterID" tips="直接传送点编号" type="int" group="1"/>
+<attr id="8" name="NPC简称" key="shortname" tips="NPC在小地图上的简称" type="array" group="2" displayGroup="可选配置"/>
+<attr id="9" name="名称素材" key="img" tips="NPC在小地图上的素材" type="array" group="2" displayGroup="可选配置"/>
+<attr id="10" name="缩放比例" key="scale" tips="NPC在地图上比例" type="array" group="2" displayGroup="可选配置"/>
+</npcgen>

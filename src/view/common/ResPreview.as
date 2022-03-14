@@ -5,9 +5,9 @@ package view.common
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.geom.Point;
-	import game.assets.animat.Animat;
-	import game.assets.bin.BinInfo;
-	import game.data.DataManager;
+	import editor.Animat;
+	import editor.BinInfo;
+	import editor.manager.DataManager;
 	import editor.manager.CatalogManager;
 	import morn.core.components.Box;
 	import morn.core.components.Label;

@@ -1,0 +1,18 @@
+<Dialog width="400" height="200" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" layer="1" left="0" right="0" top="0" bottom="0" sizeGrid="22,22,22,22" x="20" y="20"/>
+  <Button label="创建" skin="png.comp.btn_small_primary" x="542" y="377" layer="1" var="btn_add" labelBold="false" right="10" bottom="15"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="472" y="377" layer="1" sizeGrid="19,0,19,0" name="close" right="80" bottom="15"/>
+  <Label text="新建项目" styleSkin="png.comp.label" layer="1" color="0x212121" centerX="0" top="1" x="10" y="10"/>
+  <Box layers="1,1,0,0,第 1 层" layer="1" centerX="0" right="15" left="15" x="15" y="40">
+    <Image skin="png.comp.img_container" y="10" layer="1" sizeGrid="40,5,5,5" width="370" height="84" x="0"/>
+    <TextInput skin="png.comp.textinput" x="61" y="56" layer="1" margin="2" var="txt_path" width="241" height="22"/>
+    <Label text="目录" styleSkin="png.comp.label" x="27" y="57" layer="1" color="0xbdbdbd"/>
+    <Label text="新建" styleSkin="png.comp.label" x="12" layer="1" color="0xe0e0e0"/>
+    <Button label="浏览" skin="png.comp.btn_small_secondary" x="313" y="52" layer="1" var="btn_browse" sizeGrid="19,0,19,0" width="50" height="30"/>
+    <Label text="名称" styleSkin="png.comp.label" x="27" y="27" layer="1" color="0xbdbdbd"/>
+    <TextInput skin="png.comp.textinput" x="61" y="26" layer="1" margin="2" var="txt_name" width="241" height="22"/>
+  </Box>
+  <Image skin="png.comp.img_splite" x="-4" y="106" layer="1" left="0" top="0" bottom="0"/>
+  <Image skin="png.comp.img_splite_h" x="117" y="293" layer="1" bottom="0" left="0" right="0"/>
+  <Image skin="png.comp.img_splite" x="497" y="158" layer="1" right="0" top="0" bottom="0"/>
+</Dialog>

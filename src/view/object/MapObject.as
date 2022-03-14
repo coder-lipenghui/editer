@@ -1,8 +1,8 @@
 package view.object 
 {
-	import editor.log.Logger;
-	import game.data.DataManager;
-	import game.data.configuration.MapDesp;
+	import editor.tools.Logger;
+	import editor.manager.DataManager;
+	import editor.configuration.MapDesp;
 	import flash.data.EncryptedLocalStore;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;

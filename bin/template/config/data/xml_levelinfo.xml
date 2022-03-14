@@ -1,0 +1,4 @@
+<levelinfo charSet="ANSI" separator=",">
+      <attr name="等级" key="name" tips="等级" type="int" group="1"/>
+      <attr name="经验" key="exp" tips="升级经验" type="int" group="1"/>
+</levelinfo>

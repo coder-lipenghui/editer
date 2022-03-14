@@ -1,6 +1,6 @@
 package view.common 
 {
-	import game.data.configuration.BaseAttribute;
+	import editor.configuration.BaseAttribute;
 	import morn.core.components.VBox;
 	
 	/**

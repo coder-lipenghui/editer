@@ -4,7 +4,7 @@ package view.dialog
 	import flash.filesystem.File;
 	import view.auto.dialog.DialogExportAssetsUI;
 	import morn.core.handlers.Handler;
-	import game.data.DataManager;
+	import editor.manager.DataManager;
 	import editor.manager.CatalogManager;
 	/**
 	 * ...

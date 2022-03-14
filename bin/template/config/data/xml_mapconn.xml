@@ -1,0 +1,10 @@
+<mapconn charSet="ANSI" separator=",">
+	<attr key="name" name="出发地图" group="1"  tips="" type="string" displayGroup="触发地图"/>
+	<attr key="sx" name="触发x" group="1"  tips="" type="string" displayGroup="触发地图"/>
+	<attr key="sy" name="触发y" group="1"  tips="" type="string" displayGroup="触发地图"/>
+	<attr key="range" name="触发范围" group="1"  tips="" type="string" displayGroup="触发地图"/>
+	<!-- <attr key="separator" name="连接符号" group="1"  tips="" type="string" disabled="true" displayGroup="其他"/> -->
+	<attr key="to" name="目标地图" group="1"  tips="" type="string" displayGroup="目标地图"/>
+	<attr key="tx" name="目标x" group="1"  tips="" type="string" displayGroup="目标地图"/>
+	<attr key="ty" name="目标y" group="1"  tips="" type="string" displayGroup="目标地图"/>
+</mapconn>

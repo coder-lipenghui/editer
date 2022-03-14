@@ -1,0 +1,21 @@
+<Dialog width="400" height="200" sceneColor="0xffffff" layers="1,1,0,0,第 1 层">
+  <Image skin="png.comp.img_dialog" layer="1" left="0" right="0" top="0" bottom="0" x="10" y="10"/>
+  <Image skin="png.comp.img_container" y="36" layer="1" sizeGrid="40,5,5,5" width="370" height="114" x="13"/>
+  <Label text="传奇资源" styleSkin="png.comp.label" layer="1" color="0x212121" centerX="0" top="1" x="10" y="10"/>
+  <TextInput skin="png.comp.textinput" x="79" y="62" layer="1" margin="2" var="txt_path" width="199" height="22"/>
+  <Label text="资源" styleSkin="png.comp.label" x="45" y="63" layer="1" color="0xbdbdbd"/>
+  <Button label="选择" skin="png.comp.btn_small_secondary" x="328" y="58" layer="1" var="btn_browse" sizeGrid="19,0,19,0" width="50" height="30"/>
+  <Label text="路径" styleSkin="png.comp.label" x="25" layer="1" color="0xe0e0e0" y="24"/>
+  <TextInput skin="png.comp.textinput" x="79" y="92" layer="1" width="240" height="22" toolTip="用&quot;,&quot;分隔" var="txt_frame" visible="false"/>
+  <ComboBox labels="8,5,3,1" skin="png.comp.combobox" x="79" y="152" layer="1" var="cb_dir" selectedIndex="0" visible="false"/>
+  <Label text="帧数" styleSkin="png.comp.label" x="45" y="93" layer="1" color="0xbdbdbd" visible="false"/>
+  <Label text="方向数" styleSkin="png.comp.label" x="33" y="153" layer="1" color="0xbdbdbd" visible="false"/>
+  <TextInput skin="png.comp.textinput" x="79" y="122" layer="1" width="240" toolTip="用&quot;,&quot;分隔，需要跟帧数对应起来" name="txt_name" visible="false"/>
+  <Label text="名称" styleSkin="png.comp.label" x="45" y="123" layer="1" color="0xbdbdbd" visible="false"/>
+  <CheckBox label="批量" skin="png.comp.checkbox" x="282" y="64" layer="1" toolTip="批量需要将需要制作的单个资源文件夹放到同一个目录，然后选取这个目录进行制作" var="ck_batch"/>
+  <Button label="确认" skin="png.comp.btn_small_primary" x="582" y="417" layer="1" var="btn_ok" labelBold="false" right="10" bottom="10"/>
+  <Button label="关闭" skin="png.comp.btn_small_secondary" x="512" y="417" layer="1" sizeGrid="19,0,19,0" name="close" right="80" bottom="10"/>
+  <Image skin="png.comp.img_splite" x="-99" layer="1" top="0" bottom="0" left="0"/>
+  <Image skin="png.comp.img_splite" x="860" y="-117" layer="1" top="0" bottom="0" right="0"/>
+  <Image skin="png.comp.img_splite_h" x="-221" y="-167" layer="1" left="0" right="0" bottom="0"/>
+</Dialog>

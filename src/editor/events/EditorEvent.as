@@ -34,6 +34,7 @@ package editor.events
 		public static var ATTRIBUTE_ACTION:String = "attribute_action";
 		
 		public static var ADD_ONE_MONGEN:String = "ADD_ONE_MONGEN";
+		public static var ADD_ONE_NPCGEN:String = "ADD_ONE_NPCGEN";
 		
 		public static var LIBRARY_LOAD_COMPLETED:String = "library_load_completed";
 		public static var ACTION_LOAD_COMPLETED:String = "action_load_completed";

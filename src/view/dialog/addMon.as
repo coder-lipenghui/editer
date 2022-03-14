@@ -1,6 +1,6 @@
 package view.dialog 
 {
-	import game.data.DataManager;
+	import editor.manager.DataManager;
 	import morn.core.handlers.Handler;
 	import view.auto.dialog.DialogAddMonUI;
 	
@@ -39,7 +39,7 @@ package view.dialog
 			//地图 x y 怪物名 范围 数量 复活时间(ms)
 			//andian1 107 82 女山贼 107 6 10
 			var mongen:Array = [_mapId, _posX, _posY, _monName, txt_range.text, txt_number.text, txt_refTime.text];
-			var mongenStr:String = mongen.join(" ");
+			var mongenStr:String = mongen.join(DataManager.monGen.separator);
 			DataManager.monGen.addByString(mongenStr);
 			App.log.info("添加成功:",_mapId,_monName);
 		}

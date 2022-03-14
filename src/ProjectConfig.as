@@ -1,7 +1,7 @@
 package 
 {
 	import editor.events.EditorEvent;
-	import game.data.configuration.MapDesp;
+	import editor.configuration.MapDesp;
 	
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;

@@ -5,8 +5,8 @@ package view.window
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	import game.data.DataManager;
-	import game.data.configuration.BaseAttribute;
+	import editor.manager.DataManager;
+	import editor.configuration.BaseAttribute;
 	import editor.events.EditorEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;

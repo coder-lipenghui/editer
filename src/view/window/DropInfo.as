@@ -3,13 +3,13 @@ package view.window
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
-	import game.data.DataManager;
-	import game.data.configuration.BaseAttribute;
-	import game.data.configuration.XmlAttribute;
+	import editor.manager.DataManager;
+	import editor.configuration.BaseAttribute;
+	import editor.configuration.XmlAttribute;
 	import editor.events.EditorEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import editor.log.Logger;
+	import editor.tools.Logger;
 	import view.auto.window.WindowDropInfoUI;
 	import view.common.PropertyView;
 	import view.common.XmlComponent;

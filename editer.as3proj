@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\LegendEditor.swf" />
+    <movie path="bin\Main.swf" />
     <movie fps="30" />
     <movie width="1920" />
     <movie height="1080" />

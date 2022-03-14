@@ -1,0 +1,35 @@
+<mapinfo charSet="ANSI" separator=",">
+      <attr name="地图编号" key="id" tips="地图编号" type="string" group="1"/>
+      <attr name="地图素材" key="resid" tips="地图素材" type="string" group="1"/>
+      <attr name="阻挡文件" key="mapo" tips="地图阻挡文件" type="string" group="1"/>
+      <attr name="小地图" key="minimap" tips="小地图资源" type="string" group="1"/>
+      <attr name="地图名称" key="name" tips="地图名称" type="string" group="1"/>
+      <attr name="触发脚本" key="script" tips="地图触发脚本" type="string" group="1"/>
+      <attr name="地图类型" key="mapAutoClean" tips="地图类型（1:普通类型 >1 默认生成该数量地图，超过该数量时自动增加，无人时会自动销毁 )" type="string" group="1"/>
+      <attr name="下线回城" key="noautoenter" tips="下线回城" type="bool" group="2" displayGroup="其他"/>
+      <attr name="允许穿人" key="runplayer" tips="允许穿人" type="bool" group="2" displayGroup="其他"/>
+      <attr name="允许穿怪" key="runmon" tips="允许穿怪" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="死亡不掉" key="nodiedropitem" tips="死亡不掉东西" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="不保护新手" key="noprotectnewer" tips="不保护新手" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="地图摭罩" key="masktype" tips="地图摭罩" type="array" group="2" displayGroup="其他"/>
+      <attr  name="禁止PK" key="pkprohibit" tips="禁止PK" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="允许PK" key="pkallow" tips="允许PK(不加PK值)" type="bool" group="2" displayGroup="2禁止"/>
+      <attr  name="禁止换装" key="nochangeequiplist" tips="禁止切换装备选项" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="英藏玩家" key="noseeothers" tips="看不到其他玩家" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="禁止丢弃" key="nodropitem" tips="禁止扔东西" type="bool" group="2" displayGroup="2禁止"/>
+      <attr  name="杀怪疲软" key="addcofingroup" tips="杀怪加疲软值" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="打怪体力" key="execallow" tips="地图打怪扣体力值" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="屏蔽名字" key="nointeract" tips="屏蔽玩家名字,禁止聊天,禁止查看角色信息" type="array" group="2" displayGroup="其他"/>
+      <attr  name="禁止坐骑" key="nomount" tips="禁止坐骑" type="bool" group="2" displayGroup="2禁止"/>
+      <attr  name="禁止技能" key="lockaction" tips="禁止攻击和使用技能" type="bool" group="2" displayGroup="2禁止"/>
+      <attr  name="游荡挂机" key="wanderhangup" tips="游荡挂机" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="开启匿名" key="anonym" tips="匿名" type="bool" group="2" displayGroup="其他"/>
+      <attr  name="禁止战神" key="nogod" tips="禁止战神进入" type="bool" group="2" displayGroup="2禁止"/>
+      <attr  name="禁止站复" key="norelivestand" tips="禁止原地复活" type="bool" group="2" displayGroup="2禁止"/>
+      <attr  name="禁止物品" key="di" tips="禁止使用某个物品" type="array" group="2" displayGroup="2禁止"/>
+      <attr  name="禁止技能" key="ds" tips="禁止使用某个技能" type="array" group="2" displayGroup="2禁止"/>
+      <attr  name="隐藏聊天" key="hide" tips="隐藏任务聊天面板" type="array" group="2" displayGroup="其他"/>
+      <attr  name="杀怪倍数" key="em" tips="杀怪倍数" type="array" group="2" displayGroup="其他"/>
+      <attr  name="经验倍数" key="expmul" tips="人物最大经验倍数" type="array" group="2" displayGroup="其他"/>
+      <attr  name="进出触发" key="trigerenterleave" tips="进出地图触发脚本" type="bool" group="2" default="true" displayGroup="其他"/>
+</mapinfo>

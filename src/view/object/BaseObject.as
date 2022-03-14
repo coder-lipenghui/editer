@@ -9,10 +9,10 @@ package view.object
 	import flash.geom.Point;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
-	import game.assets.AnimateManager;
-	import game.data.configuration.BaseAttribute;
-	import game.data.configuration.MapDesp;
-	import game.data.events.AttributeEvent;
+	import editor.manager.AnimateManager;
+	import editor.configuration.BaseAttribute;
+	import editor.configuration.MapDesp;
+	import editor.events.AttributeEvent;
 	import morn.core.components.Image;
 	import view.events.AttributeChangeEvent;
 	

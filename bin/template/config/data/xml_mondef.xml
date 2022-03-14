@@ -1,0 +1,36 @@
+<mondef charSet="ANSI" separator=",">
+      <attr name="素材ID" default="1000" key="resid" type="int" group="1" tips="外观展示素材"/>
+      <attr name="武器ID" default="0" key="weapon" type="int" group="1" tips="如果填了武器，则该怪物会拿着武器" displayGroup="1常用"/>
+      <attr name="脚本名称" default="null" key="script" type="string" group="1" tips="string" displayGroup="3其他"/>
+      <attr name="怪物AI" default="default" key="ai" type="string" group="1" tips="" displayGroup="3其他"/>
+      <attr name="怪物名称" default="" key="name" type="string" group="1" tips="怪物头顶的名称"/>
+      <attr name="特效类型" default="0" key="effect_type" type="int" group="1" tips="如果是机器人只填：100,101,102&lt;br/>(ps 100:战士,101:法师,102:道士),&lt;br/>其他怪物需要匹配skilldef中的配置" displayGroup="3其他"/>
+      <attr name="特效ID" default="0" key="effect_res" type="int" group="1" tips="" displayGroup="1常用"/>
+      <attr name="目标特效" default="0" key="target_effect" type="int" group="1" tips="" displayGroup="1常用"/>
+      <attr name="脚底光圈" default="0" key="foot_effect" type="int" group="1" tips="" displayGroup="1常用"/>
+      <attr name="怪物等级" default="1" key="lvl" type="int" group="1" tips=""/>
+      <attr name="是不死系" default="0" key="undead" type="int" group="1" tips="" displayGroup="3其他"/>
+      <attr name="怪物视野" default="0" key="cooleye" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="怪物经验" default="0" key="exp" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="怪物血量" default="1" key="hp" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="怪物蓝量" default="1" key="mp" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="物理防御" default="0" key="ac" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="魔法防御" default="0" key="mac" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="物攻下限" default="0" key="dc" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="物攻上限" default="0" key="dcmax" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="魔法攻击" default="0" key="mc" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="道术攻击" default="0" key="sc" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="闪避" default="0" key="shanbi" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="命中" default="1" key="hit" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="移动速度" default="0" key="walk_spd" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="移动频率" default="0" key="walkstep" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="移动间隔" default="0" key="walkwait" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="攻击速度" default="0" key="attack_spd" type="int" group="1" tips="" displayGroup="2属性"/>
+      <attr name="状态？" default="0" key="state" type="int" group="1" tips="赵坑说不记得这个是干嘛的了" displayGroup="3其他"/>
+      <attr name="powerexp" default="0" key="power_exp" type="int" group="1" tips="" displayGroup="3其他"/>
+      <attr name="slaveexp" default="0" key="slave_exp" type="int" group="1" tips="" displayGroup="3其他"/>
+      <attr name="喊话间隔" default="0" key="talkgap" type="string" group="1" tips="" displayGroup="3其他"/>
+      <attr name="是BOSS" default="0" key="boss" type="int" group="1" tips="是否是boss,如果是boss,脚底会有特效光圈显示" displayGroup="3其他"/>
+      <attr name="血条位置" default="0" key="hppos" type="int" group="1" tips="boss飘血及血条展示的位置" displayGroup="1常用"/>
+      <attr name="掉落展示" default="0" key="droppre" type="string" group="1" tips="掉落展示,按照‘_’分隔填物品id，例:100_101_102" displayGroup="3其他"/>
+    </mondef>

@@ -1,21 +1,21 @@
 package view.dialog 
 {
 	import flash.geom.Point;
-	import game.assets.ActionManager;
-	import game.assets.BinaryManager;
-	import game.assets.action.Action;
+	import editor.manager.ActionManager;
+	import editor.manager.BinaryManager;
+	import editor.Action;
 	import flash.events.Event;
 	import flash.filesystem.File;
-	import editor.log.Logger;
-	import game.data.DataManager;
+	import editor.tools.Logger;
+	import editor.manager.DataManager;
 	import editor.manager.CatalogManager;
 	import editor.manager.LibraryManager
-	import game.tools.BrowseTools;
+	import editor.tools.BrowseTools;
 	import morn.core.components.Box;
 	import morn.core.components.PullDownMenu;
 	import morn.core.components.TextInput;
 	import morn.core.handlers.Handler;
-	import game.tools.texturePacker.TexturePacker;
+	import editor.tools.texturePacker.TexturePacker;
 	import view.auto.dialog.DialogAddCompResUI;
 	import view.window.Log;
 	
@@ -125,13 +125,20 @@ package view.dialog
 				{
 					var __id:String = "";
 					var __name:String = "";
+					
 					var tempArr:Array = file.name.split("(");
 					if (tempArr.length>1)
 					{
 						__name = tempArr[0];
-						__id = tempArr[1].replace(")","");
+						__id = tempArr[1].replace(")", "");
+						if (int(__id)==0) 
+						{
+							var tmp:String = __id;
+							__id = __name;
+							__name = tmp;
+						}
 					}else{
-						App.log.warn("文件夹命名格式不对,必须按照“名称(ID)”的形式进行命名");
+						App.log.warn("文件夹命名格式不对,必须按照“名称(ID) 或 ID(名称)”的形式进行命名");
 						return;
 					}
 					var centerStr:String = txt_x.text + "," + txt_y.text;
@@ -264,6 +271,7 @@ package view.dialog
 			var txt_frame:TextInput = item.getChildByName("txt_frame") as TextInput;
 			var txt_id:TextInput = item.getChildByName("txt_id") as TextInput;
 			var txt_amendment:TextInput = item.getChildByName("txt_amendment") as TextInput;
+			
 			if (list_action.array[index]) 
 			{
 				var ac:Action = list_action.array[index];
@@ -281,8 +289,15 @@ package view.dialog
 			var tempArr:Array = fn.split("(");
 			if (tempArr.length>1)
 			{
-				txt_id.text = tempArr[1].replace(")","");;
-				txt_name.text = tempArr[0];
+				var _name:String=tempArr[0];
+				var _id:String = tempArr[1].replace(")", "");
+				txt_id.text = _id
+				txt_name.text = _name;
+				if (int(_id)==0) 
+				{
+					txt_id.text = _name;
+					txt_name.text = _id;
+				}
 			}else{
 				txt_name.text = fn;
 			}

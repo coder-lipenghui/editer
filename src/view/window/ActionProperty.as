@@ -4,8 +4,8 @@ package view.window
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.text.TextField;
-	import game.data.DataManager;
-	import game.data.events.AttributeEvent;
+	import editor.manager.DataManager;
+	import editor.events.AttributeEvent;
 	import editor.manager.CatalogManager;
 	import editor.manager.LibraryManager;
 	import morn.core.components.*;

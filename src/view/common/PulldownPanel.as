@@ -1,11 +1,11 @@
 package view.common 
 {
-	import game.data.configuration.BaseAttribute;
-	import game.data.configuration.XmlAttribute;
+	import editor.configuration.BaseAttribute;
+	import editor.configuration.XmlAttribute;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.TextEvent;
-	import editor.log.Logger;
+	import editor.tools.Logger;
 	import morn.core.components.Component;
 	import view.auto.common.CommPullDownPanelUI;
 	import flash.events.Event;
