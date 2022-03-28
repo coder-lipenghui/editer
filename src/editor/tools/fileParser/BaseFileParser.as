@@ -46,7 +46,6 @@ package editor.tools.fileParser
 					for (var i:int = 0; i < tempData.length; i++) 
 					{
 						var info:String = tempData[i];
-						trace(info);
 						var value:Array = info.split(_separator);
 						if (info=="" || info.indexOf("#")>=0 || info==" ") 
 						{

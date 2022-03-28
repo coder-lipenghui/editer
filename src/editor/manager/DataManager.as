@@ -110,7 +110,6 @@ package editor.manager
 			}catch (e:Error){
 				App.log.error("DataManager初始化失败:\r\n"+e.message+"\r\n"+e.getStackTrace());
 			}
-			trace("加载Bin信息");
 			binManager.init();
 			trace("加载动作信息");
 			action.init();

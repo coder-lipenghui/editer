@@ -249,8 +249,9 @@ package view.dialog
 					frameInfo = descriptionXML.@frameinfo;
 				}
 				DataManager.library.addResNode(descriptionXML);
-				var animatData:Array=TexturePacker.plistData(tp.data);
-				DataManager.library.createBinFile(tp.data.replace(".plist", ".bin"), animatData, dir, imgNum, frameInfo, point);
+				var animatData:Array = TexturePacker.plistData(tp.data);
+				//vartp.data.replace(".plist", ".bin")
+				DataManager.library.createBinFile(tp.outputPath,descriptionXML.@id,tp.name, animatData, dir, imgNum, frameInfo, point);
 			}
 			if (_tpList.length>0)
 			{

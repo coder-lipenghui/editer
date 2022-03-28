@@ -496,36 +496,19 @@ package editor.manager
 			var bizFile:File = new File(bizPath);
 			var bizStream:FileStream = new FileStream();
 				bizStream.open(bizFile, FileMode.WRITE);
-			//biz文件前期的描述: 0x43固定、文件数量
 			var bizByteArray:ByteArray = new ByteArray();
 				bizByteArray.endian = Endian.LITTLE_ENDIAN;
-				//bizByteArray.writeByte(0x43);
-				bizByteArray.writeByte(0x4c);
-				bizByteArray.writeByte(0x49);
-				bizByteArray.writeByte(0x50);
-				bizByteArray.writeByte(0x45);
-				bizByteArray.writeByte(0x4e);
-				bizByteArray.writeByte(0x47);
-				bizByteArray.writeByte(0x48);
-				bizByteArray.writeByte(0x75);
-				bizByteArray.writeByte(0x69);
-				//文件总数
-				bizByteArray.writeInt(assets.length);
 			var len:int = 0;
-			//var children:XMLList = parentXML.children();
-			for (var k:int = 0; k < assets.length; k++)
+			var file_num:int = assets.length;
+			bizByteArray.writeInt(file_num);
+			for (var k:int = 0; k < file_num; k++)
 			{
 				var item:Object = assets[k];
 				//每个文件单的名称写入
-				var binFile:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath+ CatalogManager.instance.getAbsolutePath(int(item.catalog))+ "/" +item.folderName+"/export/" +item.action+".bin");
+				var binFile:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(int(item.catalog)) + "/" +item.folderName+"/export/" +item.action + ".bin");
+				App.log.info("正在合并:",binFile.nativePath);
 				if (binFile.exists)
 				{
-					var fileid:String = item.id;// binFile.name.replace(".bin", "");
-					bizByteArray.writeByte(fileid.length);
-					bizByteArray.writeMultiByte(fileid, 'utf-8');
-					bizByteArray.writeByte(0);
-					bizByteArray.writeInt(1);
-					//bin文件写入
 					var binByteArray:ByteArray = new ByteArray();
 						binByteArray.endian = Endian.LITTLE_ENDIAN;
 					var binStream:FileStream = new FileStream();
@@ -533,27 +516,27 @@ package editor.manager
 						binStream.readBytes(binByteArray)
 						binStream.close();
 					//单个bin文件出错后则continue
-					try 
+					try
 					{
-						var dirCount:int = binByteArray.readByte();  	// 方向数
-						binByteArray.readByte();  						// 暂时无用
-						var imgNum:int=binByteArray.readByte(); 		// 图片数量
-						var frameCount:int = 0;
-						for (var i:int = 0; i < imgNum; i++) 
-						{
-							var temp:int = binByteArray.readByte();
-							frameCount += temp;
-						}
+						var fid:int=binByteArray.readInt();//file_id
+						var ww:int=binByteArray.readShort();//file_width=ba->readShort(); 	//文件尺寸 width
+						var hh:int = binByteArray.readShort();//file_height=ba->readShort();	//文件尺寸 height
+						var number:int = binByteArray.readShort();	//方向数×图片数
+						var dirCount:int = binByteArray.readShort();//方向数
+						var imgNum:int=binByteArray.readShort();	//图片数量
 						for (var ii:int=0; ii < dirCount; ii++)
 						{
 							for (var jj:int = 0; jj < imgNum; jj++)
 							{
+								var imgid:int = binByteArray.readInt();
 								var x:int=binByteArray.readShort();
 								var y:int=binByteArray.readShort();
 								var w:int=binByteArray.readShort();
 								var h:int=binByteArray.readShort();
-								var cx:int=binByteArray.readShort();
-								var cy:int=binByteArray.readShort();
+								var cx:int = binByteArray.readShort();
+								var cy:int = binByteArray.readShort();
+								var fw:int = binByteArray.readShort();
+								var fh:int = binByteArray.readShort();
 								var rotated:int = binByteArray.readShort();
 							}
 						}
@@ -562,8 +545,6 @@ package editor.manager
 						bizStream.close();
 						bizFile.deleteFile();
 						App.log.error("发布失败,存在异常文件:[ <font color='#FF0000'>" + binFile.name+"</font> ]");
-						//DialogPrompt.instance.alert("发布失败,存在异常文件:[ <font color='#FF0000'>"+binFile.name+"</font> ]");
-						//App.dialog.show(DialogPrompt.instance);
 						return;
 					}
 					bizByteArray.writeBytes(binByteArray, 0, binByteArray.length);
@@ -613,17 +594,17 @@ package editor.manager
 					}
 					var point:Array = tempCenter.split(",");
 					var plist:String = path + actionId + ".plist";
-					var bin:String = path + actionId + ".bin";
+					//var bin:String = path + actionId + ".bin";
 					var animatData:Array = TexturePacker.plistData(plist);
 					if (targetAction!="")
 					{
 						if (targetAction == actionId)
 						{
-							createBinFile(bin, animatData, dir, imgNum, frameInfo, new Point(point[0], point[1]));
+							createBinFile(path,actionId, id,animatData, dir, imgNum, frameInfo, new Point(point[0], point[1]));
 							break;
 						}
 					}else{
-						createBinFile(bin, animatData, dir, imgNum, frameInfo, new Point(point[0],point[1]));
+						createBinFile(path,id,actionId, animatData, dir, imgNum, frameInfo, new Point(point[0],point[1]));
 					}
 				}
 			}
@@ -638,33 +619,38 @@ package editor.manager
 		 * @param	frameInfo 动作帧信息
 		 * @param	center 中心点
 		 */
-		public  function createBinFile(outputPath:String,animatData:Array,dir:int,imgNum:int,frameInfo:String,center:Point):void 
+		public  function createBinFile(path:String,id:String,actionId:String,animatData:Array,dir:int,imgNum:int,frameInfo:String,center:Point):void 
 		{
+			var outputPath:String = path + actionId + ".bin";
 			var ba:ByteArray = new ByteArray();
 			ba.endian = Endian.LITTLE_ENDIAN;
-			ba.writeByte(dir);
-			ba.writeByte(dir);
-			ba.writeByte(imgNum);
+			ba.writeInt(int(id));
+			ba.writeShort(1);
+			ba.writeShort(1);
+			ba.writeShort(imgNum * dir);
+			ba.writeShort(dir);
+			ba.writeShort(imgNum);
 			var frameArr:Array = frameInfo.split(",");
-			for (var k:int = 0; k < imgNum; k++) 
-			{
-				ba.writeByte(frameArr[k]);
-			}
 			for (var j:int = 0; j < dir; j++)
 			{
 				for (var l:int = 0; l < imgNum; l++)
 				{
-					var id:int = (j * imgNum) + l;
-					var animat:AnimatInfo = animatData[id];
+					var tmpId:int = (j * imgNum) + l;
+					var animat:AnimatInfo = animatData[tmpId];
 					if (animat)
 					{
-						ba.writeShort(animat.x);
-						ba.writeShort(animat.y);
-						ba.writeShort(animat.w);
-						ba.writeShort(animat.h);
-						ba.writeShort(animat.oldX-center.x);
-						ba.writeShort(animat.oldY-center.y);
-						ba.writeShort(animat.rotated);
+						var imgName:String = animat.name.split(".")[0];
+						ba.writeInt(int(imgName));//frame_id=ba->readInt();
+						ba.writeShort(animat.x);//fx=ba->readShort();//小图在大图的x坐标
+						ba.writeShort(animat.y);//fy=ba->readShort();//小图在大图的y坐标
+						ba.writeShort(animat.w);//fw=ba->readShort();//小图在大图的占有宽度
+						ba.writeShort(animat.h);//fh=ba->readShort();//小图在大图的占有高度
+						ba.writeShort(animat.oldX-center.x);// x方向偏移量
+						ba.writeShort(animat.oldY-center.y);// y方向偏移量
+						ba.writeShort(animat.sourceW);//sw=ba->readShort();// 原图width大小
+						ba.writeShort(animat.sourceH);//sh=ba->readShort();//原图height大小
+						ba.writeShort(animat.rotated);//ro=ba->readShort();
+						trace("["+id+"]["+actionId+"]["+imgName+"]生成的数据:",animat.x,animat.y,animat.w,animat.h,animat.sourceW,animat.sourceH);
 					}
 				}
 			}

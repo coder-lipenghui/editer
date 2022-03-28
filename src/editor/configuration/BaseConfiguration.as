@@ -110,9 +110,24 @@ package editor.configuration
 				return false;
 			}
 			var result:Array = [];
+			var remark:Array = [];
+			
+			var remarkId:Array = [];
+			var remarkName:Array = [];
+			var remarkType:Array = [];
+			
+			var xmlList:XMLList=this._xml.children();
+			for each(var xml:XML in xmlList)
+			{
+				remarkId.push(String(xml.@key));
+				remarkName.push(String(xml.@name));
+				remarkType.push(String(xml.@type));
+			}
+			
 			for (var k:int = 0; k < _data.length; k++) 
 			{
 				var output:Array = [];
+				//TODO 添加描述
 				for (var i:int = 0; i < cloneTarget.group1.length; i++) 
 				{
 					var xa:XmlAttribute = cloneTarget.group1[i];
@@ -146,6 +161,13 @@ package editor.configuration
 				{
 					output.push(group2.join("|"));
 				}
+				if (remarkId.length>0) 
+				{
+					result.push("#" + remarkId.join(separator));
+					result.push("#" + remarkName.join(separator));
+					result.push("#" + remarkType.join(separator));
+				}
+				
 				result.push(output.join(separator));
 			}
 			var resultStr:String = result.join("\r\n");

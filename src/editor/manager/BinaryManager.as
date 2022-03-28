@@ -27,10 +27,10 @@ package editor.manager
 		}
 		public function init():void 
 		{
-			loadBiz("effect");
+			//loadBiz("effect");
 			loadBiz("cloth");
-			loadBiz("weapon");
-			loadBiz("wing");
+			//loadBiz("weapon");
+			//loadBiz("wing");
 		}
 		/**
 		 * 加载biz文件
@@ -53,37 +53,15 @@ package editor.manager
 					binStream.readBytes(ba);
 					binStream.close();
 				
-				var placeholder:int = ba.readByte()
-				if (ba.readByte() != 0x4c)
-				{
-					trace("load version failed");
-					return;
-				}
-				if (ba.readByte() != 0x49)return;
-				if (ba.readByte() != 0x50)return;
-				if (ba.readByte() != 0x45)return;
-				if (ba.readByte() != 0x4e)return;
-				if (ba.readByte() != 0x47)return;
-				if (ba.readByte() != 0x48)return;
-				if (ba.readByte() != 0x75)return;
-				if (ba.readByte() != 0x69)return;
-				
 				var fileCount:int = ba.readInt();
-				var fileName:String = "";
-				placeholder = 0;
+				var fileName:int = 0;
+				var placeholder:int = 0;
 				for (var i:int = 0; i < fileCount; i++) 
 				{
 					try 
 					{
-						var len:int = ba.readByte();
-						fileName = ba.readMultiByte(len, "utf-8");
-						if (int(fileName)<=0)continue;
-						placeholder=ba.readInt();
-						if (placeholder>0) 
-						{
-							var bin:FrameInfo = loadBin("",ba);
-							data[name][fileName]=bin;
-						}
+						fileName = ba.readInt();
+						var bin:FrameInfo = loadBin("",ba);
 					}catch (e:Error){
 						errorNum++;
 						continue;
@@ -129,46 +107,26 @@ package editor.manager
 					trace("不存在bin文件:",file.nativePath);
 				}
 			}
-			var fileid:int = bin.id = ba.readByte();
-			var dirCount:int = bin.dir = ba.readByte();//方向数
-			var imgNum:int = bin.imgNum = ba.readByte();//图片数量
-			imgNum = bin.imgNum = ba.readByte();
-			var frameCount:int = 0;
-			for (var i:int = 0; i < imgNum; i++) 
-			{
-				var temp:int= ba.readByte();
-				bin.keyFrameData[i] = temp;
-				frameCount += temp;
-			}
+			var ww:int = ba.readShort();
+			var hh:int = ba.readShort();
+			var imgNum:int = bin.imgNum = ba.readShort();//图片数量
+			var dirCount:int = bin.dir = ba.readShort();//方向数
+			var frameCount:int = ba.readShort();
 			bin.frameCount = frameCount;
-			for (i=0; i < dirCount; i++)
+			for (var j:int = 0; j < imgNum; j++)
 			{
-				var index:int = 0; //单方向素材的帧信息
-				bin.frameInfo[i] = new Array;
-				for (var j:int = 0; j < imgNum; j++)
-				{
-					var x:int=ba.readShort();
-					var y:int=ba.readShort();
-					var w:int=ba.readShort();
-					var h:int=ba.readShort();
-					var cx:int=ba.readShort();
-					var cy:int = ba.readShort();
-					var rotated:int = ba.readShort();
-					
-					for (var k:int = 0; k < bin.keyFrameData[j]; k++) 
-					{
-						var frame:Texture = new Texture();
-						frame.x = x;
-						frame.y = y;
-						frame.w = w;
-						frame.h = h;
-						frame.cx = cx;
-						frame.cy = cy;
-						frame.rotated = rotated > 1?true:false;
-						bin.frameInfo[i][index] = frame;
-						index++;
-					}
-				}
+				var frame_id:int=ba.readInt();
+				var fx:int=ba.readShort();//小图在大图的x坐标
+				var fy:int=ba.readShort();//小图在大图的y坐标
+				var fw:int=ba.readShort();//小图在大图的占有宽度
+				var fh:int=ba.readShort();//小图在大图的占有高度
+				var ox:int=ba.readShort();// x方向偏移量
+				var oy:int=ba.readShort();// y方向偏移量
+				var sw:int=ba.readShort();// 原图width大小
+				var sh:int=ba.readShort();//原图height大小
+				var ro:int = ba.readShort();
+				
+				trace(frame_id, fx, fy, fw, fh, ox, oy, sw, sh, ro);
 			}
 			if (type==1) 
 			{

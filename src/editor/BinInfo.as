@@ -18,11 +18,16 @@ package editor
 		public var inited:Boolean = false;
 		public var path:String = "";
 		public var dirCount:int = 0;
-		public var tmp:int = 0;
 		public var imgNum:int = 0;
+		
+		public var id:int = 0;
+		public var ww:int = 0;
+		public var hh:int = 0;
+		public var frameCount:int = 0;
 		
 		public var keyFrameData:Array = [];
 		public var frameData:Array = [];
+		
 		public function BinInfo(path:String) 
 		{
 			this.path = path;
@@ -37,40 +42,42 @@ package editor
 				binStream.open(file, FileMode.READ);
 				binStream.readBytes(ba);
 				binStream.close();
-			dirCount = ba.readByte();  	// 方向数
-			tmp=ba.readByte();  		// 暂时无用
-			imgNum=ba.readByte(); 		// 图片数量
+				
 			var frameCount:int = 0;
-			for (var i:int = 0; i < imgNum; i++) 
-			{
-				var temp:int=ba.readByte();
-				keyFrameData[i] = temp;
-				frameCount += temp;
-			}
-			i = 0;
+			var keyFrameData:Array = [];
+			
+			id=ba.readInt();			//file_id
+			ww=ba.readShort();			//file_width=ba->readShort(); 	//文件尺寸 width
+			hh = ba.readShort();		//file_height=ba->readShort();	//文件尺寸 height
+			frameCount=ba.readShort();	//方向数×图片数
+			dirCount=ba.readShort();	//方向数
+			imgNum = ba.readShort();	//图片数量
+			
 			try 
 			{
-				for (i; i < dirCount; i++)
+				for (var i:int=0; i < dirCount; i++)
 				{
-					var index:int = 0;
-					frameData[i] = [];
 					for (var j:int = 0; j < imgNum; j++)
 					{
+						var index:int = (i * imgNum) + j;
+						var fraemId:int=ba.readInt();
 						var x:int=ba.readShort();
 						var y:int=ba.readShort();
 						var w:int=ba.readShort();
 						var h:int=ba.readShort();
 						var cx:int=ba.readShort();
-						var cy:int=ba.readShort();
+						var cy:int = ba.readShort();
+						var sw:int=ba.readShort();// 原图width大小
+						var sh:int=ba.readShort();//原图height大小
 						var rotated:int = ba.readShort();
-						frameData[i][j] = [x,y,w,h,cx,cy,rotated];
+						frameData[index] = [fraemId, x, y, w, h, cx, cy, sw, sh, rotated];
 					}
 				}
 				inited = true;
 			}catch (err:Error)
 			{
-				App.log.error("出现异常", err.message);
 				inited = false;
+				trace("出现异常");
 			}
 		}
 		
@@ -87,26 +94,29 @@ package editor
 				binStream.endian=Endian.LITTLE_ENDIAN;
 				binStream.open(file,FileMode.WRITE);
 				
-				binStream.writeByte(dirCount);  	// 方向数
-				binStream.writeByte(tmp);  			// 暂时无用
-				binStream.writeByte(imgNum); 		// 图片数量
+				binStream.writeInt(id);
+				binStream.writeShort(ww);
+				binStream.writeShort(hh);
+				binStream.writeShort(imgNum * dirCount);
+				binStream.writeShort(dirCount);
+				binStream.writeShort(imgNum);
 				
-				for (var i:int = 0; i < keyFrameData.length; i++) 
+				for (var i:int=0; i < dirCount; i++)
 				{
-					binStream.writeByte(keyFrameData[i]);
-				}
-				for (var j:int=0; j < dirCount; j++)
-				{
-					for (var k:int = 0; k <imgNum; k++) 
+					for (var j:int = 0; j < imgNum; j++)
 					{
-						var info:Array = frameData[j][k];
-						binStream.writeShort(info[0]);			//x
-						binStream.writeShort(info[1]);			//y
-						binStream.writeShort(info[2]);			//w
-						binStream.writeShort(info[3]);			//h
-						binStream.writeShort(info[4]+center.x); //cx
-						binStream.writeShort(info[5]+center.y); //cy
-						binStream.writeShort(info[6]);			//rotated
+						var index:int = (i * imgNum) + j;
+						var info:Array = frameData[index];
+						binStream.writeInt(info[0]);
+						binStream.writeShort(info[1]);
+						binStream.writeShort(info[2]);
+						binStream.writeShort(info[3]);
+						binStream.writeShort(info[4]);
+						binStream.writeShort(info[5] + center.x);
+						binStream.writeShort(info[6] + center.y);
+						binStream.writeShort(info[7]);
+						binStream.writeShort(info[8]);
+						binStream.writeShort(info[9]);
 					}
 				}
 				binStream.close();

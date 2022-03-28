@@ -218,21 +218,25 @@ package view.object
 					binStream.open(file, FileMode.READ);
 					binStream.readBytes(ba);
 					binStream.close();
-				var dirCount:int = ba.readByte();  	// 方向数
-				ba.readByte();  					// 暂时无用
-				var imgNum:int=ba.readByte(); 		// 图片数量
+					
 				var frameCount:int = 0;
 				var keyFrameData:Array = [];
 				var frameData:Array = [];
 				
+				var fid:int=ba.readInt();//file_id
+				var ww:int=ba.readShort();//file_width=ba->readShort(); 	//文件尺寸 width
+				var hh:int = ba.readShort();//file_height=ba->readShort();	//文件尺寸 height
+				var frameCount:int=ba.readShort();//方向数×图片数
+				var dirCount:int=ba.readShort();//方向数
+				var imgNum:int=ba.readShort();//图片数量
+				var actInfo:Object = new Object;
+				
+				actInfo.dirCount = dirCount;
+				actInfo.frameCount = 2 * imgNum;
 				for (var i:int = 0; i < imgNum; i++) 
 				{
-					var temp:int=ba.readByte();
-					keyFrameData[i] = temp;
-					frameCount += temp;
+					keyFrameData[i] = 2;
 				}
-				info.dirCount = dirCount;
-				info.frameCount = frameCount;
 				i = 0;
 				try 
 				{
@@ -243,12 +247,15 @@ package view.object
 						for (var j:int = 0; j < imgNum; j++)
 						{
 							var id:int = (i * imgNum) + j;
+							var fraemId:int=ba.readInt();
 							var x:int=ba.readShort();
 							var y:int=ba.readShort();
 							var w:int=ba.readShort();
 							var h:int=ba.readShort();
 							var cx:int=ba.readShort();
-							var cy:int=ba.readShort();
+							var cy:int = ba.readShort();
+							var sw:int=ba.readShort();// 原图width大小
+							var sh:int=ba.readShort();//原图height大小
 							var rotated:int = ba.readShort();
 							for (var k:int = 0; k < keyFrameData[j]; k++) 
 							{
