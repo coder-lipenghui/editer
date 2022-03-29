@@ -529,6 +529,10 @@ package editor.manager
 							for (var jj:int = 0; jj < imgNum; jj++)
 							{
 								var imgid:int = binByteArray.readInt();
+								if (imgid<1000) 
+								{
+									trace();
+								}
 								var x:int=binByteArray.readShort();
 								var y:int=binByteArray.readShort();
 								var w:int=binByteArray.readShort();
@@ -538,8 +542,10 @@ package editor.manager
 								var fw:int = binByteArray.readShort();
 								var fh:int = binByteArray.readShort();
 								var rotated:int = binByteArray.readShort();
+								trace("文件检测:", fid, imgid);
 							}
 						}
+						
 					}catch (err:Error)
 					{
 						bizStream.close();
@@ -600,7 +606,7 @@ package editor.manager
 					{
 						if (targetAction == actionId)
 						{
-							createBinFile(path,actionId, id,animatData, dir, imgNum, frameInfo, new Point(point[0], point[1]));
+							createBinFile(path,id, actionId,animatData, dir, imgNum, frameInfo, new Point(point[0], point[1]));
 							break;
 						}
 					}else{
@@ -619,12 +625,13 @@ package editor.manager
 		 * @param	frameInfo 动作帧信息
 		 * @param	center 中心点
 		 */
-		public  function createBinFile(path:String,id:String,actionId:String,animatData:Array,dir:int,imgNum:int,frameInfo:String,center:Point):void 
+		public  function createBinFile(path:String,resId:String,actionId:String,animatData:Array,dir:int,imgNum:int,frameInfo:String,center:Point):void 
 		{
 			var outputPath:String = path + actionId + ".bin";
+			var id:int = int(resId) * 100 + int(actionId);
 			var ba:ByteArray = new ByteArray();
 			ba.endian = Endian.LITTLE_ENDIAN;
-			ba.writeInt(int(id));
+			ba.writeInt(id);
 			ba.writeShort(1);
 			ba.writeShort(1);
 			ba.writeShort(imgNum * dir);
@@ -650,11 +657,15 @@ package editor.manager
 						ba.writeShort(animat.sourceW);//sw=ba->readShort();// 原图width大小
 						ba.writeShort(animat.sourceH);//sh=ba->readShort();//原图height大小
 						ba.writeShort(animat.rotated);//ro=ba->readShort();
-						trace("["+id+"]["+actionId+"]["+imgName+"]生成的数据:",animat.x,animat.y,animat.w,animat.h,animat.sourceW,animat.sourceH);
+						trace("["+id+"]["+imgName+"]生成的数据:",animat.x,animat.y,animat.w,animat.h,animat.sourceW,animat.sourceH);
 					}
 				}
 			}
 			var binfile:File = new File(outputPath);
+			if (binfile.exists) 
+			{
+				binfile.deleteFile();
+			}
 			var binStream:FileStream = new FileStream();
 				binStream.open(binfile, FileMode.WRITE);
 				binStream.writeBytes(ba,0,ba.length);

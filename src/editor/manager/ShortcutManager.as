@@ -18,6 +18,9 @@ package editor.manager
 	 */
 	public class ShortcutManager
 	{
+		public static var SAVE:String = "ctrl,s";
+		public static var SAVE_ALL:String = "ctrl,shift,s";
+		
 		private static var _instance:ShortcutManager = null;
 		private var _stage:Stage = null;
 		private var _ctrlDown:Boolean = false;

@@ -358,7 +358,7 @@ package editor.tools.texturePacker
 							}
 							animat.offestX = offset[0];
 							animat.offestY = offset[1];
-							animat.rotated = rotated?2:1;
+							animat.rotated = rotated?1:0;
 							
 							if (rect.length>0)
 							{

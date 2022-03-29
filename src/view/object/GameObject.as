@@ -228,7 +228,6 @@ package view.object
 					var distanceX:int = 0;
 					pt.x = cx + (targetPoint.x);
 					pt.y = cy + (targetPoint.y);
-					rotated = rotated == 2?1:0;
 					if (rotated &&_sourceBmd)
 					{
 						rect = new Rectangle(x, y, h, w);

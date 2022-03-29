@@ -141,10 +141,6 @@ package editor
 						var distanceX:int = 0;
 						pt.x = cx + (this.width >>1);
 						pt.y = cy + (this.height >> 1);
-						//if (!EditorConfig.IS_LUWEIRAN)
-						//{
-						rotated = rotated == 2?1:0;
-						//}
 						if (rotated &&targetBmd)
 						{
 							rect = new Rectangle(x, y, h, w);

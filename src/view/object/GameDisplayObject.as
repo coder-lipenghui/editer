@@ -226,13 +226,10 @@ package view.object
 				var fid:int=ba.readInt();//file_id
 				var ww:int=ba.readShort();//file_width=ba->readShort(); 	//文件尺寸 width
 				var hh:int = ba.readShort();//file_height=ba->readShort();	//文件尺寸 height
-				var frameCount:int=ba.readShort();//方向数×图片数
+				frameCount=ba.readShort();//方向数×图片数
 				var dirCount:int=ba.readShort();//方向数
-				var imgNum:int=ba.readShort();//图片数量
-				var actInfo:Object = new Object;
+				var imgNum:int = ba.readShort();//图片数量
 				
-				actInfo.dirCount = dirCount;
-				actInfo.frameCount = 2 * imgNum;
 				for (var i:int = 0; i < imgNum; i++) 
 				{
 					keyFrameData[i] = 2;
@@ -260,17 +257,24 @@ package view.object
 							for (var k:int = 0; k < keyFrameData[j]; k++) 
 							{
 								frameData[i][index] = new Array();
-								frameData[i][index][0]=(x);
-								frameData[i][index][1]=(y);
-								frameData[i][index][2]=(w);
-								frameData[i][index][3]=(h);
-								frameData[i][index][4]=(cx);
-								frameData[i][index][5]=(cy);
-								frameData[i][index][6]=(rotated);
+								
+								frameData[i][index][0] = fraemId;
+								frameData[i][index][1] = x;
+								frameData[i][index][2] = y;
+								frameData[i][index][3] = w;
+								frameData[i][index][4] = h;
+								frameData[i][index][5] = cx;
+								frameData[i][index][6] = cy;
+								frameData[i][index][7] = sw;
+								frameData[i][index][8] = sh;
+								frameData[i][index][9] = rotated;
+								
 								index++;
 							}
 						}
 					}
+					info.dirCount = dirCount;
+					info.frameCount = 2 * imgNum;
 					info.frameData = frameData;
 				}catch (err:Error)
 				{
@@ -317,21 +321,21 @@ package view.object
 				{
 					if (frameData[dir]&&frameData[dir][currFrame]) 
 					{
-						var x:int = frameData[dir][currFrame][0];
-						var y:int = frameData[dir][currFrame][1];
-						var w:int = frameData[dir][currFrame][2];
-						var h:int = frameData[dir][currFrame][3];
+						var x:int = frameData[dir][currFrame][1];
+						var y:int = frameData[dir][currFrame][2];
+						var w:int = frameData[dir][currFrame][3];
+						var h:int = frameData[dir][currFrame][4];
 						
-						var cx:int = frameData[dir][currFrame][4];
-						var cy:int = frameData[dir][currFrame][5];
-						var rotated:int = frameData[dir][currFrame][6];
+						var cx:int = frameData[dir][currFrame][5];
+						var cy:int = frameData[dir][currFrame][6];
+						
+						var rotated:int = frameData[dir][currFrame][9];
 						var rect:Rectangle = null;
 						var pt:Point = new Point();
 						var pt1:Point = new Point();
 						var distanceX:int = 0;
 						pt.x = cx + (targetPoint.x);
 						pt.y = cy + (targetPoint.y);
-						rotated = rotated == 2?1:0;
 						if (bmd) 
 						{
 							if (rotated)

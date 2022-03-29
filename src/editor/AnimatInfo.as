@@ -15,7 +15,7 @@ package editor
 		public var y:uint=0;
 		public var w:uint=0;
 		public var h:uint=0;
-		public var rotated:int=1;
+		public var rotated:int=0;
 		public var offset:Point=null;
 		
 		public var oldX:int = 0;

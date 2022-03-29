@@ -1,7 +1,10 @@
 package view.window 
 {
 	import editor.EditorManager;
+	import editor.events.EditorEvent;
+	import editor.events.ShortcutEvent;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.text.TextField;
 	import editor.manager.DataManager;
@@ -28,7 +31,13 @@ package view.window
 			list_frame.renderHandler = new Handler(handlerRender);
 			this.addEventListener(FRAME_CHANGE, handlerFrameChange);
 			btn_action.clickHandler = new Handler(save);
-			tab_displayModel.selectHandler=new Handler(handlerTabSelected);
+			tab_displayModel.selectHandler = new Handler(handlerTabSelected);
+			
+			App.stage.addEventListener(ShortcutEvent.SHORTCUT_EVENT, handlerShortcut);
+			this.addEventListener(MouseEvent.CLICK,function (e:Event):void 
+			{
+				dispatchEvent(new EditorEvent(EditorEvent.FOCUS_IN,null,null,true));
+			});
 		}
 		private function handlerTabSelected(index:int):void 
 		{
@@ -39,20 +48,66 @@ package view.window
 				_currObj = obj;
 				_currResNode = resNode;
 				setData(resNode, obj);
+			}else{
+				_currObj = null;
+				_currResNode = null;
 			}
 		}
-		public function save():void 
+		public function handlerShortcut(e:ShortcutEvent):void 
 		{
 			if (!_currResNode) return;
-			//TODO 更改xml节点
-			_currResNode.@center = txt_centerX.text + "," + txt_centerY.text;
+			var center:String = txt_centerX.text + "," + txt_centerY.text;
 			_currResNode.@dir = txt_dir.text;
+			var key:String = e.key;
+			if (key=="") 
+			{
+				return;
+			}
+			if (EditorManager.focus==this) 
+			{
+				switch (key) 
+				{
+					case "ctrl,s":
+						save(center);
+						break;
+					case "ctrl,shift,s":
+						saveAll(center);
+						break;
+				}
+			}
+		}
+		public function saveAll(center:String):void 
+		{
+			if (!_currResNode) return;
+			
+			_currResNode.@center = txt_centerX.text + "," + txt_centerY.text;
+			var xmlList:XMLList = _currResNode.children();
+			for (var i:int = 0; i < xmlList.length(); i++) 
+			{
+				var xml:XML = xmlList[i] as XML;
+				xml.@center = "";
+			}
+			DataManager.library.addResNode(_currResNode);
+			DataManager.library.createBinFileByXmlNode(_currResNode,"");
+			App.log.info("bin文件修改成功")
+			stage.dispatchEvent(new Event(ResEdit.RES_REFRESH));
+		}
+		public function save(center:String):void 
+		{
+			if (!_currResNode) return;
+			var xmlList:XMLList = _currResNode.children();
+			for (var i:int = 0; i < xmlList.length(); i++) 
+			{
+				var xml:XML = xmlList[i] as XML;
+				if (String(xml.@id)==_currObj.action) 
+				{
+					xml.@center = center;
+				}
+			}
 			DataManager.library.addResNode(_currResNode);
 			DataManager.library.createBinFileByXmlNode(_currResNode, _currObj.action);
 			App.log.info("bin文件修改成功")
-			//TODO 如果更改catalog，则执行moveTo的操作
-			//TODO 重新生成bin文件
-			//TODO 重新显示当前资源
+			stage.dispatchEvent(new Event(ResEdit.RES_REFRESH));
 		}
 		private function handlerFrameChange(e:Event):void 
 		{

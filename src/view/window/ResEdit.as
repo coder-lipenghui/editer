@@ -18,6 +18,8 @@ package view.window
 	 */
 	public class ResEdit extends WindowResEditUI 
 	{
+		public static var RES_REFRESH:String = "res_refresh";
+		
 		private var _id:String = "";
 		private var _catalog:int = 0;
 		private var _displayId:int = 0;
@@ -45,6 +47,10 @@ package view.window
 			App.stage.addEventListener(ShortcutEvent.SHORTCUT_EVENT, handlerShortcut);
 			App.stage.addEventListener(EditorEvent.ACTION_LOAD_COMPLETED, handlActionLoaded);
 			App.stage.addEventListener(EditorEvent.CONTEXT_RES_EDIT, handlerShowRes);
+			App.stage.addEventListener(RES_REFRESH,function (e:Event):void 
+			{
+				refresh(0, 0);
+			})
 		}
 		private function handlerShowRes(e:EditorEvent):void 
 		{
@@ -175,11 +181,15 @@ package view.window
 						tempX =-1;
 						break;
 				}
-				for (var i:int = 0; i < list_preview.array.length; i++) 
-				{
-					var resView:ResPreview = list_preview.getCell(i) as ResPreview;
-					resView.changeCenterPos(tempX, tempY,cb_model.selectedIndex);
-				}
+				refresh(tempX,tempY)
+			}
+		}
+		private function refresh(cx:int,cy:int):void 
+		{
+			for (var i:int = 0; i < list_preview.array.length; i++) 
+			{
+				var resView:ResPreview = list_preview.getCell(i) as ResPreview;
+				resView.changeCenterPos(cx, cy,cb_model.selectedIndex);
 			}
 		}
 	}
