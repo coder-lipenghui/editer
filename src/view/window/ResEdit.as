@@ -54,6 +54,7 @@ package view.window
 		}
 		private function handlerShowRes(e:EditorEvent):void 
 		{
+			list_preview.selectedIndex =-1;
 			if (e.data as XML) 
 			{
 				var xml:XML = e.data as XML;

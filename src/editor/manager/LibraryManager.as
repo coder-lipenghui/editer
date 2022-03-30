@@ -594,7 +594,7 @@ package editor.manager
 					var childCenter:String = child.@center;
 					var frameInfo:String = child.@frameinfo;
 					var tempCenter:String = center;
-					if (childCenter && childCenter!="") 
+					if (childCenter && childCenter!="" && !CatalogManager.instance.isEffectCatalog(catalogId)) 
 					{
 						tempCenter = childCenter;
 					}
@@ -657,7 +657,6 @@ package editor.manager
 						ba.writeShort(animat.sourceW);//sw=ba->readShort();// 原图width大小
 						ba.writeShort(animat.sourceH);//sh=ba->readShort();//原图height大小
 						ba.writeShort(animat.rotated);//ro=ba->readShort();
-						trace("["+id+"]["+imgName+"]生成的数据:",animat.x,animat.y,animat.w,animat.h,animat.sourceW,animat.sourceH);
 					}
 				}
 			}

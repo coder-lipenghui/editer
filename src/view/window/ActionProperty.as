@@ -80,7 +80,7 @@ package view.window
 		{
 			if (!_currResNode) return;
 			
-			_currResNode.@center = txt_centerX.text + "," + txt_centerY.text;
+			_currResNode.@center = center;
 			var xmlList:XMLList = _currResNode.children();
 			for (var i:int = 0; i < xmlList.length(); i++) 
 			{
@@ -89,24 +89,30 @@ package view.window
 			}
 			DataManager.library.addResNode(_currResNode);
 			DataManager.library.createBinFileByXmlNode(_currResNode,"");
-			App.log.info("bin文件修改成功")
+			App.log.info("bin文件修改成功["+_currResNode.@name+"]")
 			stage.dispatchEvent(new Event(ResEdit.RES_REFRESH));
 		}
 		public function save(center:String):void 
 		{
 			if (!_currResNode) return;
-			var xmlList:XMLList = _currResNode.children();
-			for (var i:int = 0; i < xmlList.length(); i++) 
+			var catalogId:int = int(_currResNode.@catalog);
+			if (CatalogManager.instance.isEffectCatalog(catalogId)) 
 			{
-				var xml:XML = xmlList[i] as XML;
-				if (String(xml.@id)==_currObj.action) 
+				_currResNode.@center = center;
+			}else{
+				var xmlList:XMLList = _currResNode.children();
+				for (var i:int = 0; i < xmlList.length(); i++) 
 				{
-					xml.@center = center;
+					var xml:XML = xmlList[i] as XML;
+					if (String(xml.@id)==_currObj.action) 
+					{
+						xml.@center = center;
+					}
 				}
 			}
 			DataManager.library.addResNode(_currResNode);
 			DataManager.library.createBinFileByXmlNode(_currResNode, _currObj.action);
-			App.log.info("bin文件修改成功")
+			App.log.info("bin文件修改成功["+_currResNode.@name+"]")
 			stage.dispatchEvent(new Event(ResEdit.RES_REFRESH));
 		}
 		private function handlerFrameChange(e:Event):void 
