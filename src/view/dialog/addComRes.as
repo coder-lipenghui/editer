@@ -1,5 +1,7 @@
 package view.dialog 
 {
+	import editor.EditorManager;
+	import flash.filesystem.FileMode;
 	import flash.geom.Point;
 	import editor.manager.ActionManager;
 	import editor.manager.BinaryManager;
@@ -32,19 +34,23 @@ package view.dialog
 		private var _targets:Array = [];
 		private var _currActions:Array = [];
 		private var _pdm:PullDownMenu = null;
+		private static var _instance:addComRes = null;
 		public function addComRes() 
 		{
+			_instance = this;
 			super();
 			btn_browse.clickHandler = new Handler(function ():void 
 			{
 				BrowseTools.browseForDirectory("选择资源文件夹", txt_path.text==""?"":txt_path.text, function(file:File, target:String):void{
 					txt_path.text = _sourcePath = target;
+					EditorManager.SaveLastPath("addComRes", _sourcePath);
 					if (!cb_batch.selected) 
 					{
 						setFileIdAndName(file.name);
 					}
 				});
 			});
+			txt_path.text = EditorManager.GetLastPath("addComRes");
 			btn_add.clickHandler = new Handler(add);
 		}
 		override protected function initialize():void 
@@ -86,6 +92,7 @@ package view.dialog
 				}
 			}
 		}
+		
 		private function add():void 
 		{
 			_tpList = [];
@@ -250,8 +257,9 @@ package view.dialog
 				}
 				DataManager.library.addResNode(descriptionXML);
 				var animatData:Array = TexturePacker.plistData(tp.data);
+				var catalog:int=int(descriptionXML.@catalog)
 				//vartp.data.replace(".plist", ".bin")
-				DataManager.library.createBinFile(tp.outputPath,descriptionXML.@id,tp.name, animatData, dir, imgNum, frameInfo, point);
+				DataManager.library.createBinFile(tp.outputPath,descriptionXML.@id,tp.name, animatData, dir, imgNum, frameInfo, point,!CatalogManager.instance.isEffectCatalog(catalog));
 			}
 			if (_tpList.length>0)
 			{
@@ -303,7 +311,6 @@ package view.dialog
 				txt_name.text = fn;
 			}
 		}
-		
 		public function get rootPath():String 
 		{
 			return _rootPath;
@@ -312,6 +319,15 @@ package view.dialog
 		public function set rootPath(value:String):void 
 		{
 			_rootPath = value;
+		}
+		
+		public static function get instance():addComRes 
+		{
+			if (_instance==null) 
+			{
+				_instance = new addComRes();
+			}
+			return _instance;
 		}
 	}
 }

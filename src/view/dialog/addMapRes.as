@@ -1,5 +1,6 @@
 package view.dialog 
 {
+	import editor.EditorManager;
 	import flash.events.Event;
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
@@ -32,11 +33,22 @@ package view.dialog
 				file.browseForOpen("选择地图资源",[fileFilter]);
 				file.addEventListener(Event.SELECT,function (e:Event):void 
 				{
+					EditorManager.SaveLastPath("addMapRes",file.parent.nativePath)
 					txt_path.text = file.nativePath;
 					txt_name.text = file.name.replace(".jpg","");
 				});
 			});
+			txt_path.text = EditorManager.GetLastPath("addMapRes");
 		}
+		//private function parseName():void 
+		//{
+			//var tmp:Array = txt_path.text.split("/");
+			//if (tmp.length>0) 
+			//{
+				//var name:String = tmp[tmp.length - 1];	
+				//txt_name.text = file.name.replace(".jpg","");
+			//}
+		//}
 		public function add():void 
 		{
 			if (txt_path.text=="") 

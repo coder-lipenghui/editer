@@ -11,6 +11,8 @@ package editor
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.KeyboardEvent;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
 	import flash.ui.Keyboard;
 	import editor.manager.LibraryManager;
 	import morn.core.handlers.Handler;
@@ -102,6 +104,68 @@ package editor
 			{
 				shiftDown = down;
 			}
+		}
+		public static function GetLastPath(type:String):String 
+		{
+			var file:File = File.applicationDirectory.resolvePath("paths.xml");
+			var path:String = "";
+			if (file.exists) 
+			{
+				var fs:FileStream = new FileStream();
+				fs.open(file, FileMode.READ);
+				var xmlString:String=fs.readMultiByte(fs.bytesAvailable, "utf-8");
+				fs.close();
+				var xml:XML = new XML(xmlString);
+				
+				var xmllist:XMLList = xml.children();
+				for (var i:int = 0; i < xmllist.length(); i++) 
+				{
+					var item:XML = xmllist[i] as XML;
+					if (String(item.@key)==type)
+					{
+						path = item.@path;
+						break;
+					}
+				}
+			}
+			return path;
+		}
+		public static function SaveLastPath(type:String,path:String):void 
+		{
+			var file:File =File.applicationDirectory.resolvePath(File.applicationDirectory.resolvePath("paths.xml").nativePath);
+			var child:String = "<item key=\"" + type+"\" path=\"" + path + "\"/>";
+			var xml:XML = null;
+			var fs:FileStream = new FileStream();
+			if (file.exists) 
+			{
+				fs.open(file, FileMode.READ);
+				var xmlString:String = fs.readMultiByte(fs.bytesAvailable, "utf-8");
+				fs.close();
+				xml = new XML(xmlString);
+				var xmllist:XMLList = xml.children();
+				var founded:Boolean = false;
+				for (var i:int = 0; i < xmllist.length(); i++) 
+				{
+					var item:XML = xmllist[i] as XML;
+					if (String(item.@key)==type)
+					{
+						item.@path = path;
+						founded = true;
+						break;
+					}
+				}
+				if (!founded) 
+				{
+					xml.appendChild(new XML(child));
+				}
+			}else 
+			{
+				xml = new XML("<paths>" + child + "</paths>");
+			}
+			fs = new FileStream();
+			fs.open(file, FileMode.WRITE);
+			fs.writeMultiByte(xml.toString(), "utf-8");
+			fs.close();
 		}
 	}
 }

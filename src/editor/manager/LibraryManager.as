@@ -506,7 +506,7 @@ package editor.manager
 				var item:Object = assets[k];
 				//每个文件单的名称写入
 				var binFile:File = File.applicationDirectory.resolvePath(ProjectConfig.libraryPath + CatalogManager.instance.getAbsolutePath(int(item.catalog)) + "/" +item.folderName+"/export/" +item.action + ".bin");
-				App.log.info("正在合并:",binFile.nativePath);
+				//App.log.info("正在合并:",binFile.nativePath);
 				if (binFile.exists)
 				{
 					var binByteArray:ByteArray = new ByteArray();
@@ -594,7 +594,8 @@ package editor.manager
 					var childCenter:String = child.@center;
 					var frameInfo:String = child.@frameinfo;
 					var tempCenter:String = center;
-					if (childCenter && childCenter!="" && !CatalogManager.instance.isEffectCatalog(catalogId)) 
+					var isEffect:Boolean = CatalogManager.instance.isEffectCatalog(catalogId);
+					if (childCenter && childCenter!="" && !isEffect) 
 					{
 						tempCenter = childCenter;
 					}
@@ -606,11 +607,11 @@ package editor.manager
 					{
 						if (targetAction == actionId)
 						{
-							createBinFile(path,id, actionId,animatData, dir, imgNum, frameInfo, new Point(point[0], point[1]));
+							createBinFile(path,id, actionId,animatData, dir, imgNum, frameInfo, new Point(point[0], point[1]),!isEffect);
 							break;
 						}
 					}else{
-						createBinFile(path,id,actionId, animatData, dir, imgNum, frameInfo, new Point(point[0],point[1]));
+						createBinFile(path,id,actionId, animatData, dir, imgNum, frameInfo, new Point(point[0],point[1]),!isEffect);
 					}
 				}
 			}
@@ -625,10 +626,14 @@ package editor.manager
 		 * @param	frameInfo 动作帧信息
 		 * @param	center 中心点
 		 */
-		public  function createBinFile(path:String,resId:String,actionId:String,animatData:Array,dir:int,imgNum:int,frameInfo:String,center:Point):void 
+		public  function createBinFile(path:String,resId:String,actionId:String,animatData:Array,dir:int,imgNum:int,frameInfo:String,center:Point,appendAction:Boolean=true):void 
 		{
 			var outputPath:String = path + actionId + ".bin";
-			var id:int = int(resId) * 100 + int(actionId);
+			var id:int = int(resId);
+			if (appendAction) 
+			{
+				id = int(resId) * 100 + int(actionId);
+			}
 			var ba:ByteArray = new ByteArray();
 			ba.endian = Endian.LITTLE_ENDIAN;
 			ba.writeInt(id);
@@ -669,7 +674,6 @@ package editor.manager
 				binStream.open(binfile, FileMode.WRITE);
 				binStream.writeBytes(ba,0,ba.length);
 				binStream.close();
-			App.log.info(outputPath);
 			App.stage.dispatchEvent(new EditorEvent(EditorEvent.LIBRARY_BINFILE_COMPLETED,binfile.name.replace(".bin",""),null,true));
 			ba = null;
 			binStream = null;

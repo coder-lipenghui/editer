@@ -65,7 +65,7 @@ package view
 			});
 			btn_addComRes.clickHandler = new Handler(function ():void 
 			{
-				App.dialog.show(new addComRes);
+				App.dialog.show(addComRes.instance);
 				box_file.visible = false;
 			});
 			btn_crackBin.clickHandler = new Handler(function ():void
